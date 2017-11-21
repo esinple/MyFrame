@@ -1,0 +1,31 @@
+#pragma once
+#include "MPGUID.h"
+
+typedef int64_t MPSOCK;
+
+class MPINetModule;
+
+enum MP_NET_EVENT
+{
+	MP_NET_EVENT_EOF = 0x10,
+	MP_NET_EVENT_ERROR = 0x20,
+	MP_NET_EVENT_TIMEOUT = 0x40,
+	MP_NET_EVENT_CONNECTED = 0x80,
+};
+
+enum MP_NET_TYPE : uint8_t
+{
+	MP_NET_TYPE_UNKNOWN = 0,
+	MP_NET_TYPE_TCP_SERVER = 1,
+	MP_NET_TYPE_TCP_CLIENT = 2,
+	MP_NET_TYPE_UDP_SERVER = 3,
+};
+
+enum MP_CONNECT_STATE : uint8_t
+{
+	DISCONNECT		= 0,
+	CONNECTING		= 1,
+	NORMAL			= 2,
+	REMOVE			= 3,
+	VERIFIED		= 4,
+};

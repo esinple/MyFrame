@@ -1,0 +1,6 @@
+#pragma once
+#include "MPModuleDefine.h"
+
+#define H_SUPER_MANAGER_REG(SUB) H_AUTO_REGISTER_SUB(SUB)
+#define CPP_SUPER_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)
+

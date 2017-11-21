@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package MPMsg;
+
+message GateVerify_Gate2Super
+{
+}
+
+message GateVerify_Super2Gate
+{
+	uint32 err_code	= 1;
+}

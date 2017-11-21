@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="base">
+      <UniqueIdentifier>{41a4f067-514a-4baf-adcb-023b0b27ecd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{717c0936-f0b2-43c5-ba2c-3c23c8ad2d11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto\pbcc">
+      <UniqueIdentifier>{02a66fb0-8845-4791-8fc4-7100b608861b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\base\ManagerModuleManager.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\NetProxy.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\TimeManager.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\TimeTick.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\XmlManager.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\ManagerModule.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\MPMsgBase.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\test.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserBase.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserErrCode.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserMsgDefine.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\Gate2Game.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\Gate2Super.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\MPDefine.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="TestManager.cpp" />
+    <ClCompile Include="FakeClient.cpp" />
+    <ClCompile Include="FCNetProxy.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\base\ManagerModuleManager.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\NetProxy.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\TimeManager.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\TimeT.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\TimeTick.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\XmlManager.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\CommDef.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ManagerModule.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\MPMsgBase.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\test.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserBase.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserErrCode.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserMsgDefine.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\Gate2Game.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\Gate2Super.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\MPDefine.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="FCManagerModuleDefine.h" />
+    <ClInclude Include="FCManagerModuleEnum.h" />
+    <ClInclude Include="TestManager.h" />
+    <ClInclude Include="FCNetProxy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\common\command\MPMsgBase.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="..\common\command\UserBase.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="..\common\command\UserErrCode.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="..\common\command\UserMsgDefine.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="..\common\command\MPDefine.proto">
+      <Filter>proto</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,48 @@
+﻿syntax = "proto3";
+
+package MPMsg; 
+
+enum MsgType
+{
+	eMsgType_Client			= 0;//玩家消息，玩家->gateway
+	eMsgType_Super2Center	= 1;
+	eMsgType_Center2Super	= 2;
+	eMsgType_Gate2Super		= 3;
+	eMsgType_Super2Gate		= 4;
+	eMsgType_Game2Super		= 5;
+	eMsgType_Super2Game		= 6;
+	eMsgType_Gate2Game 		= 7;
+	eMsgType_Game2Gate		= 8;
+}
+
+//events
+enum EGameEventCode
+{
+	EGEC_SUCCESS								= 0;        //
+	EGEC_UNKOWN_ERROR							= 1;		//
+}
+
+enum ESynMsgID
+{
+	ESMI_UNKNOW						= 0;         //
+}
+enum EGameMsgID
+{
+	EGMI_UNKNOW						= 0;         //
+	EGMI_EVENT_RESULT				= 1;         // for events
+	EGMI_EVENT_TRANSPOND			= 2;         // for events
+}
+
+enum Gate2Super_Msg
+{
+	eGate2Super_Unkonwn 		= 0;
+	eGate2Super_VerifyMe		= 1;
+}
+
+enum Gate2Game_Msg 
+{
+	eGameMsg_Unknown						= 0;
+	eGameMsg_GameMsgWrapper					= 1;
+	eGameMsg_GameUserLogonSuccess			= 2;//玩家成功登陆，game通知gate
+	eGameMsg_GateUserLogout					= 3;//玩家登出，gate通知ganme
+}

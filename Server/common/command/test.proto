@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+message subtest
+{
+	int32 sa = 1;
+}
+
+message test
+{
+	int32 a = 1;
+	string b = 2;
+	uint32 c = 3;
+	uint64 d = 4;
+	double e = 5;
+	repeated uint32 f = 6;
+	subtest g = 7;	
+	map<uint32,uint32> h = 8;
+	uint64 i = 9;
+}
+
+message wocaozhenniubi
+{
+	string s = 1;
+}

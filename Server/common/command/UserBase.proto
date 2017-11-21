@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "UserErrCode.proto";
+
+message UserLogon_C2S
+{
+	string account		= 1;
+	string password		= 2;	
+	uint32 platfrom		= 3;
+	uint32 serverid		= 4;
+	string logon_key	= 5;
+}
+
+message UserLogon_S2C
+{
+	UserErrCode errcode		= 1;
+	uint64 user_id				= 2;
+	string account				= 3;
+	uint32 platfrom				= 4;
+	uint32 serverid				= 5;
+	string logon_key			= 6;
+}
+
+message CreateRole_C2S
+{
+	
+}
+
+message CreateRole_S2C
+{
+
+}

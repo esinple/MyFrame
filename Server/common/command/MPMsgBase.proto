@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+import "MPDefine.proto";
+
+package MPMsg; 
+
+message Ident//The base protocol can not be transfer directly
+{ 
+    int64	high	= 1;
+    int64   low		= 2;
+}
+///////////////////////////////////////////////////////////////////
+message MsgBase
+{
+	//Ident  player_id 	= 1;//only be used between proxy-server and game-server
+	MsgType msg_type	= 1;
+	uint32 msg_id 		= 2;
+	bytes  msg_data 	= 3;
+}

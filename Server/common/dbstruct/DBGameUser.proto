@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message GameUserBase
+{
+	string account 			= 1;
+	string passwd			= 2;	
+	uint64 uid				= 3;
+	string ip				= 4;
+	string login_time		= 5;
+	string logout_time		= 6;
+}
