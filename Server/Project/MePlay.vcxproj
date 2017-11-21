@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{E8A921F4-7398-423E-BDAB-8D3B7BA44D71}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MePlay</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\src\third_party;..\src\meplay\include;..\src\third_party\libevent;..\common\command;..\src\meplay\evpp;$(IncludePath)</IncludePath>
+    <ReferencePath>..\src\meplay\src;$(ReferencePath)</ReferencePath>
+    <OutDir>..\lib\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;WIN_SYSTEM;_WINSOCKAPI_;WIN32_LEAN_AND_MEAN;BOOST_ALL_DYN_LINK;MONGOCXX_STATIC;BSONCXX_STATIC;ELPP_NO_DEFAULT_LOG_FILE;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS /D _WINSOCK_DEPRECATED_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <SDLCheck>false</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <EnableModules>true</EnableModules>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>libbsoncxx.lib;libmongocxx.lib;libprotobufd.lib;libprotocd.lib;mongoc-static-1.0.lib;bson-static-1.0.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>..\lib\static;..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\meplay\evpp\any.h" />
+    <ClInclude Include="..\src\meplay\evpp\buffer.h" />
+    <ClInclude Include="..\src\meplay\evpp\conn.h" />
+    <ClInclude Include="..\src\meplay\evpp\connector.h" />
+    <ClInclude Include="..\src\meplay\evpp\conn_pool.h" />
+    <ClInclude Include="..\src\meplay\evpp\context.h" />
+    <ClInclude Include="..\src\meplay\evpp\dns_resolver.h" />
+    <ClInclude Include="..\src\meplay\evpp\duration.h" />
+    <ClInclude Include="..\src\meplay\evpp\duration.inl.h" />
+    <ClInclude Include="..\src\meplay\evpp\easylogging++.h" />
+    <ClInclude Include="..\src\meplay\evpp\event_loop.h" />
+    <ClInclude Include="..\src\meplay\evpp\event_loop_thread.h" />
+    <ClInclude Include="..\src\meplay\evpp\event_loop_thread_pool.h" />
+    <ClInclude Include="..\src\meplay\evpp\event_watcher.h" />
+    <ClInclude Include="..\src\meplay\evpp\fd_channel.h" />
+    <ClInclude Include="..\src\meplay\evpp\gettimeofday.h" />
+    <ClInclude Include="..\src\meplay\evpp\http_server.h" />
+    <ClInclude Include="..\src\meplay\evpp\inner_pre.h" />
+    <ClInclude Include="..\src\meplay\evpp\invoke_timer.h" />
+    <ClInclude Include="..\src\meplay\evpp\libevent.h" />
+    <ClInclude Include="..\src\meplay\evpp\listener.h" />
+    <ClInclude Include="..\src\meplay\evpp\logging.h" />
+    <ClInclude Include="..\src\meplay\evpp\memmem.h" />
+    <ClInclude Include="..\src\meplay\evpp\platform_config.h" />
+    <ClInclude Include="..\src\meplay\evpp\request.h" />
+    <ClInclude Include="..\src\meplay\evpp\response.h" />
+    <ClInclude Include="..\src\meplay\evpp\server_status.h" />
+    <ClInclude Include="..\src\meplay\evpp\service.h" />
+    <ClInclude Include="..\src\meplay\evpp\slice.h" />
+    <ClInclude Include="..\src\meplay\evpp\sockets.h" />
+    <ClInclude Include="..\src\meplay\evpp\stats.h" />
+    <ClInclude Include="..\src\meplay\evpp\sync_udp_client.h" />
+    <ClInclude Include="..\src\meplay\evpp\sys_addrinfo.h" />
+    <ClInclude Include="..\src\meplay\evpp\sys_sockets.h" />
+    <ClInclude Include="..\src\meplay\evpp\tcp_callbacks.h" />
+    <ClInclude Include="..\src\meplay\evpp\tcp_client.h" />
+    <ClInclude Include="..\src\meplay\evpp\tcp_conn.h" />
+    <ClInclude Include="..\src\meplay\evpp\tcp_server.h" />
+    <ClInclude Include="..\src\meplay\evpp\termcolor.hpp" />
+    <ClInclude Include="..\src\meplay\evpp\thread_dispatch_policy.h" />
+    <ClInclude Include="..\src\meplay\evpp\timestamp.h" />
+    <ClInclude Include="..\src\meplay\evpp\timestamp.inl.h" />
+    <ClInclude Include="..\src\meplay\evpp\udp_message.h" />
+    <ClInclude Include="..\src\meplay\evpp\udp_server.h" />
+    <ClInclude Include="..\src\meplay\evpp\url_parser.h" />
+    <ClInclude Include="..\src\meplay\evpp\utility.h" />
+    <ClInclude Include="..\src\meplay\evpp\windows_port.h" />
+    <ClInclude Include="..\src\meplay\include\DBClient.h" />
+    <ClInclude Include="..\src\meplay\include\DBClientMgr.h" />
+    <ClInclude Include="..\src\meplay\include\easylogging++.h" />
+    <ClInclude Include="..\src\meplay\include\MPArgs.h" />
+    <ClInclude Include="..\src\meplay\include\MPDump.h" />
+    <ClInclude Include="..\src\meplay\include\MPGUID.h" />
+    <ClInclude Include="..\src\meplay\include\MPHttpClient.h" />
+    <ClInclude Include="..\src\meplay\include\MPNet.h" />
+    <ClInclude Include="..\src\meplay\include\MPLogger.h" />
+    <ClInclude Include="..\src\meplay\include\MPMemoryPool.h" />
+    <ClInclude Include="..\src\meplay\include\MPModule.h" />
+    <ClInclude Include="..\src\meplay\include\MPAutoRegister.h" />
+    <ClInclude Include="..\src\meplay\include\MPMsg.h" />
+    <ClInclude Include="..\src\meplay\include\MPNetDefine.h" />
+    <ClInclude Include="..\src\meplay\include\MPNetObject.h" />
+    <ClInclude Include="..\src\meplay\include\MPRandom.h" />
+    <ClInclude Include="..\src\meplay\include\MPTCPClient.h" />
+    <ClInclude Include="..\src\meplay\include\MPTCPServer.h" />
+    <ClInclude Include="..\src\meplay\include\MPSingleton.h" />
+    <ClInclude Include="..\src\meplay\include\MPThread.h" />
+    <ClInclude Include="..\src\meplay\include\MPThreadPool.h" />
+    <ClInclude Include="..\src\meplay\include\MPTime.h" />
+    <ClInclude Include="..\src\meplay\include\MPTimeTester.h" />
+    <ClInclude Include="..\src\meplay\include\MPLogo.h" />
+    <ClInclude Include="..\src\meplay\include\MPUDPServer.h" />
+    <ClInclude Include="..\src\meplay\include\termcolor.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\meplay\evpp\buffer.cc" />
+    <ClCompile Include="..\src\meplay\evpp\conn.cc" />
+    <ClCompile Include="..\src\meplay\evpp\connector.cc" />
+    <ClCompile Include="..\src\meplay\evpp\conn_pool.cc" />
+    <ClCompile Include="..\src\meplay\evpp\context.cc" />
+    <ClCompile Include="..\src\meplay\evpp\dns_resolver.cc" />
+    <ClCompile Include="..\src\meplay\evpp\duration.cc" />
+    <ClCompile Include="..\src\meplay\evpp\event_loop.cc" />
+    <ClCompile Include="..\src\meplay\evpp\event_loop_thread.cc" />
+    <ClCompile Include="..\src\meplay\evpp\event_loop_thread_pool.cc" />
+    <ClCompile Include="..\src\meplay\evpp\event_watcher.cc" />
+    <ClCompile Include="..\src\meplay\evpp\fd_channel.cc" />
+    <ClCompile Include="..\src\meplay\evpp\http_server.cc" />
+    <ClCompile Include="..\src\meplay\evpp\inner_pre.cc" />
+    <ClCompile Include="..\src\meplay\evpp\invoke_timer.cc" />
+    <ClCompile Include="..\src\meplay\evpp\libevent.cc" />
+    <ClCompile Include="..\src\meplay\evpp\listener.cc" />
+    <ClCompile Include="..\src\meplay\evpp\request.cc" />
+    <ClCompile Include="..\src\meplay\evpp\response.cc" />
+    <ClCompile Include="..\src\meplay\evpp\service.cc" />
+    <ClCompile Include="..\src\meplay\evpp\sockets.cc" />
+    <ClCompile Include="..\src\meplay\evpp\sync_udp_client.cc" />
+    <ClCompile Include="..\src\meplay\evpp\tcp_client.cc" />
+    <ClCompile Include="..\src\meplay\evpp\tcp_conn.cc" />
+    <ClCompile Include="..\src\meplay\evpp\tcp_server.cc" />
+    <ClCompile Include="..\src\meplay\evpp\udp_server.cc" />
+    <ClCompile Include="..\src\meplay\evpp\url_parser.cc" />
+    <ClCompile Include="..\src\meplay\src\DBClient.cpp" />
+    <ClCompile Include="..\src\meplay\src\DBClientMgr.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPArgs.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPGUID.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPHttpClient.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPLogger.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPLogo.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPModule.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPNet.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPNetObject.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPRandom.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPTCPClient.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPTCPServer.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPThread.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPThreadPool.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPTime.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPTimeTester.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPUDPServer.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

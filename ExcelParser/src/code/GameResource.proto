@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+message 2_Sheet1
+{
+	int32 id = 1;
+	string name  = 2;
+	double level = 3;
+	int64 param = 4;
+	string param2 = 5;
+}
+
+message 3_Sheet1
+{
+	int32 id = 1;
+	string name  = 2;
+	double level = 3;
+	int64 param = 4;
+	string param2 = 5;
+}
+
+message 4_Sheet1
+{
+	int32 id = 1;
+	string name  = 2;
+	double level = 3;
+	int64 param = 4;
+	string param2 = 5;
+}
+
+message 5_Sheet1
+{
+	int32 id = 1;
+	string name  = 2;
+	double level = 3;
+	int64 param = 4;
+	string param2 = 5;
+}
+
+message TestExcelFormat_Sheet1
+{
+	int32 id = 1;
+	string name  = 2;
+	double level = 3;
+	int64 param = 4;
+	string param2 = 5;
+}
+
+message TestExcelFormat1_Sheet1
+{
+	int32 id = 1;
+	string name  = 2;
+	double level = 3;
+	int64 param = 4;
+	string param2 = 5;
+}
+

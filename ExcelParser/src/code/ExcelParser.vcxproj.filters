@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{087f1c17-b556-4dca-b02d-236697f7402b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{fd3bc743-9065-4ce8-8884-4f4389bbb349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\FilePathMgr">
+      <UniqueIdentifier>{1d8b8416-11c2-49e1-9c16-363a775a4d53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ExcelParseMgr">
+      <UniqueIdentifier>{9b3f39a5-3585-49e8-9604-0f17b775f57c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\XmlMgr">
+      <UniqueIdentifier>{1e38ca35-4398-490f-b40b-6fdfb266b46c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\LogMgr">
+      <UniqueIdentifier>{18f12351-bd99-4aac-8a5b-a5a8b9a3631f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExcelParser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ExcelParserDlg.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePathMgr.h">
+      <Filter>Logic\FilePathMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="ExcelParseMgr.h">
+      <Filter>Logic\ExcelParseMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlMgr.h">
+      <Filter>Logic\XmlMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="LogMgr.h">
+      <Filter>Logic\LogMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ExcelParser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcelParserDlg.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="FilePathMgr.cpp">
+      <Filter>Logic\FilePathMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcelParseMgr.cpp">
+      <Filter>Logic\ExcelParseMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlMgr.cpp">
+      <Filter>Logic\XmlMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="LogMgr.cpp">
+      <Filter>Logic\LogMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ExcelParser.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ExcelParser.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\ExcelParser.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

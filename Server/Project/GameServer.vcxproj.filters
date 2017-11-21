@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{d2d9117c-aa60-45d1-9d9f-c801746fbb39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameCommon">
+      <UniqueIdentifier>{6a50e4f5-802c-4d73-990b-bee6e90df125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{fb36bfba-dab4-4563-a4e9-ea1f6199fdbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetProxy">
+      <UniqueIdentifier>{4d80c612-288a-43db-9530-5d867160332c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{dc5a57fb-403c-444b-b86c-09fb6680f876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto\pbcc">
+      <UniqueIdentifier>{a2fdc80d-cf75-4842-b541-d39ad6603b5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto\ServerProto">
+      <UniqueIdentifier>{38cce07a-4c43-4b06-a042-ba279e98e4cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto\UserProto">
+      <UniqueIdentifier>{47ed0b9f-7648-42ea-ab29-84f06d85107f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\UserLogic">
+      <UniqueIdentifier>{34d070ae-db37-47dc-aef4-8650a2d9402d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic">
+      <UniqueIdentifier>{ffc456bb-065b-46fe-84f6-43e07b555d87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\ModuleBase">
+      <UniqueIdentifier>{85c55e5a-3eb4-4dac-8881-8c7a52fafa61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\GateServerManager">
+      <UniqueIdentifier>{3b32615a-2e48-45d5-b6d2-17fbaf8e92a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\GameUserManager">
+      <UniqueIdentifier>{86574967-7259-421a-800c-a6cd0f6ce018}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\GameTimeManager">
+      <UniqueIdentifier>{2650d08a-5bbc-4067-8cb0-c236ecd568bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\StatsServerManager">
+      <UniqueIdentifier>{38d0070e-3f8e-4ce0-87d8-167583f49013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\SuperServerManager">
+      <UniqueIdentifier>{00e07023-7c64-4003-866e-9d062a56c741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\UserLogic\UserModuleBase">
+      <UniqueIdentifier>{84f09ab6-3ca0-429c-a7f5-01c4c6f9065a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\UserLogic\UserBase">
+      <UniqueIdentifier>{e8faf89e-dec9-48a4-a56b-5edde201cd13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto\DBProto">
+      <UniqueIdentifier>{3c6fa8e2-a825-4415-b90a-d75e8aa7820b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\DBManager">
+      <UniqueIdentifier>{e9a569b2-497d-4a16-9b0f-d0e3823dcbb2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\base\TimeTick.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\XmlManager.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\ManagerModule.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\ManagerModuleManager.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\NetProxy.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\main.cpp" />
+    <ClCompile Include="..\src\gameserver\GameNetProxy.cpp">
+      <Filter>NetProxy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\GameTimeManager.cpp">
+      <Filter>Logic\ManagerLogic\GameTimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\MPDefine.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\MPMsgBase.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\test.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserBase.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserErrCode.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserMsgDefine.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\Gate2Game.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\Gate2Super.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\GateServer.cpp">
+      <Filter>Logic\ManagerLogic\GateServerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\GateServerManager.cpp">
+      <Filter>Logic\ManagerLogic\GateServerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\SuperServer.cpp">
+      <Filter>Logic\ManagerLogic\SuperServerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\SuperServerManager.cpp">
+      <Filter>Logic\ManagerLogic\SuperServerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\StatsServerManager.cpp">
+      <Filter>Logic\ManagerLogic\StatsServerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\StatsServer.cpp">
+      <Filter>Logic\ManagerLogic\StatsServerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\GameUserManager.cpp">
+      <Filter>Logic\ManagerLogic\GameUserManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\GameUser.cpp">
+      <Filter>Logic\ManagerLogic\GameUserManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\TimeManager.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\UserModuleEnum.h">
+      <Filter>Logic\UserLogic\UserModuleBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\UserModuleManager.cpp">
+      <Filter>Logic\UserLogic\UserModuleBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\UserBase.cpp">
+      <Filter>Logic\UserLogic\UserBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\GameManagerModuleDefine.cpp">
+      <Filter>Logic\ManagerLogic\ModuleBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\UserModuleDefine.cpp">
+      <Filter>Logic\UserLogic\UserModuleBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\BattleBase.cpp" />
+    <ClCompile Include="..\src\gameserver\BattleManager.cpp" />
+    <ClCompile Include="..\src\dbproto\DBGameUser.pb.cc">
+      <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\DBManager.cpp">
+      <Filter>Logic\ManagerLogic\DBManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\base\TimeTick.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\XmlManager.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\CommDef.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ManagerModule.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ManagerModuleManager.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\NetProxy.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GameManagerModuleDefine.h">
+      <Filter>Logic\ManagerLogic\ModuleBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GameNetProxy.h">
+      <Filter>NetProxy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GameTimeManager.h">
+      <Filter>Logic\ManagerLogic\GameTimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GameCommDef.h">
+      <Filter>GameCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\MPDefine.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\MPMsgBase.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\test.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserBase.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserErrCode.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserMsgDefine.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\Gate2Game.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\Gate2Super.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GateServer.h">
+      <Filter>Logic\ManagerLogic\GateServerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GateServerManager.h">
+      <Filter>Logic\ManagerLogic\GateServerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\SuperServer.h">
+      <Filter>Logic\ManagerLogic\SuperServerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\SuperServerManager.h">
+      <Filter>Logic\ManagerLogic\SuperServerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\StatsServer.h">
+      <Filter>Logic\ManagerLogic\StatsServerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\StatsServerManager.h">
+      <Filter>Logic\ManagerLogic\StatsServerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GameUserManager.h">
+      <Filter>Logic\ManagerLogic\GameUserManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GameUser.h">
+      <Filter>Logic\ManagerLogic\GameUserManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\TimeT.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\TimeManager.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\UserModuleDefine.h">
+      <Filter>Logic\UserLogic\UserModuleBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\UserModule.h">
+      <Filter>Logic\UserLogic\UserModuleBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\UserModuleManager.h">
+      <Filter>Logic\UserLogic\UserModuleBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\UserBase.h">
+      <Filter>Logic\UserLogic\UserBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\BattleBase.h" />
+    <ClInclude Include="..\src\gameserver\BattleManager.h" />
+    <ClInclude Include="..\src\dbproto\DBGameUser.pb.h">
+      <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\DBManager.h">
+      <Filter>Logic\ManagerLogic\DBManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\common\command\MPDefine.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="..\common\command\MPMsgBase.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="..\common\command\UserBase.proto">
+      <Filter>proto\UserProto</Filter>
+    </None>
+    <None Include="..\common\command\UserErrCode.proto">
+      <Filter>proto\UserProto</Filter>
+    </None>
+    <None Include="..\common\command\UserMsgDefine.proto">
+      <Filter>proto\UserProto</Filter>
+    </None>
+    <None Include="..\common\dbstruct\DBGameUser.proto">
+      <Filter>proto\DBProto</Filter>
+    </None>
+    <None Include="..\common\command\Gate2Game.proto">
+      <Filter>proto\ServerProto</Filter>
+    </None>
+    <None Include="..\common\command\Gate2Super.proto">
+      <Filter>proto\ServerProto</Filter>
+    </None>
+    <None Include="..\common\command\test.proto">
+      <Filter>proto\ServerProto</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{E24F7B84-F92F-4AD5-8673-19A8B7387F39}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Project</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <ProjectName>SuperServer</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\common\command;..\src\meplay\include;..\src\third_party;..\src\meplay\;..\src\third_party\libevent;..\src\base;..\src\netproto;$(IncludePath)</IncludePath>
+    <LibraryPath>..\lib;..\lib\static;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>..\bin;$(ExecutablePath)</ExecutablePath>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>..\bin\</OutDir>
+    <ReferencePath>..\src\superserver;$(ReferencePath)</ReferencePath>
+    <LibraryWPath>C:\Boost\lib;$(LibraryWPath)</LibraryWPath>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;BOOST_ALL_DYN_LINK;_WIN32_WINDOWS;WIN_SYSTEM;MONGOCXX_STATIC;BSONCXX_STATIC;NOMINMAX;SSJ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <EnableModules>false</EnableModules>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>ws2_32.lib;Secur32.lib;Crypt32.lib;Bcrypt.lib;libevent_core.lib;libevent.lib;libprotobufd.lib;libprotocd.lib;bson-static-1.0.lib;libbsoncxx.lib;mongoc-static-1.0.lib;libmongocxx.lib;MePlay.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalLibraryDirectories>C:\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\base\ManagerModule.cpp" />
+    <ClCompile Include="..\src\base\ManagerModuleManager.cpp" />
+    <ClCompile Include="..\src\base\NetProxy.cpp" />
+    <ClCompile Include="..\src\base\TimeManager.cpp" />
+    <ClCompile Include="..\src\base\XmlManager.cpp" />
+    <ClCompile Include="..\src\netproto\Gate2Game.pb.cc" />
+    <ClCompile Include="..\src\netproto\Gate2Super.pb.cc" />
+    <ClCompile Include="..\src\netproto\MPDefine.pb.cc" />
+    <ClCompile Include="..\src\netproto\MPMsgBase.pb.cc" />
+    <ClCompile Include="..\src\netproto\test.pb.cc" />
+    <ClCompile Include="..\src\netproto\UserBase.pb.cc" />
+    <ClCompile Include="..\src\netproto\UserErrCode.pb.cc" />
+    <ClCompile Include="..\src\netproto\UserMsgDefine.pb.cc" />
+    <ClCompile Include="..\src\superserver\CenterServer.cpp" />
+    <ClCompile Include="..\src\superserver\CenterServerManager.cpp" />
+    <ClCompile Include="..\src\superserver\GameServer.cpp" />
+    <ClCompile Include="..\src\superserver\GameServerManager.cpp" />
+    <ClCompile Include="..\src\superserver\GateServer.cpp" />
+    <ClCompile Include="..\src\superserver\GateServerManager.cpp" />
+    <ClCompile Include="..\src\superserver\main.cpp" />
+    <ClCompile Include="..\src\superserver\SuperNetProxy.cpp" />
+    <ClCompile Include="..\src\superserver\SuperTimeManager.cpp" />
+    <ClCompile Include="..\src\superserver\tester.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\base\CommDef.h" />
+    <ClInclude Include="..\src\base\ManagerModule.h" />
+    <ClInclude Include="..\src\base\ManagerModuleManager.h" />
+    <ClInclude Include="..\src\base\NetProxy.h" />
+    <ClInclude Include="..\src\base\TimeManager.h" />
+    <ClInclude Include="..\src\base\TimeT.h" />
+    <ClInclude Include="..\src\base\XmlManager.h" />
+    <ClInclude Include="..\src\netproto\Gate2Game.pb.h" />
+    <ClInclude Include="..\src\netproto\Gate2Super.pb.h" />
+    <ClInclude Include="..\src\netproto\MPDefine.pb.h" />
+    <ClInclude Include="..\src\netproto\MPMsgBase.pb.h" />
+    <ClInclude Include="..\src\netproto\test.pb.h" />
+    <ClInclude Include="..\src\netproto\UserBase.pb.h" />
+    <ClInclude Include="..\src\netproto\UserErrCode.pb.h" />
+    <ClInclude Include="..\src\netproto\UserMsgDefine.pb.h" />
+    <ClInclude Include="..\src\superserver\CenterServer.h" />
+    <ClInclude Include="..\src\superserver\CenterServerManager.h" />
+    <ClInclude Include="..\src\superserver\GameServer.h" />
+    <ClInclude Include="..\src\superserver\GameServerManager.h" />
+    <ClInclude Include="..\src\superserver\GateServer.h" />
+    <ClInclude Include="..\src\superserver\GateServerManager.h" />
+    <ClInclude Include="..\src\superserver\SuperCommDef.h" />
+    <ClInclude Include="..\src\superserver\SuperManagerModuleDefine.h" />
+    <ClInclude Include="..\src\superserver\SuperManagerModuleEnum.h" />
+    <ClInclude Include="..\src\superserver\SuperNetProxy.h" />
+    <ClInclude Include="..\src\superserver\SuperTimeManager.h" />
+    <ClInclude Include="..\src\superserver\tester.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\common\command\Gate2Super.proto" />
+    <None Include="..\common\command\MPDefine.proto" />
+    <None Include="..\common\command\MPMsgBase.proto" />
+    <None Include="..\common\command\test.proto" />
+    <None Include="..\common\command\UserBase.proto" />
+    <None Include="..\common\command\UserErrCode.proto" />
+    <None Include="..\common\command\UserMsgDefine.proto" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

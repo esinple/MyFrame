@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\base\ManagerModuleManager.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\NetProxy.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\TimeTick.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\XmlManager.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\ManagerModule.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\statisticserver\StatsTimeManager.cpp">
+      <Filter>Logic\StatsTimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\statisticserver\StatsNetProxy.cpp">
+      <Filter>NetProxy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\statisticserver\main.cpp" />
+    <ClCompile Include="..\src\statisticserver\RocketMQManager.cpp">
+      <Filter>Logic\RocketMQManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\MPMsgBase.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\test.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserBase.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserErrCode.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\UserMsgDefine.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\Gate2Game.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\Gate2Super.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\netproto\MPDefine.pb.cc">
+      <Filter>protobuf\pbcc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="NetProxy">
+      <UniqueIdentifier>{0244ad7e-a4e3-4576-b894-43f158056077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{b710e618-4a76-4acc-85c2-5484bfc308c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ModuleBase">
+      <UniqueIdentifier>{eae88959-fa7c-4718-95f7-aeac90089eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\StatsTimeManager">
+      <UniqueIdentifier>{2af87164-4ffb-4c5d-98e7-e46efe1ec98b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{03029f1a-9ed6-41a5-aaf3-a85d6dfaf784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StatsCommon">
+      <UniqueIdentifier>{cc164eb8-71d1-46cf-a16c-681ecd569ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="protobuf">
+      <UniqueIdentifier>{0e5612d1-7be3-41c6-b8b4-202c6d9205df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\RocketMQManager">
+      <UniqueIdentifier>{fc601243-868d-4ad5-934a-1092272a8c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="protobuf\pbcc">
+      <UniqueIdentifier>{d8b16c7f-8f60-477f-9151-babd384fddc3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\base\ManagerModule.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ManagerModuleManager.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\NetProxy.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\TimeTick.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\XmlManager.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\CommDef.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\statisticserver\StatsManagerModuleDefine.h">
+      <Filter>Logic\ModuleBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\statisticserver\StatsManagerModuleEnum.h">
+      <Filter>Logic\ModuleBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\statisticserver\StatsTimeManager.h">
+      <Filter>Logic\StatsTimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\statisticserver\StatsNetProxy.h">
+      <Filter>NetProxy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\statisticserver\StatsCommDef.h">
+      <Filter>StatsCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\statisticserver\RocketMQManager.h">
+      <Filter>Logic\RocketMQManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\MPDefine.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\MPMsgBase.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\test.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserBase.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserErrCode.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\UserMsgDefine.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\Gate2Game.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\netproto\Gate2Super.pb.h">
+      <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\common\command\MPDefine.proto">
+      <Filter>protobuf</Filter>
+    </None>
+    <None Include="..\common\command\MPMsgBase.proto">
+      <Filter>protobuf</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\src\meplay\include\DBClient.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\DBClientMgr.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\easylogging++.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPLogger.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPGUID.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPSingleton.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPMemoryPool.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPTime.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPTimeTester.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPModule.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPLogo.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\termcolor.hpp">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPAutoRegister.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPNet.h">
+      <Filter>NetWork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPNetDefine.h">
+      <Filter>NetWork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPNetObject.h">
+      <Filter>NetWork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPDump.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPThreadPool.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPHttpClient.h">
+      <Filter>NetWork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPArgs.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\conn_pool.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\connector.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\context.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\dns_resolver.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\duration.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\duration.inl.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\easylogging++.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\event_loop.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\event_loop_thread.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\event_loop_thread_pool.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\event_watcher.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\fd_channel.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\gettimeofday.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\http_server.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\invoke_timer.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\libevent.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\listener.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\logging.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\memmem.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\platform_config.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\request.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\response.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\server_status.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\service.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\slice.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\sockets.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\stats.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\sync_udp_client.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\sys_addrinfo.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\sys_sockets.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\tcp_client.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\tcp_conn.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\tcp_server.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\termcolor.hpp">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\thread_dispatch_policy.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\timestamp.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\timestamp.inl.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\udp_message.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\udp_server.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\url_parser.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\utility.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\windows_port.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\any.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\buffer.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\conn.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPUDPServer.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPTCPServer.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\tcp_callbacks.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\evpp\inner_pre.h">
+      <Filter>evpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPMsg.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPTCPClient.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPRandom.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\meplay\src\DBClient.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\DBClientMgr.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPLogger.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPTime.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPTimeTester.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPModule.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPLogo.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPNet.cpp">
+      <Filter>NetWork</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPNetObject.cpp">
+      <Filter>NetWork</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPGUID.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPThreadPool.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPHttpClient.cpp">
+      <Filter>NetWork</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPArgs.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\connector.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\context.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\dns_resolver.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\duration.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\event_loop.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\event_loop_thread.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\event_loop_thread_pool.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\event_watcher.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\fd_channel.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\http_server.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\inner_pre.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\invoke_timer.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\libevent.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\listener.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\request.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\response.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\service.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\sockets.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\sync_udp_client.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\tcp_client.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\tcp_conn.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\tcp_server.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\udp_server.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\url_parser.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\buffer.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\conn.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\evpp\conn_pool.cc">
+      <Filter>evpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPUDPServer.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPTCPServer.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPTCPClient.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPRandom.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DB">
+      <UniqueIdentifier>{403fed57-3432-4425-bdc6-540563a7278c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{19af96c3-f105-4baf-a223-8df2c9468ef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetWork">
+      <UniqueIdentifier>{20669038-db85-4117-a0f8-09d102078e1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{8847c896-14bc-4ebc-b763-3958fc7e5787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{cc7febc9-3e8d-4387-9094-23aa263206c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{97c33130-c9da-45ec-84a5-b5a263c14ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{baa9934d-1591-4d5b-a373-1cdba10ec4c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="evpp">
+      <UniqueIdentifier>{bd4b2984-aefd-476b-88b8-b1781e9107a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Net">
+      <UniqueIdentifier>{43b5b6c8-fdec-4753-8ca3-dbc6228966d1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
