@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+enum UserErrCode 
+{
+	UEC_Success					= 0;
+	UEC_Failed					= 1;
+}

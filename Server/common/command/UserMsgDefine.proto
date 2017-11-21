@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+enum UserMsgDefine 
+{
+	UserMsg_Unknown				= 0;
+	UserMsg_Logon				= 1;
+	UserMsg_CreateRole			= 2;
+}

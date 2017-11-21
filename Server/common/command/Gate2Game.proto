@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package MPMsg;
+
+message GateUserWrapper_Gate2Game
+{
+	uint64 fd				= 1;
+	uint64 user_id			= 2;
+	bytes raw_data			= 3;
+}
+
+message GateUserWrapper_Game2Gate
+{
+	uint64 user_id			= 1;//0表示广播
+	bytes raw_data			= 2;
+}
+
+//玩家成功在game上登陆
+message GameUserLogonSuccess_Game2Gate
+{
+	uint64 fd				= 1;
+	uint64 user_id			= 2;
+}
+
+//玩家成功在gate上登陆
+message GameUserLogonSuccess_Gate2Game
+{
+	uint64 fd				= 1;
+	uint64 user_id			= 2;
+}
+
+message GateUserLogout_Gate2Game
+{
+	uint64 user_id			= 1;
+}
+
+message GateUserLogoutRet_Game2Gate
+{
+	uint64 user_id			= 1;
+}
