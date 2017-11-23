@@ -31,7 +31,10 @@ public:
 		return (T*)m_vModules[nType];
 	}
 private:
+	bool topologicalSort();
+private:
 	std::vector<ManagerModule*> m_vModules;
 	uint32_t					m_nModuleNum;
 	GetNameFuncPtr				m_pFunc;
+	std::vector<int>			m_vOrder;
 };

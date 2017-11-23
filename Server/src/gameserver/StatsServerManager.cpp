@@ -6,6 +6,8 @@ CPP_GAME_MANAGER_REG(StatsServerManager)
 StatsServerManager::StatsServerManager()
 	: ManagerModule(eGameMgr_StatsServer)
 {
+	AddParent(eGameMgr_Time);
+	AddParent(eGameMgr_DBServer);
 }
 
 StatsServerManager::~StatsServerManager()

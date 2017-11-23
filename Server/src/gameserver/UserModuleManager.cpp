@@ -2,6 +2,8 @@
 #include "MPLogger.h"
 #include "MPTimeTester.h"
 
+std::vector<int> UserModuleManager::m_vOrder;
+
 UserModuleManager::UserModuleManager(uint32_t nModuleNum, GetUserModuleFuncPtr pFunc)
 	: m_vModules(), m_nModuleNum(nModuleNum), m_pFunc(pFunc)
 {
@@ -31,6 +33,16 @@ bool UserModuleManager::Awake()
 			MP_ERROR("Module Create [%d : %s] Failed!", i, m_pFunc(i));
 		}
 	}
+
+	if (m_vOrder.empty())
+	{
+		if (!ModuleRely::TopologicalSort(m_vModules, m_vOrder, m_pFunc))
+		{
+			return false;
+		}
+		//≥ı ºªØº”‘ÿÀ≥–Ú
+	}
+
 	for (uint32_t index = 0; index < m_nModuleNum; ++index)
 	{
 		if (!m_vModules[index]->UserAwake())
@@ -88,5 +100,10 @@ bool UserModuleManager::ShutDown()
 		}
 		MP_INFO("Module [%d : %s] ShutDown Success!", index, m_pFunc(index));
 	}
+	return true;
+}
+
+bool UserModuleManager::topologicalSort()
+{
 	return true;
 }

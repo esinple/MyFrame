@@ -121,7 +121,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>ws2_32.lib;Secur32.lib;Crypt32.lib;Bcrypt.lib;libevent_core.lib;libevent.lib;libprotobufd.lib;libprotocd.lib;bson-static-1.0.lib;libbsoncxx.lib;mongoc-static-1.0.lib;libmongocxx.lib;MePlay.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;Secur32.lib;Crypt32.lib;Bcrypt.lib;libevent_core.lib;libevent.lib;libprotobufd.lib;bson-static-1.0.lib;libbsoncxx.lib;mongoc-static-1.0.lib;libmongocxx.lib;MePlay.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX64</TargetMachine>
       <AdditionalLibraryDirectories>C:\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\base\ManagerModule.cpp" />
     <ClCompile Include="..\src\base\ManagerModuleManager.cpp" />
+    <ClCompile Include="..\src\base\ModuleRely.cpp" />
     <ClCompile Include="..\src\base\NetProxy.cpp" />
     <ClCompile Include="..\src\base\TimeManager.cpp" />
     <ClCompile Include="..\src\base\XmlManager.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="..\src\base\CommDef.h" />
     <ClInclude Include="..\src\base\ManagerModule.h" />
     <ClInclude Include="..\src\base\ManagerModuleManager.h" />
+    <ClInclude Include="..\src\base\ModuleRely.h" />
     <ClInclude Include="..\src\base\NetProxy.h" />
     <ClInclude Include="..\src\base\TimeManager.h" />
     <ClInclude Include="..\src\base\TimeT.h" />

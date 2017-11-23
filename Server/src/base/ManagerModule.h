@@ -4,8 +4,9 @@
 #include "MPMemoryPool.h"
 #include "MPTime.h"
 #include "MPTimeTester.h"
+#include "ModuleRely.h"
 
-class ManagerModule : public meplay::MPModule
+class ManagerModule : public meplay::MPModule,public ModuleRely
 {
 public:
 	ManagerModule(uint32_t nModuleType);

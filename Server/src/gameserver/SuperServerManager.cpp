@@ -6,6 +6,8 @@ CPP_GAME_MANAGER_REG(SuperServerManager)
 SuperServerManager::SuperServerManager()
 	: ManagerModule(eGameMgr_SuperServer)
 {
+	AddParent(eGameMgr_Time);
+	AddParent(eGameMgr_DBServer);
 }
 
 SuperServerManager::~SuperServerManager()

@@ -31,8 +31,15 @@ bool ManagerModuleManager::Awake()
 			MP_ERROR("Module Create [%d : %s] Failed!", i, m_pFunc(i));
 		}
 	}
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+
+	if (!ModuleRely::TopologicalSort(m_vModules, m_vOrder, m_pFunc))
 	{
+		return false;
+	}
+	
+	for (uint32_t order = 0; order < m_nModuleNum; ++order)
+	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->Awake())
 		{
 			MP_ERROR("Module [%d : %s] Awake Failed!", index, m_pFunc(index));
@@ -41,8 +48,9 @@ bool ManagerModuleManager::Awake()
 		MP_INFO("Module [%d : %s] Awake Success!", index, m_pFunc(index));
 	}
 	MP_SYSTEM("AllModule [%d] Awake Success!",m_nModuleNum);
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+	for (uint32_t order = 0; order < m_nModuleNum; ++order)
 	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->AfterAwake())
 		{
 			MP_ERROR("Module [%d : %s] AfterAwake Failed!", index, m_pFunc(index));
@@ -72,8 +80,9 @@ bool ManagerModuleManager::Execute()
 }
 bool ManagerModuleManager::ShutDown()
 {
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+	for (uint32_t order = m_nModuleNum - 1; order > 0 ; --order)
 	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->BeforeShutDown())
 		{
 			MP_ERROR("Module [%d : %s] BeforeShutDown Failed!", index, m_pFunc(index));
@@ -83,8 +92,9 @@ bool ManagerModuleManager::ShutDown()
 		MP_INFO("Module [%d : %s] BeforeShutDown Success!", index, m_pFunc(index));
 	}
 	MP_SYSTEM("AllModule [%d] BeforeShutDown Success!", m_nModuleNum);
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+	for (uint32_t order = m_nModuleNum - 1; order > 0; --order)
 	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->ShutDown())
 		{
 			MP_ERROR("Module [%d : %s] ShutDown Failed!", index, m_pFunc(index));
@@ -93,5 +103,58 @@ bool ManagerModuleManager::ShutDown()
 		MP_INFO("Module [%d : %s] ShutDown Success!", index, m_pFunc(index));
 	}
 	MP_SYSTEM("AllModule [%d] ShutDown Success!", m_nModuleNum);
+	return true;
+}
+
+bool ManagerModuleManager::topologicalSort()
+{
+	//kahn
+	//◊Ó÷’–Ú¡–
+	std::vector<int> vQueue;
+
+	for (auto& pModule : m_vModules)
+	{
+		if (!pModule->HasParentRely())
+		{
+			vQueue.emplace_back(pModule->GetModuleType());
+		}
+
+		for (auto& nParentIndex : pModule->GetParentRely())
+		{
+			m_vModules[nParentIndex]->AddChild(pModule->GetModuleType());
+		}
+	}
+
+	while (!vQueue.empty())
+	{
+		auto nIndex = vQueue.back();
+		vQueue.pop_back();
+		m_vOrder.emplace_back(nIndex);
+
+		auto& pModule = m_vModules[nIndex];
+		if (pModule == nullptr)
+		{
+			return false;
+		}
+		for (auto nChildRely : pModule->GetChildRely())
+		{
+			auto& pChildModule = m_vModules[nChildRely];
+			pChildModule->DelParent(nIndex);
+			if (!pChildModule->HasParentRely())
+			{
+				vQueue.emplace_back(nChildRely);
+			}
+		}
+	}
+
+	for (auto& pModule : m_vModules)
+	{
+		if (pModule->HasParentRely())
+		{
+			MP_ERROR("Module [%d][%s] Has Circle!", pModule->GetModuleType(), m_pFunc(pModule->GetModuleType()));
+			return false;
+		}
+	}
+
 	return true;
 }

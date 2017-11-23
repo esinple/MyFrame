@@ -50,6 +50,9 @@
     <ClCompile Include="..\src\netproto\MPDefine.pb.cc">
       <Filter>protobuf\pbcc</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base\ModuleRely.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NetProxy">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="..\src\netproto\Gate2Super.pb.h">
       <Filter>protobuf\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ModuleRely.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

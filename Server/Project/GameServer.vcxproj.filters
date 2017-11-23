@@ -159,6 +159,9 @@
     <ClCompile Include="..\src\gameserver\DBManager.cpp">
       <Filter>Logic\ManagerLogic\DBManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base\ModuleRely.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base\TimeTick.h">
@@ -264,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="..\src\gameserver\DBManager.h">
       <Filter>Logic\ManagerLogic\DBManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ModuleRely.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,8 @@ CPP_GAME_MANAGER_REG(GateServerManager);
 GateServerManager::GateServerManager()
 	: ManagerModule(eGameMgr_GateServer)
 {
+	AddParent(eGameMgr_Time);
+	AddParent(eGameMgr_DBServer);
 }
 
 GateServerManager::~GateServerManager()

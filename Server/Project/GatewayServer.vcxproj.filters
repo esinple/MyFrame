@@ -62,6 +62,9 @@
     <ClCompile Include="..\src\netproto\MPMsgBase.pb.cc">
       <Filter>Proto\pbcc</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base\ModuleRely.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base\CommDef.h">
@@ -135,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="..\src\netproto\MPMsgBase.pb.h">
       <Filter>Proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ModuleRely.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

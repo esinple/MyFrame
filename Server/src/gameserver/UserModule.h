@@ -1,11 +1,12 @@
 #pragma once
 #include "UserModuleDefine.h"
 #include "MPModule.h"
+#include "ModuleRely.h"
 
-class UserModule : public meplay::MPModule
+class UserModule : public meplay::MPModule,public ModuleRely
 {
 public:
-	UserModule(int32_t nModule) : MPModule(nModule) {};
+	UserModule(int32_t nModule) : MPModule(nModule),ModuleRely() {};
 	virtual ~UserModule() {};
 public:
 	virtual bool UserAwake() = 0;
