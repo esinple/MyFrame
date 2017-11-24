@@ -10,6 +10,8 @@ CPP_GAME_MANAGER_REG(GameUserManager)
 GameUserManager::GameUserManager()
 	: ManagerModule(eGameMgr_GameUser)
 {
+	AddParent(eGameMgr_Time);
+	AddParent(eGameMgr_DBServer);
 }
 
 GameUserManager::~GameUserManager()
@@ -183,7 +185,10 @@ GameUserPtr GameUserManager::createGameUser(
 void GameUserManager::GameUserLogon(GameUserPtr pGameUser)
 {
 	MP_INFO("GameUser Logon! uid : [%llu]",pGameUser->GetUID());
-	pGameUser->GetAllModules().Awake();
+	if (!pGameUser->GetAllModules().Awake())
+	{
+		//error
+	}
 }
 
 void GameUserManager::GameUserLogout(const MPGUID uid)
