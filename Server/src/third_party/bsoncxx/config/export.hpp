@@ -7,12 +7,12 @@
 #  define BSONCXX_PRIVATE
 #else
 #  ifndef BSONCXX_API
-#    ifdef BSONCXX_EXPORT
+#    ifdef bsoncxx_testing_EXPORTS
         /* We are building this library */
-#      define BSONCXX_API __declspec(dllexport)
+#      define BSONCXX_API 
 #    else
         /* We are using this library */
-#      define BSONCXX_API __declspec(dllimport)
+#      define BSONCXX_API 
 #    endif
 #  endif
 
@@ -23,7 +23,7 @@
 
 #ifndef BSONCXX_DEPRECATED
 //#  define BSONCXX_DEPRECATED __declspec(deprecated)
-#  define BSONCXX_DEPRECATED  
+#  define BSONCXX_DEPRECATED 
 #endif
 
 #ifndef BSONCXX_DEPRECATED_EXPORT

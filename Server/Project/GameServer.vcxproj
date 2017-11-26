@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\common\command;..\src\meplay\include;..\src\third_party;..\src\meplay\;..\src\third_party\libevent;..\src\base;..\src\netproto;$(IncludePath)</IncludePath>
-    <LibraryPath>..\lib;..\lib\static;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\lib;..\lib\static;..\lib\boost;$(LibraryPath)</LibraryPath>
     <ExecutablePath>..\bin;$(ExecutablePath)</ExecutablePath>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>..\bin\</OutDir>
@@ -111,13 +111,13 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;BOOST_ALL_DYN_LINK;_WIN32_WINDOWS;WIN_SYSTEM;MONGOCXX_STATIC;BSONCXX_STATIC;NOMINMAX;SSJ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_WIN32_WINDOWS;WIN_SYSTEM;MONGOCXX_STATIC;BSONCXX_STATIC;NOMINMAX;SSJ_DEBUG;BOOST_AUTO_LINK_TAGGED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <EnableModules>false</EnableModules>
     </ClCompile>
     <Link>

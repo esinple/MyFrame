@@ -71,36 +71,46 @@ class MONGOCXX_API read_preference {
         ///
         /// Only read from a primary node.
         ///
-        k_primary = 0x01,
+        k_primary,
 
         ///
         /// Prefer to read from a primary node.
         ///
-        k_primary_preferred = 0x05,
+        k_primary_preferred,
 
         ///
         /// Only read from secondary nodes.
         ///
-        k_secondary = 0x02,
+        k_secondary,
 
         ///
         /// Prefer to read from secondary nodes.
         ///
-        k_secondary_preferred = 0x06,
+        k_secondary_preferred,
 
         ///
         /// Read from the node with the lowest latency irrespective of state.
         ///
-        k_nearest = 0x0A
+        k_nearest
     };
+
+    ///
+    /// Constructs a new read_preference with read_mode set to k_primary.
+    ///
+    read_preference();
+
+    struct deprecated_tag {};
 
     ///
     /// Constructs a new read_preference.
     ///
     /// @param mode
-    ///   Optional parameter to specify the read_mode, defaults to k_primary.
+    ///   Sspecifies the read_mode.
     ///
-    explicit read_preference(read_mode mode = read_mode::k_primary);
+    /// @deprecated The constructor with no arguments and the method mode() should be used.
+    ///
+    MONGOCXX_DEPRECATED read_preference(read_mode mode);
+    read_preference(read_mode mode, deprecated_tag);
 
     ///
     /// Constructs a new read_preference with tags.
@@ -112,7 +122,10 @@ class MONGOCXX_API read_preference {
     ///
     /// @see https://docs.mongodb.com/master/core/read-preference/#tag-sets
     ///
-    read_preference(read_mode mode, bsoncxx::document::view_or_value tags);
+    /// @deprecated The tags() method should be used instead.
+    ///
+    MONGOCXX_DEPRECATED read_preference(read_mode mode, bsoncxx::document::view_or_value tags);
+    read_preference(read_mode mode, bsoncxx::document::view_or_value tags, deprecated_tag);
 
     ///
     /// Copy constructs a read_preference.
@@ -145,7 +158,11 @@ class MONGOCXX_API read_preference {
     /// @param mode
     ///   The new read preference mode.
     ///
-    void mode(read_mode mode);
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
+    read_preference& mode(read_mode mode);
 
     ///
     /// Returns the current read_mode for this read_preference.
@@ -162,7 +179,11 @@ class MONGOCXX_API read_preference {
     ///
     /// @see https://docs.mongodb.com/master/core/read-preference/#tag-sets
     ///
-    void tags(bsoncxx::document::view_or_value tags);
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
+    read_preference& tags(bsoncxx::document::view_or_value tags);
 
     ///
     /// Returns the current tags for this read_preference.
@@ -197,9 +218,13 @@ class MONGOCXX_API read_preference {
     /// @param max_staleness
     ///    The new max staleness setting.  It must be positive.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     /// @throws mongocxx::logic_error if the argument is invalid.
     ///
-    void max_staleness(std::chrono::seconds max_staleness);
+    read_preference& max_staleness(std::chrono::seconds max_staleness);
 
     ///
     /// Returns the current max staleness setting for this read_preference.
@@ -213,8 +238,21 @@ class MONGOCXX_API read_preference {
     friend collection;
     friend database;
     friend uri;
-    friend MONGOCXX_API bool MONGOCXX_CALL
-    operator==(const read_preference&, const read_preference&);
+
+    ///
+    /// @{
+    ///
+    /// Compares two read_preference objects for (in)-equality.
+    ///
+    /// @relates: read_preference
+    ///
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const read_preference&,
+                                                      const read_preference&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const read_preference&,
+                                                      const read_preference&);
+    ///
+    /// @}
+    ///
 
     class MONGOCXX_PRIVATE impl;
 

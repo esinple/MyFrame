@@ -16,8 +16,8 @@
 
 #include <string>
 
-#include <mongocxx/options/ssl.hpp>
 #include <bsoncxx/stdx/optional.hpp>
+#include <mongocxx/options/ssl.hpp>
 
 #include <mongocxx/config/prelude.hpp>
 
@@ -38,6 +38,10 @@ class MONGOCXX_API client {
     /// @param ssl_opts
     ///   The SSL related options.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     client& ssl_opts(ssl ssl_opts);
 
     ///
@@ -49,6 +53,9 @@ class MONGOCXX_API client {
 
    private:
     stdx::optional<ssl> _ssl_opts;
+
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const client&, const client&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const client&, const client&);
 };
 
 }  // namespace options

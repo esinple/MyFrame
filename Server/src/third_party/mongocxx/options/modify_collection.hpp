@@ -55,6 +55,10 @@ class MONGOCXX_API modify_collection {
     /// @param no_padding
     ///   When true, disables power of 2 sizing for this collection.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     modify_collection& no_padding(bool no_padding);
 
     ///
@@ -64,6 +68,10 @@ class MONGOCXX_API modify_collection {
     ///   Validation criteria for this collection.
     ///
     /// @see https://docs.mongodb.com/master/core/document-validation/
+    ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
     ///
     modify_collection& validation_criteria(class validation_criteria validation);
 
@@ -79,6 +87,11 @@ class MONGOCXX_API modify_collection {
     stdx::optional<bsoncxx::document::view_or_value> _index;
     stdx::optional<bool> _no_padding;
     stdx::optional<class validation_criteria> _validation;
+
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const modify_collection&,
+                                                      const modify_collection&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const modify_collection&,
+                                                      const modify_collection&);
 };
 
 }  // namespace options

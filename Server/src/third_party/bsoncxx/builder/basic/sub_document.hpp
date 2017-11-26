@@ -37,8 +37,7 @@ void value_append(core* core, T&& t);
 ///
 class sub_document {
    public:
-    BSONCXX_INLINE sub_document(core* core) : _core(core) {
-    }
+    BSONCXX_INLINE sub_document(core* core) : _core(core) {}
 
     ///
     /// Appends multiple basic::kvp key-value pairs.
@@ -53,8 +52,7 @@ class sub_document {
     /// Inductive base-case for the variadic append(...)
     ///
     BSONCXX_INLINE
-    void append() {
-    }
+    void append() {}
 
    private:
     //
@@ -83,7 +81,7 @@ class sub_document {
     // Appends a basic::kvp where the key is a string literal
     //
     template <std::size_t n, typename V>
-    BSONCXX_INLINE void append_(std::tuple<const char(&)[n], V>&& t) {
+    BSONCXX_INLINE void append_(std::tuple<const char (&)[n], V>&& t) {
         _core->key_view(stdx::string_view{std::get<0>(t), n - 1});
         impl::value_append(_core, std::forward<V>(std::get<1>(t)));
     }

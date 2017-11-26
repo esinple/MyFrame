@@ -31,13 +31,16 @@ namespace stream {
 /// A streaming interface for constructing
 /// a BSON document.
 ///
+/// @note Use of the stream builder is discouraged. See
+/// http://mongodb.github.io/mongo-cxx-driver/mongocxx-v3/working-with-bson/#stream-builder for more
+/// details.
+///
 class document : public key_context<> {
    public:
     ///
     /// Default constructor.
     ///
-    BSONCXX_INLINE document() : key_context<>(&_core), _core(false) {
-    }
+    BSONCXX_INLINE document() : key_context<>(&_core), _core(false) {}
 
     ///
     /// @return A view of the BSON document.

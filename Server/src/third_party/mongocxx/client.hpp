@@ -45,10 +45,12 @@ MONGOCXX_INLINE_NAMESPACE_BEGIN
 ///
 /// Example:
 /// @code
-///   mongocxx::client mongo_client;
-///   mongocxx::client mongo_client("mongodb://localhost:27017");
+///   mongocxx::client mongo_client{mongocxx::uri{}};
+///   mongocxx::client mongo_client{mongocxx::uri{"mongodb://localhost:27017"}};
 /// @endcode
 ///
+/// Note that client is not thread-safe. See
+/// https://mongodb.github.io/mongo-cxx-driver/mongocxx-v3/thread-safety/ for more details.
 class MONGOCXX_API client {
    public:
     ///
@@ -99,12 +101,17 @@ class MONGOCXX_API client {
     /// created by this client but do affect new ones as databases inherit the @c read_concern
     /// settings of their parent upon instantiation.
     ///
+    /// @deprecated
+    ///   This method is deprecated. Read concerns should be set either in the URI or directly on
+    ///   database or collection objects.
+    ///
     /// @param rc
     ///   The new @c read_concern
     ///
     /// @see https://docs.mongodb.com/master/reference/read-concern/
     ///
-    void read_concern(class read_concern rc);
+    MONGOCXX_DEPRECATED void read_concern(class read_concern rc);
+    void read_concern_deprecated(class read_concern rc);
 
     ///
     /// Returns the current read concern for this client.
@@ -120,12 +127,17 @@ class MONGOCXX_API client {
     /// created by this client but do affect new ones as databases inherit the @c read_preference
     /// settings of their parent upon instantiation.
     ///
+    /// @deprecated
+    ///   This method is deprecated. Read preferences should be set either in the URI or directly on
+    ///   database or collection objects.
+    ///
     /// @param rp
     ///   The new @c read_preference
     ///
     /// @see https://docs.mongodb.com/master/core/read-preference/
     ///
-    void read_preference(class read_preference rp);
+    MONGOCXX_DEPRECATED void read_preference(class read_preference rp);
+    void read_preference_deprecated(class read_preference rp);
 
     ///
     /// Returns the current read preference for this client.
@@ -150,10 +162,15 @@ class MONGOCXX_API client {
     /// that have come from this client but do affect new ones as databases will receive a copy of
     /// this client's @c write_concern upon instantiation.
     ///
+    /// @deprecated
+    ///   This method is deprecated. Write concerns should be set either in the URI or directly on
+    ///   database or collection objects.
+    ///
     /// @param wc
     ///   The new write concern
     ///
-    void write_concern(class write_concern wc);
+    MONGOCXX_DEPRECATED void write_concern(class write_concern wc);
+    void write_concern_deprecated(class write_concern wc);
 
     ///
     /// Returns the current write concern for this client.
@@ -218,7 +235,7 @@ class MONGOCXX_API client {
     std::unique_ptr<impl> _impl;
 };
 
-MONGOCXX_INLINE database client::operator[](bsoncxx::string::view_or_value name) const & {
+MONGOCXX_INLINE database client::operator[](bsoncxx::string::view_or_value name) const& {
     return database(name);
 }
 

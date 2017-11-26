@@ -46,6 +46,10 @@ class MONGOCXX_API bulk_write {
     ///   be executed in arbitrary order (possibly in parallel on the server) and any errors will be
     ///   reported after attempting all operations.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     bulk_write& ordered(bool ordered);
 
     ///
@@ -60,6 +64,10 @@ class MONGOCXX_API bulk_write {
     ///
     /// @param wc
     ///   The new write_concern.
+    ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
     ///
     /// @see https://docs.mongodb.com/master/core/write-concern/
     ///
@@ -81,6 +89,10 @@ class MONGOCXX_API bulk_write {
     /// @param bypass_document_validation
     ///   Whether or not to bypass document validation.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     bulk_write& bypass_document_validation(bool bypass_document_validation);
 
     ///
@@ -95,6 +107,9 @@ class MONGOCXX_API bulk_write {
     bool _ordered;
     stdx::optional<class write_concern> _write_concern;
     stdx::optional<bool> _bypass_document_validation;
+
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const bulk_write&, const bulk_write&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const bulk_write&, const bulk_write&);
 };
 
 }  // namespace options

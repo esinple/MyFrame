@@ -16,8 +16,8 @@
 
 #include <cstdint>
 
-#include <bsoncxx/types.hpp>
 #include <bsoncxx/stdx/optional.hpp>
+#include <bsoncxx/types.hpp>
 #include <mongocxx/result/bulk_write.hpp>
 #include <mongocxx/stdx.hpp>
 
@@ -62,6 +62,9 @@ class MONGOCXX_API update {
 
    private:
     result::bulk_write _result;
+
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const update&, const update&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const update&, const update&);
 };
 
 }  // namespace result

@@ -16,7 +16,7 @@ INCLUDE_DIRECTORIES(
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
 	ADD_DEFINITIONS(
-		-std=c++14
+		-std=c++17
 		-fsanitize=address
 		-fsanitize=leak
 		-g
@@ -76,7 +76,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
 		)
 else()
 	ADD_DEFINITIONS(
-		-std=c++14
+		-std=c++17
 		-g
 		-rdynamic
 		-O3

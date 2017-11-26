@@ -36,7 +36,22 @@ class array;
 ///
 class document : public sub_document {
    public:
-    BSONCXX_INLINE document() : sub_document(&_core), _core(false) {
+    ///
+    /// Default constructor
+    ///
+    BSONCXX_INLINE document() : sub_document(&_core), _core(false) {}
+
+    ///
+    /// Move constructor
+    ///
+    BSONCXX_INLINE document(document&& doc) : sub_document(&_core), _core(std::move(doc._core)) {}
+
+    ///
+    /// Move assignment operator
+    ///
+    BSONCXX_INLINE document& operator=(document&& doc) {
+        _core = std::move(doc._core);
+        return *this;
     }
 
     ///
@@ -79,6 +94,24 @@ class document : public sub_document {
    private:
     core _core;
 };
+
+///
+/// Creates a document from a list of key-value pairs.
+///
+/// @param args
+///   A variadiac list of key-value pairs. The types of the keys and values can be anything that
+///   builder::basic::sub_document::append accepts.
+///
+/// @return
+///   A bsoncxx::document::value containing the elements.
+///
+template <typename... Args>
+bsoncxx::document::value BSONCXX_CALL make_document(Args&&... args) {
+    basic::document document;
+    document.append(std::forward<Args>(args)...);
+
+    return document.extract();
+}
 
 }  // namespace basic
 }  // namespace builder

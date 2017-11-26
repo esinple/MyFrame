@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.9)
+
 PROJECT(GAMESERVER)
 
 AUX_SOURCE_DIRECTORY(./ SRC_LIST)
@@ -16,7 +18,7 @@ INCLUDE_DIRECTORIES(
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     ADD_DEFINITIONS(
-        -std=c++14
+        -std=c++17
         -fsanitize=address
         -fsanitize=leak
         -g
@@ -26,8 +28,10 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
 		-Wno-unused-function
         -fPIC
         -ggdb
-        -DMONGOCXX_STATIC
-        -DBSONCXX_STATIC
+		-DMONGOCXX_STATIC
+	   	-DBSONCXX_STATIC
+	   	-DMONGOC_STATIC
+	   	-DBSON_STATIC
         -D_DEBUG
         )
 
@@ -39,19 +43,24 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
         asan
         ubsan
         libmeplay.a
-        libbsoncxx.a
         libevent.a
         libevent_core.a
-        libmongocxx.a
+        libmongocxx-static.a
+        libbsoncxx-static.a
+        libmongoc-1.0.a
+        libbson-1.0.a
         libprotobuf.a
         pthread
         rt
+		sasl2
+		ssl
+		crypto
         )
 
     ADD_EXECUTABLE(GameServer_Debug ${SRC_LIST})
 else()
     ADD_DEFINITIONS(
-        -std=c++14
+        -std=c++17
         -g
         -rdynamic
         -O3
@@ -60,6 +69,8 @@ else()
         -fPIC
         -DMONGOCXX_STATIC
         -DBSONCXX_STATIC
+		-DMONGOC_STATIC
+		-DBSON_STATIC
         )
 
     LINK_DIRECTORIES(
@@ -68,13 +79,18 @@ else()
 
     LINK_LIBRARIES(
         libmeplay.a
-        libbsoncxx.a
         libevent.a
         libevent_core.a
-        libmongocxx.a
+        libmongocxx-static.a
+        libbsoncxx-static.a
+        libmongoc-1.0.a
+        libbson-1.0.a
         libprotobuf.a
         pthread
         rt
+		sasl2
+		ssl
+		crypto
         )
 
     ADD_EXECUTABLE(GameServer_Release ${SRC_LIST})

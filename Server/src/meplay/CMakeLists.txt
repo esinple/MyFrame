@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.9)
+
 PROJECT(MEPLAY)
 
 AUX_SOURCE_DIRECTORY(./src SRC_LIST)
@@ -13,7 +15,7 @@ INCLUDE_DIRECTORIES(
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     ADD_DEFINITIONS(
-        -std=c++14
+        -std=c++17
         -fsanitize=address
         -fsanitize=leak
         -g
@@ -22,23 +24,25 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
         -Wall
 		-Wno-unused-function
         -fPIC
-        -DMONGOCXX_STATIC
         -DBSONCXX_STATIC
+		-DBSONCXX_DEPRECATED
+        -DMONGOCXX_STATIC
         -DELPP_OS_UNIX
         -D_DEBUG
         )
     SET(LIBRARY_OUTPUT_PATH ../../lib/linux/Debug)
 else()
     ADD_DEFINITIONS(
-        -std=c++14
+        -std=c++17
         -g
         -rdynamic
         -O3
         -Wall
 		-Wno-unused-function
         -fPIC
-        -DMONGOCXX_STATIC
         -DBSONCXX_STATIC
+		-DBSONCXX_DEPRECATED
+        -DMONGOCXX_STATIC
         -DELPP_OS_UNIX
         )
     SET(LIBRARY_OUTPUT_PATH ../../lib/linux/Release)

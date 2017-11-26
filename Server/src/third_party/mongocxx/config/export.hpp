@@ -7,12 +7,12 @@
 #  define MONGOCXX_PRIVATE
 #else
 #  ifndef MONGOCXX_API
-#    ifdef MONGOCXX_EXPORTS
+#    ifdef mongocxx_mocked_EXPORTS
         /* We are building this library */
-#      define MONGOCXX_API __declspec(dllexport)
+#      define MONGOCXX_API 
 #    else
         /* We are using this library */
-#      define MONGOCXX_API __declspec(dllimport)
+#      define MONGOCXX_API 
 #    endif
 #  endif
 

@@ -20,6 +20,7 @@ bool DBManager::Awake()
 	{
 		return false;
 	}
+
 	return true;
 }
 bool DBManager::AfterAwake()

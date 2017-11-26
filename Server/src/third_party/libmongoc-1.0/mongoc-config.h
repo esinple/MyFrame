@@ -20,18 +20,18 @@
 
 /* MONGOC_USER_SET_CFLAGS is set from config based on what compiler flags were
  * used to compile mongoc */
-#define MONGOC_USER_SET_CFLAGS "/DWIN32 /D_WINDOWS /W3"
+#define MONGOC_USER_SET_CFLAGS ""
 
-#define MONGOC_USER_SET_LDFLAGS "/machine:x64"
+#define MONGOC_USER_SET_LDFLAGS ""
 
 /* MONGOC_CC is used to determine what C compiler was used to compile mongoc */
-#define MONGOC_CC "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.11.25503/bin/HostX86/x64/cl.exe"
+#define MONGOC_CC "gcc"
 
 /*
  * MONGOC_ENABLE_SSL_SECURE_CHANNEL is set from configure to determine if we are
  * compiled with Native SSL support on Windows
  */
-#define MONGOC_ENABLE_SSL_SECURE_CHANNEL 1
+#define MONGOC_ENABLE_SSL_SECURE_CHANNEL 0
 
 #if MONGOC_ENABLE_SSL_SECURE_CHANNEL != 1
 #  undef MONGOC_ENABLE_SSL_SECURE_CHANNEL
@@ -42,7 +42,7 @@
  * MONGOC_ENABLE_CRYPTO_CNG is set from configure to determine if we are
  * compiled with Native Crypto support on Windows
  */
-#define MONGOC_ENABLE_CRYPTO_CNG 1
+#define MONGOC_ENABLE_CRYPTO_CNG 0
 
 #if MONGOC_ENABLE_CRYPTO_CNG != 1
 #  undef MONGOC_ENABLE_CRYPTO_CNG
@@ -86,7 +86,7 @@
  * MONGOC_ENABLE_SSL_OPENSSL is set from configure to determine if we are
  * compiled with OpenSSL support.
  */
-#define MONGOC_ENABLE_SSL_OPENSSL 0
+#define MONGOC_ENABLE_SSL_OPENSSL 1
 
 #if MONGOC_ENABLE_SSL_OPENSSL != 1
 #  undef MONGOC_ENABLE_SSL_OPENSSL
@@ -97,7 +97,7 @@
  * MONGOC_ENABLE_CRYPTO_LIBCRYPTO is set from configure to determine if we are
  * compiled with OpenSSL support.
  */
-#define MONGOC_ENABLE_CRYPTO_LIBCRYPTO 0
+#define MONGOC_ENABLE_CRYPTO_LIBCRYPTO 1
 
 #if MONGOC_ENABLE_CRYPTO_LIBCRYPTO != 1
 #  undef MONGOC_ENABLE_CRYPTO_LIBCRYPTO
@@ -137,7 +137,7 @@
 
 
 /*
- * Use ASN1_STRING_get0_data () rather then the deprecated ASN1_STRING_data
+ * Use ASN1_STRING_get0_data () rather than the deprecated ASN1_STRING_data
  */
 #define MONGOC_HAVE_ASN1_STRING_GET0_DATA 0
 
@@ -161,7 +161,7 @@
  * MONGOC_ENABLE_SASL_CYRUS is set from configure to determine if we are
  * compiled with Cyrus SASL support.
  */
-#define MONGOC_ENABLE_SASL_CYRUS 0
+#define MONGOC_ENABLE_SASL_CYRUS 1
 
 #if MONGOC_ENABLE_SASL_CYRUS != 1
 #  undef MONGOC_ENABLE_SASL_CYRUS
@@ -172,7 +172,7 @@
  * MONGOC_ENABLE_SASL_SSPI is set from configure to determine if we are
  * compiled with SSPI support.
  */
-#define MONGOC_ENABLE_SASL_SSPI 1
+#define MONGOC_ENABLE_SASL_SSPI 0
 
 #if MONGOC_ENABLE_SASL_SSPI != 1
 #  undef MONGOC_ENABLE_SASL_SSPI
@@ -208,7 +208,7 @@
  * Link-Time-Optimization (LTO) in our constant-time mongoc_memcmp()
  * This is known to work with GNU GCC and Solaris Studio
  */
-#define MONGOC_HAVE_WEAK_SYMBOLS 0
+#define MONGOC_HAVE_WEAK_SYMBOLS 1
 
 #if MONGOC_HAVE_WEAK_SYMBOLS != 1
 #  undef MONGOC_HAVE_WEAK_SYMBOLS
@@ -219,7 +219,7 @@
  * Disable automatic calls to mongoc_init() and mongoc_cleanup()
  * before main() is called, and after exit() (respectively).
  */
-#define MONGOC_NO_AUTOMATIC_GLOBALS 0
+#define MONGOC_NO_AUTOMATIC_GLOBALS 1
 
 #if MONGOC_NO_AUTOMATIC_GLOBALS != 1
 #  undef MONGOC_NO_AUTOMATIC_GLOBALS
@@ -247,7 +247,7 @@
  * Enable wire protocol compression negotiation
  *
  */
-#define MONGOC_ENABLE_COMPRESSION 0
+#define MONGOC_ENABLE_COMPRESSION 1
 
 #if MONGOC_ENABLE_COMPRESSION != 1
 #  undef MONGOC_ENABLE_COMPRESSION
@@ -268,7 +268,7 @@
  * Set if we have zlib compression support
  *
  */
-#define MONGOC_ENABLE_COMPRESSION_ZLIB 0
+#define MONGOC_ENABLE_COMPRESSION_ZLIB 1
 
 #if MONGOC_ENABLE_COMPRESSION_ZLIB != 1
 #  undef MONGOC_ENABLE_COMPRESSION_ZLIB

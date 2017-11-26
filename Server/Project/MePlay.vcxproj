@@ -91,20 +91,20 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;WIN_SYSTEM;_WINSOCKAPI_;WIN32_LEAN_AND_MEAN;BOOST_ALL_DYN_LINK;MONGOCXX_STATIC;BSONCXX_STATIC;ELPP_NO_DEFAULT_LOG_FILE;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;WIN_SYSTEM;_WINSOCKAPI_;WIN32_LEAN_AND_MEAN;BSONCXX_POLY_USE_BOOST;MONGOCXX_STATIC;BSONCXX_STATIC;ELPP_NO_DEFAULT_LOG_FILE;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS /D _WINSOCK_DEPRECATED_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <LanguageStandard>stdcpp14</LanguageStandard>
-      <EnableModules>true</EnableModules>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <EnableModules>false</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>libbsoncxx.lib;libmongocxx.lib;libprotobufd.lib;mongoc-static-1.0.lib;bson-static-1.0.lib</AdditionalDependencies>
+      <AdditionalDependencies>libprotobufd.lib;mongoc-static-1.0.lib;bson-static-1.0.lib;bsoncxx-static.lib;mongocxx-static.lib</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>..\lib\static;..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

@@ -14,8 +14,8 @@
 
 #pragma once
 
-#include <bsoncxx/array/view.hpp>
 #include <bsoncxx/array/value.hpp>
+#include <bsoncxx/array/view.hpp>
 #include <bsoncxx/builder/core.hpp>
 #include <bsoncxx/builder/stream/array_context.hpp>
 #include <bsoncxx/builder/stream/key_context.hpp>
@@ -33,13 +33,16 @@ namespace stream {
 /// A streaming interface for constructing
 /// a BSON array.
 ///
+/// @note Use of the stream builder is discouraged. See
+/// http://mongodb.github.io/mongo-cxx-driver/mongocxx-v3/working-with-bson/#stream-builder for more
+/// details.
+///
 class array : public array_context<> {
    public:
     ///
     /// Default constructor.
     ///
-    BSONCXX_INLINE array() : array_context<>(&_core), _core(true) {
-    }
+    BSONCXX_INLINE array() : array_context<>(&_core), _core(true) {}
 
     ///
     /// @return A view of the BSON array.

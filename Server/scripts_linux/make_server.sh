@@ -1,6 +1,7 @@
 #!/bin/bash
 
-project_name=(meplay superserver gatewayserver gameserver statisticserver)
+#project_name=(meplay superserver gatewayserver gameserver statisticserver)
+project_name=(meplay superserver gatewayserver gameserver)
 
 if [ ! -n "$1" -o "$1" == "debug" ] ; then
     cd ../src

@@ -22,19 +22,65 @@ namespace mongocxx {
 MONGOCXX_INLINE_NAMESPACE_BEGIN
 
 ///
-/// @todo document this enum and the values
+/// Enum representing the various error types that can occur during driver usage.
 ///
 enum class error_code : std::int32_t {
-    k_instance_already_exists = 1,
+    /// More than one mongocxx::instance has been created.
+    k_cannot_recreate_instance = 1,
+
+    /// A default-constructed or moved-from mongocxx::client object has been used.
     k_invalid_client_object,
+
+    /// A default-constructed or moved-from mongocxx::collection object has been used.
     k_invalid_collection_object,
+
+    /// A default-constructed or moved-from mongocxx::database object has been used.
     k_invalid_database_object,
+
+    /// An invalid or out-of-bounds parameter was provided.
     k_invalid_parameter,
+
+    /// An SSL operation was used without SSL support being built.
     k_ssl_not_supported,
+
+    /// An unknown read concern level was set.
     k_unknown_read_concern,
+
+    /// An unknown write concern level was set.
     k_unknown_write_concern,
+
+    /// The server returned a malformed response.
     k_server_response_malformed,
+
+    /// An invalid MongoDB URI was provided.
     k_invalid_uri,
+
+    /// A default-constructed or moved-from mongocxx::gridfs::bucket object has been used.
+    k_invalid_gridfs_bucket_object,
+
+    /// A default-constructed or moved-from mongocxx::gridfs::uploader object has been used.
+    k_invalid_gridfs_uploader_object,
+
+    /// A default-constructed or moved-from mongocxx::gridfs::downloader object has been used.
+    k_invalid_gridfs_downloader_object,
+
+    /// A mongocxx::gridfs::uploader object was not open for writing, or a
+    /// mongocxx::gridfs::downloader object was not open for reading.
+    k_gridfs_stream_not_open,
+
+    /// A mongocxx::gridfs::uploader object has exceeded the maximum number of allowable GridFS
+    /// chunks when attempting to upload the requested file.
+    k_gridfs_upload_requires_too_many_chunks,
+
+    /// The requested GridFS file was not found.
+    k_gridfs_file_not_found,
+
+    /// A GridFS file being operated on was discovered to be corrupted.
+    k_gridfs_file_corrupted,
+
+    /// The mongocxx::instance has been destroyed.
+    k_instance_destroyed,
+
     // Add new constant string message to error_code.cpp as well!
 };
 

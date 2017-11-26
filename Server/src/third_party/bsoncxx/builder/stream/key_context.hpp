@@ -54,8 +54,7 @@ class key_context {
     /// @param core
     ///   The core builder to orchestrate
     ///
-    key_context(core* core) : _core(core) {
-    }
+    key_context(core* core) : _core(core) {}
 
     ///
     /// << operator for accepting a literal key and appending it to the core
@@ -64,8 +63,10 @@ class key_context {
     /// @param v
     ///   The key to append
     ///
+    /// @throws bsoncxx::exception if the previous value appended to the builder was also a key.
+    ///
     template <std::size_t n>
-    BSONCXX_INLINE value_context<key_context> operator<<(const char(&v)[n]) {
+    BSONCXX_INLINE value_context<key_context> operator<<(const char (&v)[n]) {
         _core->key_view(stdx::string_view{v, n - 1});
         return value_context<key_context>(_core);
     }
@@ -76,6 +77,8 @@ class key_context {
     ///
     /// @param str
     ///   The key to append
+    ///
+    /// @throws bsoncxx::exception if the previous value appended to the builder was also a key.
     ///
     BSONCXX_INLINE value_context<key_context> operator<<(std::string str) {
         _core->key_owned(std::move(str));
@@ -88,6 +91,8 @@ class key_context {
     ///
     /// @param str
     ///   The key to append
+    ///
+    /// @throws bsoncxx::exception if the previous value appended to the builder was also a key.
     ///
     BSONCXX_INLINE value_context<key_context> operator<<(stdx::string_view str) {
         _core->key_view(std::move(str));

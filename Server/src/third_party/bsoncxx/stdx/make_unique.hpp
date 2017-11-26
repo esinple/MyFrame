@@ -50,6 +50,7 @@ BSONCXX_INLINE_NAMESPACE_END
 
 #elif __cplusplus >= 201402L
 
+#else
 #include <memory>
 
 namespace bsoncxx {
@@ -62,8 +63,8 @@ using ::std::make_unique;
 BSONCXX_INLINE_NAMESPACE_END
 }  // namespace bsoncxx
 
-#else
-#error "Cannot find a valid polyfill for make_unique"
+//#else
+//#error "Cannot find a valid polyfill for make_unique"
 #endif
 
 #include <bsoncxx/config/postlude.hpp>

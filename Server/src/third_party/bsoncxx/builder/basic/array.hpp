@@ -37,7 +37,19 @@ class array : public sub_array {
     ///
     /// Default constructor
     ///
-    BSONCXX_INLINE array() : sub_array(&_core), _core(true) {
+    BSONCXX_INLINE array() : sub_array(&_core), _core(true) {}
+
+    ///
+    /// Move constructor
+    ///
+    BSONCXX_INLINE array(array&& arr) : sub_array(&_core), _core(std::move(arr._core)) {}
+
+    ///
+    /// Move assignment operator
+    ///
+    BSONCXX_INLINE array& operator=(array&& arr) {
+        _core = std::move(arr._core);
+        return *this;
     }
 
     ///
@@ -80,6 +92,24 @@ class array : public sub_array {
    private:
     core _core;
 };
+
+///
+/// Creates an array from a list of elements.
+///
+/// @param args
+///   A variadiac list of elements. The types of the elements can be anything that
+///   builder::basic::sub_array::append accepts.
+///
+/// @return
+///   A bsoncxx::array::value containing the elements.
+///
+template <typename... Args>
+bsoncxx::array::value BSONCXX_CALL make_array(Args&&... args) {
+    basic::array array;
+    array.append(std::forward<Args>(args)...);
+
+    return array.extract();
+}
 
 }  // namespace basic
 }  // namespace builder

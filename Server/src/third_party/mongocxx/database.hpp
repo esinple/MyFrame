@@ -20,11 +20,13 @@
 #include <bsoncxx/document/view_or_value.hpp>
 #include <bsoncxx/string/view_or_value.hpp>
 #include <mongocxx/collection.hpp>
-#include <mongocxx/options/modify_collection.hpp>
+#include <mongocxx/gridfs/bucket.hpp>
 #include <mongocxx/options/create_collection.hpp>
 #include <mongocxx/options/create_view.hpp>
-#include <mongocxx/write_concern.hpp>
+#include <mongocxx/options/gridfs/bucket.hpp>
+#include <mongocxx/options/modify_collection.hpp>
 #include <mongocxx/read_preference.hpp>
+#include <mongocxx/write_concern.hpp>
 
 #include <mongocxx/config/prelude.hpp>
 
@@ -96,21 +98,24 @@ class MONGOCXX_API database {
     ///
     /// Explicitly creates a collection in this database with the specified options.
     ///
-    /// @see https://docs.mongodb.com/master/reference/method/db.createCollection/
+    /// @see
+    ///   https://docs.mongodb.com/master/reference/command/create/
     ///
-    /// @param name the new collection's name.
-    /// @param options the options for the new collection.
+    /// @param name
+    ///   the new collection's name.
+    /// @param collection_options
+    ///   the options for the new collection.
+    /// @param write_concern
+    ///   the write concern to use for this operation. Will default to database
+    ///   set write concern if none passed here.
     ///
-    /// @throws mongocxx::operation_exception if the operation fails.
-    ///
-    /// @note
-    ///   In order to pass a write concern to this, you must use the database
-    ///   level set write concern - database::write_concern(wc). (MongoDB
-    ///   3.4+)
+    /// @exception
+    ///   mongocxx::operation_exception if the operation fails.
     ///
     class collection create_collection(
         bsoncxx::string::view_or_value name,
-        const options::create_collection& options = options::create_collection());
+        const options::create_collection& collection_options = options::create_collection{},
+        const stdx::optional<write_concern>& write_concern = {});
 
     ///
     /// Creates a non-materialized view in this database with the specified options.
@@ -125,11 +130,6 @@ class MONGOCXX_API database {
     /// @param options the options for the new view.
     ///
     /// @throws mongocxx::operation_exception if the operation fails.
-    ///
-    /// @note
-    ///   In order to pass a write concern to this, you must use the database
-    ///   level set write concern - database::write_concern(wc). (MongoDB
-    ///   3.4+)
     ///
     class collection create_view(bsoncxx::string::view_or_value name,
                                  bsoncxx::string::view_or_value view_on,
@@ -149,23 +149,28 @@ class MONGOCXX_API database {
     ///
     /// @return the result of executing the command.
     ///
-    bsoncxx::document::value modify_collection(
+    MONGOCXX_DEPRECATED bsoncxx::document::value modify_collection(
+        stdx::string_view name,
+        const options::modify_collection& options = options::modify_collection());
+
+    bsoncxx::document::value modify_collection_deprecated(
         stdx::string_view name,
         const options::modify_collection& options = options::modify_collection());
 
     ///
     /// Drops the database and all its collections.
     ///
-    /// @throws mongocxx::operation_exception if the operation fails.
-    //
-    /// @see https://docs.mongodb.com/master/reference/method/db.dropDatabase/
+    /// @param write_concern (optional)
+    ///   The write concern to be used for this operation. If not passed here, the write concern
+    ///   set on the database will be used.
     ///
-    /// @note
-    ///   In order to pass a write concern to this, you must use the database
-    ///   level set write concern - database::write_concern(wc). (MongoDB
-    ///   3.4+)
+    /// @exception
+    ///   mongocxx::operation_exception if the operation fails.
     ///
-    void drop();
+    /// @see
+    ///   https://docs.mongodb.com/manual/reference/command/dropDatabase/
+    ///
+    void drop(const bsoncxx::stdx::optional<mongocxx::write_concern>& write_concern = {});
 
     ///
     /// Checks whether this database contains a collection having the given name.
@@ -281,6 +286,23 @@ class MONGOCXX_API database {
     /// @return the collection.
     ///
     MONGOCXX_INLINE class collection operator[](bsoncxx::string::view_or_value name) const;
+
+    ///
+    /// Access a GridFS bucket within this database.
+    ///
+    /// @param options
+    ///   The options for the bucket.
+    ///
+    /// @return
+    ///   The GridFS bucket.
+    ///
+    /// @note
+    ///   See the class comment for `gridfs::bucket` for more information about GridFS.
+    ///
+    /// @throws mongocxx::logic_error if `options` are invalid.
+    ///
+    class gridfs::bucket gridfs_bucket(
+        const options::gridfs::bucket& options = options::gridfs::bucket()) const;
 
    private:
     friend class client;

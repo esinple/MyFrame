@@ -23,6 +23,8 @@ bool GameTimeManager::AfterAwake()
 bool GameTimeManager::Execute()
 {
 	m_CurTime.Now();
+
+	m_TimeMgr.Run();
 	return true;
 }
 

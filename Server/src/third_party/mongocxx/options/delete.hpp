@@ -35,6 +35,10 @@ class MONGOCXX_API delete_options {
     /// @param collation
     ///   The new collation.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     /// @see
     ///   https://docs.mongodb.com/master/reference/collation/
     ///
@@ -57,6 +61,10 @@ class MONGOCXX_API delete_options {
     /// @param wc
     ///   The new write_concern.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     /// @see https://docs.mongodb.com/master/core/write-concern/
     ///
     delete_options& write_concern(write_concern wc);
@@ -75,6 +83,9 @@ class MONGOCXX_API delete_options {
    private:
     stdx::optional<bsoncxx::document::view_or_value> _collation;
     stdx::optional<class write_concern> _write_concern;
+
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const delete_options&, const delete_options&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const delete_options&, const delete_options&);
 };
 
 }  // namespace options

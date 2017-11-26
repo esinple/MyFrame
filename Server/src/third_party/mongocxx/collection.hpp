@@ -19,13 +19,17 @@
 #include <memory>
 #include <string>
 
-#include <bsoncxx/builder/stream/document.hpp>
+#include <bsoncxx/builder/basic/document.hpp>
+#include <bsoncxx/builder/basic/kvp.hpp>
+#include <bsoncxx/builder/concatenate.hpp>
 #include <bsoncxx/document/view_or_value.hpp>
+#include <bsoncxx/oid.hpp>
 #include <bsoncxx/stdx/optional.hpp>
 #include <bsoncxx/string/view_or_value.hpp>
 #include <mongocxx/bulk_write.hpp>
 #include <mongocxx/cursor.hpp>
-#include <mongocxx/insert_many_builder.hpp>
+#include <mongocxx/index_view.hpp>
+#include <mongocxx/model/insert_one.hpp>
 #include <mongocxx/options/aggregate.hpp>
 #include <mongocxx/options/bulk_write.hpp>
 #include <mongocxx/options/count.hpp>
@@ -36,6 +40,7 @@
 #include <mongocxx/options/find_one_and_replace.hpp>
 #include <mongocxx/options/find_one_and_update.hpp>
 #include <mongocxx/options/index.hpp>
+#include <mongocxx/options/index_view.hpp>
 #include <mongocxx/options/insert.hpp>
 #include <mongocxx/options/update.hpp>
 #include <mongocxx/read_concern.hpp>
@@ -53,6 +58,10 @@
 namespace mongocxx {
 MONGOCXX_INLINE_NAMESPACE_BEGIN
 
+using bsoncxx::builder::basic::kvp;
+using bsoncxx::builder::basic::make_document;
+using bsoncxx::builder::concatenate;
+
 class client;
 class database;
 class pipeline;
@@ -66,8 +75,8 @@ class pipeline;
 ///
 /// Example:
 /// @code
-///   // Connect and get a collection
-///   mongocxx::client mongo_client;
+///   // Connect and get a collection.
+///   mongocxx::client mongo_client{mongocxx::uri{}};
 ///   auto coll = mongo_client["database"]["collection"];
 /// @endcode
 ///
@@ -75,7 +84,7 @@ class MONGOCXX_API collection {
    public:
     ///
     /// Default constructs a collection object. The collection is
-    /// equivalent to the state of a moved from colletion. The only
+    /// equivalent to the state of a moved from collection. The only
     /// valid actions to take with a default constructed collection
     /// are to assign to it, or destroy it.
     ///
@@ -127,13 +136,46 @@ class MONGOCXX_API collection {
     /// @see https://docs.mongodb.com/master/reference/command/aggregate/
     ///
     /// @note
-    ///   In order to pass a read or write concern to this, you must use the
-    ///   collection level set read or write concern -
-    ///   collection::write_concern(wc) and collection::read_concern(rc).
-    ///   (Write concern supported only for MongoDB 3.4+)
+    ///   In order to pass a read concern to this, you must use the
+    ///   collection level set read concern - collection::read_concern(rc).
+    ///   (Write concern supported only for MongoDB 3.4+).
     ///
     cursor aggregate(const pipeline& pipeline,
                      const options::aggregate& options = options::aggregate());
+
+    ///
+    /// Creates a new bulk operation to be executed against this collection.
+    ///
+    /// @param options
+    ///   Optional arguments; see mongocxx::options::bulk_write.
+    ///
+    /// @return
+    ///    The newly-created bulk write.
+    ///
+    class bulk_write create_bulk_write(const options::bulk_write& options = {});
+
+    ///
+    /// Sends a write to the server as a bulk write operation.
+    ///
+    /// @param write
+    ///   A model::write.
+    /// @param options
+    ///   Optional arguments, see options::bulk_write.
+    ///
+    /// @return
+    ///   The optional result of the bulk operation execution.
+    ///   If the write concern is unacknowledged, the optional will be
+    ///   disengaged.
+    //
+    /// @exception
+    ///   mongocxx::bulk_write_exception when there are errors processing
+    ///   the writes.
+    ///
+    /// @see mongocxx::bulk_write
+    /// @see https://docs.mongodb.com/master/core/bulk-write-operations/
+    ///
+    MONGOCXX_INLINE stdx::optional<result::bulk_write> write(
+        const model::write& write, const options::bulk_write& options = options::bulk_write());
 
     ///
     /// Sends a container of writes to the server as a bulk write operation.
@@ -184,7 +226,8 @@ class MONGOCXX_API collection {
     ///
     template <typename write_model_iterator_type>
     MONGOCXX_INLINE stdx::optional<result::bulk_write> bulk_write(
-        write_model_iterator_type begin, write_model_iterator_type end,
+        write_model_iterator_type begin,
+        write_model_iterator_type end,
         const options::bulk_write& options = options::bulk_write());
 
     ///
@@ -223,21 +266,24 @@ class MONGOCXX_API collection {
     ///
     /// @param keys
     ///   The keys for the index: @c {a: 1, b: -1}
-    /// @param options
-    ///   Optional arguments, see mongocxx::options::index.
+    /// @param index_options
+    ///   A document containing optional arguments for creating the index.
+    /// @param operation_options
+    ///   Optional arguments for the overall operation, see mongocxx::options::index_view.
     ///
-    /// @throws mongocxx::logic_error if the options are invalid.
-    /// @throws mongocxx::operation_exception if index creation fails.
+    /// @exception
+    ///   mongocxx::operation_exception if index creation fails.
     ///
-    /// @see https://docs.mongodb.com/master/reference/method/db.collection.createIndex/
+    /// @see
+    ///   https://docs.mongodb.com/master/reference/command/createIndexes/
     ///
     /// @note
-    ///   In order to pass a write concern to this, you must use the collection
-    ///   level set write concern - collection::write_concern(wc). (MongoDB
-    ///   3.4+)
+    ///   Write concern supported only for MongoDB 3.4+.
     ///
-    bsoncxx::document::value create_index(bsoncxx::document::view_or_value keys,
-                                          const options::index& options = options::index());
+    bsoncxx::document::value create_index(
+        bsoncxx::document::view_or_value keys,
+        bsoncxx::document::view_or_value index_options = {},
+        options::index_view operation_options = options::index_view{});
 
     ///
     /// Deletes all matching documents from the collection.
@@ -295,21 +341,26 @@ class MONGOCXX_API collection {
 
     /// @see https://docs.mongodb.com/master/reference/command/distinct/
     ///
-    cursor distinct(bsoncxx::string::view_or_value name, bsoncxx::document::view_or_value filter,
+    cursor distinct(bsoncxx::string::view_or_value name,
+                    bsoncxx::document::view_or_value filter,
                     const options::distinct& options = options::distinct());
 
     /// Drops this collection and all its contained documents from the database.
     ///
-    /// @throws mongocxx::operation_exception if the operation fails.
+    /// @param write_concern (optional)
+    ///   The write concern to use for this operation. Defaults to the collection wide write
+    ///   concern if none is provided.
     ///
-    /// @see https://docs.mongodb.com/master/reference/method/db.collection.drop/
+    /// @exception
+    ///   mongocxx::operation_exception if the operation fails.
+    ///
+    /// @see
+    ///   https://docs.mongodb.com/master/reference/command/drop/
     ///
     /// @note
-    ///   In order to pass a write concern to this, you must use the collection
-    ///   level set write concern - collection::write_concern(wc). (MongoDB
-    ///   3.4+)
+    ///   Write concern supported only for MongoDB 3.4+.
     ///
-    void drop();
+    void drop(const bsoncxx::stdx::optional<mongocxx::write_concern>& write_concern = {});
 
     ///
     /// Finds the documents in this collection which match the provided filter.
@@ -358,11 +409,12 @@ class MONGOCXX_API collection {
     ///
     /// @return The document that was deleted.
     ///
-    /// @throws mongocxx::write_exception if the operation fails.
+    /// @exception
+    ///   Throws mongocxx::logic_error if the collation option is specified and an unacknowledged
+    ///   write concern is used.
     ///
-    /// @note
-    ///   In order to pass a write concern to this, you must use the collection
-    ///   level set write concern - collection::write_concern(wc).
+    /// @exception
+    ///   Throws mongocxx::write_exception if the operation fails.
     ///
     stdx::optional<bsoncxx::document::value> find_one_and_delete(
         bsoncxx::document::view_or_value filter,
@@ -381,14 +433,16 @@ class MONGOCXX_API collection {
     ///
     /// @return The original or replaced document.
     ///
-    /// @throws mongocxx::write_exception if the operation fails.
+    /// @exception
+    ///   Throws mongocxx::logic_error if the collation option is specified and an unacknowledged
+    ///   write concern is used.
     ///
-    /// @note
-    ///   In order to pass a write concern to this, you must use the collection
-    ///   level set write concern - collection::write_concern(wc).
+    /// @exception
+    ///   Throws mongocxx::write_exception if the operation fails.
     ///
     stdx::optional<bsoncxx::document::value> find_one_and_replace(
-        bsoncxx::document::view_or_value filter, bsoncxx::document::view_or_value replacement,
+        bsoncxx::document::view_or_value filter,
+        bsoncxx::document::view_or_value replacement,
         const options::find_one_and_replace& options = options::find_one_and_replace());
 
     ///
@@ -404,14 +458,16 @@ class MONGOCXX_API collection {
     ///
     /// @return The original or updated document.
     ///
-    /// @throws mongocxx::write_exception when the operation fails.
+    /// @exception
+    ///   Throws mongocxx::logic_error if the collation option is specified and an unacknowledged
+    ///   write concern is used.
     ///
-    /// @note
-    ///   In order to pass a write concern to this, you must use the collection
-    ///   level set write concern - collection::write_concern(wc).
+    /// @exception
+    ///   Throws mongocxx::write_exception if the operation fails.
     ///
     stdx::optional<bsoncxx::document::value> find_one_and_update(
-        bsoncxx::document::view_or_value filter, bsoncxx::document::view_or_value update,
+        bsoncxx::document::view_or_value filter,
+        bsoncxx::document::view_or_value update,
         const options::find_one_and_update& options = options::find_one_and_update());
 
     ///
@@ -486,7 +542,8 @@ class MONGOCXX_API collection {
     /// TODO: document DocumentViewIterator concept or static assert
     template <typename document_view_iterator_type>
     MONGOCXX_INLINE stdx::optional<result::insert_many> insert_many(
-        document_view_iterator_type begin, document_view_iterator_type end,
+        document_view_iterator_type begin,
+        document_view_iterator_type end,
         const options::insert& options = options::insert());
 
     ///
@@ -501,9 +558,10 @@ class MONGOCXX_API collection {
     cursor list_indexes() const;
 
     ///
-    /// Returns the name of this collection as a view of a null-terminated string.
+    /// Returns the name of this collection.
     ///
-    /// @return The name of the collection.
+    /// @return The name of the collection.  The return value of this method is invalidated by any
+    /// subsequent call to collection::rename() on this collection object.
     ///
     stdx::string_view name() const;
 
@@ -514,16 +572,18 @@ class MONGOCXX_API collection {
     /// @param drop_target_before_rename Whether to overwrite any
     ///   existing collections called new_name. The default is false.
     ///
-    /// @throws mongocxx::operation_exception if the operation fails.
+    /// @exception
+    ///   mongocxx::operation_exception if the operation fails.
     ///
-    /// @see https://docs.mongodb.com/master/reference/command/renameCollection/
+    /// @see
+    ///   https://docs.mongodb.com/master/reference/command/renameCollection/
     ///
     /// @note
-    ///   In order to pass a write concern to this, you must use the collection
-    ///   level set write concern - collection::write_concern(wc). (MongoDB
-    ///   3.4+)
+    ///   Write concern supported only for MongoDB 3.4+.
     ///
-    void rename(bsoncxx::string::view_or_value new_name, bool drop_target_before_rename = false);
+    void rename(bsoncxx::string::view_or_value new_name,
+                bool drop_target_before_rename = false,
+                const bsoncxx::stdx::optional<write_concern>& write_concern = {});
 
     ///
     /// Sets the read_concern for this collection. Changes will not have any effect on existing
@@ -587,7 +647,8 @@ class MONGOCXX_API collection {
     /// @see https://docs.mongodb.com/master/reference/command/update/
     ///
     stdx::optional<result::replace_one> replace_one(
-        bsoncxx::document::view_or_value filter, bsoncxx::document::view_or_value replacement,
+        bsoncxx::document::view_or_value filter,
+        bsoncxx::document::view_or_value replacement,
         const options::update& options = options::update());
 
     ///
@@ -654,7 +715,12 @@ class MONGOCXX_API collection {
     ///
     class write_concern write_concern() const;
 
+    ///
+    /// Gets an index_view to the collection.
+    class index_view indexes();
+
    private:
+    friend class bulk_write;
     friend class database;
 
     MONGOCXX_PRIVATE collection(const database& database,
@@ -670,6 +736,14 @@ class MONGOCXX_API collection {
     std::unique_ptr<impl> _impl;
 };
 
+MONGOCXX_INLINE stdx::optional<result::bulk_write> collection::write(
+    const model::write& write, const options::bulk_write& options) {
+    auto writes = create_bulk_write(options);
+    writes.append(write);
+
+    return bulk_write(writes);
+}
+
 template <typename container_type>
 MONGOCXX_INLINE stdx::optional<result::bulk_write> collection::bulk_write(
     const container_type& requests, const options::bulk_write& options) {
@@ -678,9 +752,10 @@ MONGOCXX_INLINE stdx::optional<result::bulk_write> collection::bulk_write(
 
 template <typename write_model_iterator_type>
 MONGOCXX_INLINE stdx::optional<result::bulk_write> collection::bulk_write(
-    write_model_iterator_type begin, write_model_iterator_type end,
+    write_model_iterator_type begin,
+    write_model_iterator_type end,
     const options::bulk_write& options) {
-    class bulk_write writes(options);
+    auto writes = create_bulk_write(options);
 
     std::for_each(begin, end, [&](const model::write& current) { writes.append(current); });
 
@@ -695,11 +770,43 @@ MONGOCXX_INLINE stdx::optional<result::insert_many> collection::insert_many(
 
 template <typename document_view_iterator_type>
 MONGOCXX_INLINE stdx::optional<result::insert_many> collection::insert_many(
-    document_view_iterator_type begin, document_view_iterator_type end,
+    document_view_iterator_type begin,
+    document_view_iterator_type end,
     const options::insert& options) {
-    auto op = std::for_each(begin, end, insert_many_builder{options});
+    options::bulk_write bulk_write_options;
+    bulk_write_options.ordered(options.ordered().value_or(true));
+    if (options.write_concern()) {
+        bulk_write_options.write_concern(*options.write_concern());
+    }
+    if (options.bypass_document_validation()) {
+        bulk_write_options.bypass_document_validation(*options.bypass_document_validation());
+    }
 
-    return op.insert(this);
+    auto writes = create_bulk_write(bulk_write_options);
+    bsoncxx::builder::basic::array inserted_ids;
+
+    std::for_each(begin, end, [&inserted_ids, &writes](const bsoncxx::document::view& doc) {
+        bsoncxx::builder::basic::document id_doc;
+
+        if (!doc["_id"]) {
+            id_doc.append(kvp("_id", bsoncxx::oid{}));
+            writes.append(
+                model::insert_one{make_document(concatenate(id_doc.view()), concatenate(doc))});
+        } else {
+            id_doc.append(kvp("_id", doc["_id"].get_value()));
+            writes.append(model::insert_one{doc});
+        }
+
+        inserted_ids.append(id_doc.view());
+    });
+
+    auto result = bulk_write(writes);
+    if (!result) {
+        return stdx::nullopt;
+    }
+
+    return stdx::optional<result::insert_many>{
+        result::insert_many{std::move(result.value()), inserted_ids.view()}};
 }
 
 MONGOCXX_INLINE_NAMESPACE_END

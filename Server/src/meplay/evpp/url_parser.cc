@@ -29,7 +29,8 @@ int URLParser::parse(const string& url_s) {
     it = search(url_s.begin(), url_s.end(), prot_end.begin(), prot_end.end());
     if (it != url_s.end()) {
         schema.reserve(distance(url_s.begin(), it));
-        transform(url_s.begin(), it, back_inserter(schema), ptr_fun<int, int>(tolower)); // protocol is icase
+        //transform(url_s.begin(), it, back_inserter(schema), std::tolower); // protocol is icase
+        transform(url_s.begin(), it, back_inserter(schema), ::tolower); // protocol is icase
         advance(it, prot_end.length());
         last_it = it;
     }
@@ -37,7 +38,7 @@ int URLParser::parse(const string& url_s) {
     it = find_if(last_it, url_s.end(), equal_key);
 
     host.reserve(distance(last_it, it));
-    transform(last_it, it, back_inserter(host), ptr_fun<int, int>(tolower)); // host is icase
+    transform(last_it, it, back_inserter(host), ::tolower); // host is icase
 
     if (it == url_s.end()) {
         return 0;

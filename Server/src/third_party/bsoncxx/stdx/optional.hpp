@@ -58,15 +58,31 @@ BSONCXX_INLINE_NAMESPACE_END
 
 #elif defined(BSONCXX_POLY_USE_STD_EXPERIMENTAL)
 
-#include <experimental/optional>
+#include <optional>
 
 namespace bsoncxx {
 BSONCXX_INLINE_NAMESPACE_BEGIN
 namespace stdx {
 
-using ::std::experimental::optional;
-using ::std::experimental::nullopt;
-using ::std::experimental::make_optional;
+using ::std::optional;
+using ::std::nullopt;
+using ::std::make_optional;
+
+}  // namespace stdx
+BSONCXX_INLINE_NAMESPACE_END
+}  // namespace bsoncxx
+
+#elif defined(BSONCXX_POLY_USE_STD)
+
+#include <optional>
+
+namespace bsoncxx {
+BSONCXX_INLINE_NAMESPACE_BEGIN
+namespace stdx {
+
+using ::std::optional;
+using ::std::nullopt;
+using ::std::make_optional;
 
 }  // namespace stdx
 BSONCXX_INLINE_NAMESPACE_END

@@ -105,7 +105,7 @@ class MONGOCXX_API read_concern {
     ///   Either k_local, k_majority, k_linearizable, or k_server_default.
     ///
     /// @throws
-    ///   std::invalid_argument if rc_level is not k_local, k_majority, k_linearizable, or
+    ///   mongocxx::exception if rc_level is not k_local, k_majority, k_linearizable, or
     ///   k_server_default.
     ///
     void acknowledge_level(level rc_level);
@@ -121,9 +121,10 @@ class MONGOCXX_API read_concern {
     level acknowledge_level() const;
 
     ///
-    /// Sets the read concern string.
-    ///
-    /// One of "local", "majority", "linearizable", or "".
+    /// Sets the read concern string. Any valid read concern string (e.g. "local",
+    /// "majority", "linearizable", "") may be passed in.  For forward-compatibility
+    /// with read concern levels introduced in the future, no validation is performed on
+    /// this string.
     ///
     /// @param rc_string
     ///   The read concern string.
@@ -145,6 +146,19 @@ class MONGOCXX_API read_concern {
     friend collection;
     friend database;
     friend uri;
+
+    ///
+    /// @{
+    ///
+    /// Compares two read_concern objects for (in)-equality.
+    ///
+    /// @relates: read_concern
+    ///
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const read_concern&, const read_concern&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const read_concern&, const read_concern&);
+    ///
+    /// @}
+    ///
 
     class MONGOCXX_PRIVATE impl;
 

@@ -36,6 +36,10 @@ class MONGOCXX_API validation_criteria {
     /// @param rule
     ///   Document representing a validation rule.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     validation_criteria& rule(bsoncxx::document::view_or_value rule);
 
     ///
@@ -66,6 +70,10 @@ class MONGOCXX_API validation_criteria {
     /// @param level
     ///   An enumerated validation level.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     validation_criteria& level(validation_level level);
 
     ///
@@ -94,6 +102,10 @@ class MONGOCXX_API validation_criteria {
     /// @param action
     ///   An enumerated validation action.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     validation_criteria& action(validation_action action);
 
     ///
@@ -114,14 +126,15 @@ class MONGOCXX_API validation_criteria {
     ///
     /// @return Validation criteria, as a document.
     ///
-    bsoncxx::document::value to_document() const;
+    MONGOCXX_DEPRECATED bsoncxx::document::value to_document() const;
+    bsoncxx::document::value to_document_deprecated() const;
 
     ///
     /// @deprecated
     ///   This method is deprecated. To determine which options are set on this object, use the
     ///   provided accessors instead.
     ///
-    MONGOCXX_INLINE operator bsoncxx::document::value() const;
+    MONGOCXX_DEPRECATED MONGOCXX_INLINE operator bsoncxx::document::value() const;
 
    private:
     stdx::optional<bsoncxx::document::view_or_value> _rule;
@@ -129,8 +142,13 @@ class MONGOCXX_API validation_criteria {
     stdx::optional<validation_action> _action;
 };
 
+MONGOCXX_API bool MONGOCXX_CALL operator==(const validation_criteria& lhs,
+                                           const validation_criteria& rhs);
+MONGOCXX_API bool MONGOCXX_CALL operator!=(const validation_criteria& lhs,
+                                           const validation_criteria& rhs);
+
 MONGOCXX_INLINE validation_criteria::operator bsoncxx::document::value() const {
-    return to_document();
+    return to_document_deprecated();
 }
 
 MONGOCXX_INLINE_NAMESPACE_END

@@ -1,8 +1,11 @@
 #include "DBClient.h"
 
 #include <bsoncxx/builder/basic/document.hpp>
+#include <bsoncxx/builder/stream/document.hpp>
 #include <bsoncxx/json.hpp>
 #include <mongocxx/exception/exception.hpp>
+#include <mongocxx/result/insert_one.hpp>
+#include <mongocxx/result/insert_many.hpp>
 #include <bsoncxx/json.hpp>
 #include <google/protobuf/util/json_util.h>
 #include <google/protobuf/util/type_resolver.h>
@@ -14,6 +17,7 @@
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/writer.h>
 #include <rapidjson/rapidjson.h>
+//#include <boost/optional.hpp>
 
 #include "MPLogger.h"
 
@@ -52,7 +56,7 @@ bool DBClient::Connect(const std::string& sIp, uint32_t nPort, const std::string
 			//std::string s((char*)view.data(), view.length());
 			//std::cout << view["name"].get_utf8().value.to_string() << std::endl;
 			bsoncxx::builder::stream::document drop_indexes;
-			drop_indexes << "dropIndexes" << view["name"].get_utf8().value.to_string() << "index" << "*";
+			drop_indexes << "dropIndexes" << view["name"].get_utf8().value << "index" << "*";
 			m_DataBase.run_command(drop_indexes.view());
 		}
 

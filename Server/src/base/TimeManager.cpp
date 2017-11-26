@@ -1,5 +1,6 @@
 #include "TimeManager.h"
 #include "CommDef.h"
+#include <iostream>
 
 TimeManager::TimeManager()
 {

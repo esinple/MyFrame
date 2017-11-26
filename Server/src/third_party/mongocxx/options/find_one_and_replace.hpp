@@ -21,6 +21,7 @@
 #include <bsoncxx/stdx/optional.hpp>
 #include <mongocxx/options/find_one_common_options.hpp>
 #include <mongocxx/stdx.hpp>
+#include <mongocxx/write_concern.hpp>
 
 #include <mongocxx/config/prelude.hpp>
 
@@ -38,8 +39,11 @@ class MONGOCXX_API find_one_and_replace {
     /// @param collation
     ///   The new collation.
     ///
-    /// @see
-    ///   https://docs.mongodb.com/master/reference/collation/
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     find_one_and_replace& collation(bsoncxx::document::view_or_value collation);
 
@@ -49,8 +53,7 @@ class MONGOCXX_API find_one_and_replace {
     /// @return
     ///   The current collation.
     ///
-    /// @see
-    ///   https://docs.mongodb.com/master/reference/collation/
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     const stdx::optional<bsoncxx::document::view_or_value>& collation() const;
 
@@ -64,7 +67,11 @@ class MONGOCXX_API find_one_and_replace {
     /// @param bypass_document_validation
     ///   Whether or not to bypass document validation.
     ///
-    /// @see https://docs.mongodb.com/master/core/document-validation/#bypass-document-validation
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     find_one_and_replace& bypass_document_validation(bool bypass_document_validation);
 
@@ -72,6 +79,8 @@ class MONGOCXX_API find_one_and_replace {
     /// The current setting for bypassing document validation.
     ///
     /// @return the current bypass document validation setting.
+    ///
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     const stdx::optional<bool>& bypass_document_validation() const;
 
@@ -81,7 +90,11 @@ class MONGOCXX_API find_one_and_replace {
     /// @param max_time
     ///   The max amount of time (in milliseconds).
     ///
-    /// @see https://docs.mongodb.com/master/reference/operator/meta/maxTimeMS
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     find_one_and_replace& max_time(std::chrono::milliseconds max_time);
 
@@ -90,7 +103,7 @@ class MONGOCXX_API find_one_and_replace {
     ///
     /// @return the current max allowed running time (in milliseconds).
     ///
-    /// @see https://docs.mongodb.com/master/reference/operator/meta/maxTimeMS
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     const stdx::optional<std::chrono::milliseconds>& max_time() const;
 
@@ -100,7 +113,11 @@ class MONGOCXX_API find_one_and_replace {
     /// @param projection
     ///   The projection document.
     ///
-    /// @see https://docs.mongodb.com/master/tutorial/project-fields-from-query-results/
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     find_one_and_replace& projection(bsoncxx::document::view_or_value projection);
 
@@ -109,7 +126,7 @@ class MONGOCXX_API find_one_and_replace {
     ///
     /// @return The current projection.
     ///
-    /// @see https://docs.mongodb.com/master/tutorial/project-fields-from-query-results/
+    /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     const stdx::optional<bsoncxx::document::view_or_value>& projection() const;
 
@@ -119,6 +136,10 @@ class MONGOCXX_API find_one_and_replace {
     ///
     /// @param return_document
     ///   Version of document to return, either original or replaced.
+    ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
     ///
     /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     /// @see mongocxx::options::return_document
@@ -144,6 +165,10 @@ class MONGOCXX_API find_one_and_replace {
     /// @param ordering
     ///   Document describing the order of the documents to be returned.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     find_one_and_replace& sort(bsoncxx::document::view_or_value ordering);
@@ -165,6 +190,10 @@ class MONGOCXX_API find_one_and_replace {
     /// @param upsert
     ///   Whether or not to perform an upsert.
     ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
     /// @see https://docs.mongodb.com/master/reference/command/findAndModify/
     ///
     find_one_and_replace& upsert(bool upsert);
@@ -178,6 +207,32 @@ class MONGOCXX_API find_one_and_replace {
     ///
     const stdx::optional<bool>& upsert() const;
 
+    ///
+    /// Sets the write concern for this operation.
+    ///
+    /// @param write_concern
+    ///   Object representing the write concern.
+    ///
+    /// @return
+    ///   A reference to the object on which this member function is being called.  This facilitates
+    ///   method chaining.
+    ///
+    /// @see
+    ///   https://docs.mongodb.com/master/reference/command/findAndModify/
+    ///
+    find_one_and_replace& write_concern(mongocxx::write_concern write_concern);
+
+    ///
+    /// Gets the current write concern.
+    ///
+    /// @return
+    ///   The current write concern.
+    ///
+    /// @see
+    ///   https://docs.mongodb.com/master/reference/command/findAndModify/
+    ///
+    const stdx::optional<mongocxx::write_concern>& write_concern() const;
+
    private:
     stdx::optional<bool> _bypass_document_validation;
     stdx::optional<bsoncxx::document::view_or_value> _collation;
@@ -186,6 +241,12 @@ class MONGOCXX_API find_one_and_replace {
     stdx::optional<mongocxx::options::return_document> _return_document;
     stdx::optional<bsoncxx::document::view_or_value> _ordering;
     stdx::optional<bool> _upsert;
+    stdx::optional<mongocxx::write_concern> _write_concern;
+
+    friend MONGOCXX_API bool MONGOCXX_CALL operator==(const find_one_and_replace&,
+                                                      const find_one_and_replace&);
+    friend MONGOCXX_API bool MONGOCXX_CALL operator!=(const find_one_and_replace&,
+                                                      const find_one_and_replace&);
 };
 
 }  // namespace options
