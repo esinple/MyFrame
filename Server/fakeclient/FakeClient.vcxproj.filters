@@ -57,6 +57,9 @@
     <ClCompile Include="TestManager.cpp" />
     <ClCompile Include="FakeClient.cpp" />
     <ClCompile Include="FCNetProxy.cpp" />
+    <ClCompile Include="..\src\base\ModuleRely.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base\ManagerModuleManager.h">
@@ -111,6 +114,9 @@
     <ClInclude Include="FCManagerModuleEnum.h" />
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="FCNetProxy.h" />
+    <ClInclude Include="..\src\base\ModuleRely.h">
+      <Filter>base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\common\command\MPMsgBase.proto">

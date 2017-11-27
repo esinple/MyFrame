@@ -34,7 +34,6 @@ BOOL CALLBACK CosonleHandler(DWORD ev)
 #else
 void prog_exit(int sig)
 {
-	MP_SYSTEM("[prog_exit][Receive a signal %d]", sig);
 	signal(sig, SIG_IGN);
 	g_pGatewayNetProxy->Final("Linux Signal Close Event!");
 //	g_pGatewayNetProxy->CV_Wait();

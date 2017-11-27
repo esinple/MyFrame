@@ -48,7 +48,7 @@ void MessageCB(evpp::EventLoop* loop,evpp::udp::MessagePtr& msg)
 {
 }
 
-int MPUDPServer::InitializationAsServer(const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount)
+int MPUDPServer::InitializationAsServer(const char* strIP,const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount)
 {
 	(void)nMaxClient;
 	m_nThreadCount = nThreadCount;

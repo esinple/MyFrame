@@ -76,7 +76,7 @@ namespace meplay {
 
 		virtual int InitializationAsClient(const char* strIP, const unsigned short nPort,bool bAutoReconnect,const uint32_t milliseconds) = 0;
 
-		virtual int InitializationAsServer(const unsigned int nMaxClient, const unsigned short nPort, const int nCpuCount = 4) = 0;
+		virtual int InitializationAsServer(const char* strIP, const unsigned int nMaxClient, const unsigned short nPort, const int nCpuCount = 4) = 0;
 
 		virtual int ExpandBufferSize(const unsigned int size) { return 0; };
 

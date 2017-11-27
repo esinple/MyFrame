@@ -100,7 +100,7 @@ int MPTCPClient::InitializationAsClient(const char* strIP, const unsigned short 
 	return 0;
 }
 
-int MPTCPClient::InitializationAsServer(const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount)
+int MPTCPClient::InitializationAsServer(const char* strIP, const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount)
 {
 
 	return -1;

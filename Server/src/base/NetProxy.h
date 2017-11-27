@@ -43,7 +43,7 @@ public:
 	virtual void LogicRun() = 0;
 	virtual const MPGUID GetGUIDBySock(const uint8_t nType,const MPSOCK nSockIndex)const = 0;
 public:
-	bool AddTCPServerModule(uint8_t nType, const uint32_t nMaxClient, const uint16_t nPort,const uint8_t nThreadCount = 4);
+	bool AddTCPServerModule(uint8_t nType, const uint32_t nMaxClient, const char* ip, const uint16_t nPort, const uint8_t nThreadCount = 4);
 	void AddTCPClientModule(uint8_t nType, const char* ip, const uint16_t nPort,bool bAutoConnect = true);
 	bool AddUDPServerModule(uint8_t nType, const uint16_t nPort,const uint8_t nThreadCount = 4);
 

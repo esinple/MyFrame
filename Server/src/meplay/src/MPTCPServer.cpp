@@ -79,7 +79,7 @@ void MPTCPServer::messageCB(const std::shared_ptr<evpp::TCPConn>& pConn, evpp::B
 	pBuffer->Reset();
 }
 
-int MPTCPServer::InitializationAsServer(const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount)
+int MPTCPServer::InitializationAsServer(const char * strIP, const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount)
 {
 	(void)nMaxClient;
 	m_nThreadCount = nThreadCount;
@@ -98,7 +98,7 @@ int MPTCPServer::InitializationAsServer(const unsigned int nMaxClient, const uns
 	}
 #endif
 	m_pEventLoop = std::make_shared<EventLoop>();
-	m_pTcpServer = std::make_shared<TCPServer>(m_pEventLoop.get(), "127.0.0.1:" + std::to_string(nPort), m_sServiceName, m_nThreadCount);
+	m_pTcpServer = std::make_shared<TCPServer>(m_pEventLoop.get(), std::string(strIP) + ":" + std::to_string(nPort), m_sServiceName, m_nThreadCount);
 
 	m_pTcpServer->SetConnectionCallback(std::bind(&MPTCPServer::connectCB, this, std::placeholders::_1));
 	m_pTcpServer->SetMessageCallback(std::bind(&MPTCPServer::messageCB, this, std::placeholders::_1, std::placeholders::_2));
@@ -144,10 +144,11 @@ bool MPTCPServer::Final()
 		MP_DEBUG("TcpServer Stopped!");
 	}
 //#endif
-	MPThread::ThreadFinal();
 
 #ifdef WIN_SYSTEM
 	WSACleanup();
 #endif
+
+	MPThread::ThreadFinal();
 	return true;
 }

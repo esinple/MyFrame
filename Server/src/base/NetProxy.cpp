@@ -50,6 +50,11 @@ void NetProxy::NetRun()
 		auto pNetModule = clients.second;
 		pNetModule->Execute();
 	}
+	/*static int i = 0;
+	if (i++ == 50)
+	{
+		NetFinal();
+	}*/
 }
 
 void NetProxy::NetFinal()
@@ -63,6 +68,10 @@ void NetProxy::NetFinal()
 
 void NetProxy::Final(const char* reason)
 {
+	if (m_bFinal)
+	{
+		return;
+	}
 	MP_SYSTEM("NetProxy Fianl For Reason [%s].",reason);
 	m_bFinal = true;
 	//cv.wait(std::unique_lock<std::mutex>(mtx));
@@ -87,7 +96,7 @@ bool NetProxy::IsFinal()const
 	return m_bFinal;
 }
 
-bool NetProxy::AddTCPServerModule(uint8_t nType, const uint32_t nMaxClient, const uint16_t nPort,const uint8_t nThreadCount)
+bool NetProxy::AddTCPServerModule(uint8_t nType, const uint32_t nMaxClient, const char* ip, const uint16_t nPort, const uint8_t nThreadCount)
 {
 	auto pNet = GetNetModule(nType);
 	if (pNet == nullptr)
@@ -95,7 +104,7 @@ bool NetProxy::AddTCPServerModule(uint8_t nType, const uint32_t nMaxClient, cons
 
 		pNet = std::shared_ptr<MPTCPServer>(new MPTCPServer("NetProxy", nType, this, &NetProxy::OnClientConnected, &NetProxy::OnClientDisconnect, &NetProxy::OnMsgCB));
 		//pNet = std::make_shared<MPNetServer>(nType,this,&NetProxy::OnRecieveMessage,&NetProxy::OnSocketClientEvent);
-		if (pNet->InitializationAsServer(nMaxClient, nPort,nThreadCount) < 0)
+		if (pNet->InitializationAsServer(ip, nMaxClient, nPort, nThreadCount) < 0)
 		{
 			MP_ERROR("Init ServerNetModule Error![%d][MaxClient : %d][Port : %d]", nType, nMaxClient, nPort);
 			ImmediatelyFinal("Init Server Net Faild!");

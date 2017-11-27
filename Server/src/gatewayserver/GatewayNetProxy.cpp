@@ -31,7 +31,7 @@ bool GatewayNetProxy::InitServerCfg(const std::string& filename)
 	AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
 	//AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
 
-	AddTCPServerModule(MP_CLIENT, 2048, 17000);
+	AddTCPServerModule(MP_CLIENT, 2048, "172.24.18.105",17000);
 
 	//AddReceiveCallBack();
 	//AddTCPServerModule(MP_ST_CENTER, 3000, 16125);

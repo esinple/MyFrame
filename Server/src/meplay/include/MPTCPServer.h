@@ -38,7 +38,7 @@ namespace meplay{
 
 		virtual int InitializationAsClient(const char* strIP, const unsigned short nPort, bool bAutoReconnect, const uint32_t milliseconds)override;
 
-		virtual int InitializationAsServer(const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount = 4)override;
+		virtual int InitializationAsServer(const char* strIP,const unsigned int nMaxClient, const unsigned short nPort, const int nThreadCount = 4)override;
 
 		virtual bool Final()override;
 
