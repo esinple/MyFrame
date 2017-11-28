@@ -15,7 +15,7 @@ private:
 	const uint64_t m_nSockIndex;
 	std::string m_sIP;
 	const int	m_nPort;
-	meplay::MPTime m_LogonTime;
+	meplay::MPTime m_LoginTime;
 	meplay::MPTime m_VerifyTime;
 };
 

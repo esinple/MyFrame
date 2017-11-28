@@ -1,6 +1,7 @@
 #pragma once
 #include "GameCommDef.h"
 #include <google/protobuf/message.h>
+#include "DBClientMgr.h"
 
 enum GameDBType
 {
@@ -24,3 +25,5 @@ public:
 private:
 	H_GAME_MANAGER_REG(DBManager)
 };
+
+#define g_pDBMgr DBClientMgr::GetInstance()->GetConn(eGameDB_Normal)

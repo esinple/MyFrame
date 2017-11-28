@@ -54,7 +54,7 @@ public:
 	int ExecDelete(uint32_t nType, google::protobuf::Message& msg, bool all = true);
 	int ExecUpdate(uint32_t nType, google::protobuf::Message& filter, google::protobuf::Message& update, bool all = true);
 	template<typename PB>
-	int ExecSelect(uint32_t nType,google::protobuf::Message& filter, std::vector<PB>& results, bool all = true)
+	int ExecSelectAll(uint32_t nType,google::protobuf::Message& filter, std::vector<PB>& results, bool all = true)
 	{
 		auto pConn = GetConn(nType);
 		if (pConn == nullptr)
@@ -62,7 +62,19 @@ public:
 			return 0;
 		}
 
-		return pConn->ExecSelect<PB>(filter, results, all);
+		return pConn->ExecSelectAll<PB>(filter, results, all);
+	}
+
+	template<typename PB>
+	int ExecSelectOne(uint32_t nType, google::protobuf::Message& filter, PB& results, bool all = true)
+	{
+		auto pConn = GetConn(nType);
+		if (pConn == nullptr)
+		{
+			return 0;
+		}
+
+		return pConn->ExecSelectOne<PB>(filter, results, all);
 	}
 private:
 	void CreateIndex(std::shared_ptr<DBClient> pConn);
@@ -74,4 +86,4 @@ private:
 	INDEX_MAP_TYPE m_mIndexs;
 };
 
-#define g_pDBMgr DBClientMgr::GetInstance()
+//#define g_pDBMgr DBClientMgr::GetInstance()

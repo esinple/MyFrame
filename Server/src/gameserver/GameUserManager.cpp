@@ -4,6 +4,10 @@
 #include "Gate2Game.pb.h"
 #include "UserMsgDefine.pb.h"
 #include "UserBase.pb.h"
+#include "DBGameUser.pb.h"
+#include "DBManager.h"
+#include "UserBase.h"
+#include "GameTimeManager.h"
 
 CPP_GAME_MANAGER_REG(GameUserManager)
 
@@ -111,6 +115,31 @@ void GameUserManager::UserMsgDispatch(
 	}
 }
 
+void GameUserManager::GameUserLogon(GameUserPtr pGameUser)
+{
+	MP_INFO("GameUser Logon! uid : [%llu]",pGameUser->GetUID());
+	if (!pGameUser->GetAllModules().Awake())
+	{
+		//error
+	}
+}
+
+void GameUserManager::GameUserLogout(const MPGUID uid)
+{
+	MP_INFO("GameUser Logout! uid : [%llu]", uid);
+	//logic??
+	auto pGameUser = GetGameUser(uid);
+	if (pGameUser == nullptr)
+	{
+		return;
+	}
+
+	pGameUser->GetAllModules().ShutDown();
+
+	//delete
+	delGameUser(uid);
+}
+
 void GameUserManager::onGameUserLogon(
 	GameUserPtr pGameUser,
 	uint64_t nUserSockIndex,
@@ -122,29 +151,29 @@ void GameUserManager::onGameUserLogon(
 		//踢掉原来的GameUser
 	}
 
-	//find from db
-
-	bool bFound(false);
-	//not found!
-	if (!bFound)
+	UserLogon_C2S inMsg;
+	if (!inMsg.ParseFromString(sData))
 	{
-		UserLogon_C2S inMsg;
-		if (!inMsg.ParseFromString(sData))
-		{
-			MP_ERROR("UserLogon Error! User [%llu],Gate [%llu]", nUserSockIndex, nGateSockIndex);
-			return;
-		}
-
-		pGameUser = createGameUser(nUserSockIndex, nGateSockIndex, inMsg.account(), inMsg.password());
-		if (pGameUser == nullptr)
-		{
-			MP_ERROR("Can Not Create GameUser! [%llu][%llu],Account[%s]Password[%s]!"
-				, nUserSockIndex, nGateSockIndex, inMsg.account(), inMsg.password());
-			return;
-		}
-
-		addGameUser(pGameUser);
+		MP_ERROR("UserLogon Error! User [%llu],Gate [%llu]", nUserSockIndex, nGateSockIndex);
+		return;
 	}
+	//构造gameuser
+	pGameUser = createGameUser(nUserSockIndex, nGateSockIndex, inMsg.account(), inMsg.password());
+	if (pGameUser == nullptr)
+	{
+		MP_ERROR("Can Not Create GameUser! [%llu][%llu],Account[%s]Password[%s]!"
+			, nUserSockIndex, nGateSockIndex, inMsg.account(), inMsg.password());
+	}
+	
+	//加载gameuser 如果有数据
+	auto nErrCode = loadGameUser(pGameUser);
+	if (nErrCode != UEC_Success)
+	{
+		MP_ERROR("UserLogon Password Error! User [%llu],Gate [%llu]", nUserSockIndex, nGateSockIndex);
+		return;
+	}
+
+	addGameUser(pGameUser);
 
 	GameUserLogon(pGameUser);
 
@@ -154,6 +183,8 @@ void GameUserManager::onGameUserLogon(
 
 void GameUserManager::onGameUserLogonSuccess(GameUserPtr pGameUser)
 {
+	saveGameUserLogon(pGameUser);
+	
 	//notify gate
 	MPMsg::GameUserLogonSuccess_Game2Gate outGateMsg;
 	outGateMsg.set_fd(pGameUser->GetUserSock());
@@ -182,27 +213,41 @@ GameUserPtr GameUserManager::createGameUser(
 	return pGameUser;
 }
 
-void GameUserManager::GameUserLogon(GameUserPtr pGameUser)
+int GameUserManager::loadGameUser(GameUserPtr pGameUser)
 {
-	MP_INFO("GameUser Logon! uid : [%llu]",pGameUser->GetUID());
-	if (!pGameUser->GetAllModules().Awake())
+	UserDB::GameUserLogon db_gameuserbase;
+	db_gameuserbase.set_account(std::string(pGameUser->GetAccount()));
+	
+	UserDB::GameUserLogon db_result;
+	if (g_pDBMgr->ExecSelectOne(db_gameuserbase, db_result) == 0)
 	{
-		//error
+		return UEC_Success;
 	}
+
+	if (db_result.passwd() != pGameUser->GetPassword())
+	{
+		return UEC_Failed;
+	}
+
+	pGameUser->SetIP("");
+	pGameUser->SetLoginTime(GAME_CUR_TIME);
+	meplay::MPTime LogoutTime(db_result.logout_time());
+	pGameUser->SetLogoutTime(LogoutTime);
+	
+	pGameUser->LoadFromDB();
+	return UEC_Success;
 }
 
-void GameUserManager::GameUserLogout(const MPGUID uid)
+void GameUserManager::saveGameUserLogon(GameUserPtr pGameUser)
 {
-	MP_INFO("GameUser Logout! uid : [%llu]", uid);
-	//logic??
-	auto pGameUser = GetGameUser(uid);
-	if (pGameUser == nullptr)
-	{
-		return;
-	}
+	UserDB::GameUserLogon db_logon_info;
+	db_logon_info.set_account(pGameUser->GetAccount());
+	db_logon_info.set_passwd(pGameUser->GetPassword());
+	db_logon_info.set_uid(pGameUser->GetUID());
+	db_logon_info.set_ip(pGameUser->GetIP());
+	db_logon_info.set_login_time(pGameUser->GetLoginTime().CurrentSec());
+	db_logon_info.set_logout_time(pGameUser->GetLogoutTime().CurrentSec());
 
-	pGameUser->GetAllModules().ShutDown();
-
-	//delete
-	delGameUser(uid);
+	auto pDBMgr = g_pGameNetProxy->GetModule<DBManager>(eGameMgr_DBServer);
+	pDBMgr->SaveToDB(db_logon_info);
 }

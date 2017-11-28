@@ -27,11 +27,9 @@ bool GatewayNetProxy::InitServerCfg(const std::string& filename)
 
 	AddTCPClientModule(MP_ST_GAME, "127.0.0.1", 16125, true);
 	AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
-	AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
-	AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
 	//AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
 
-	AddTCPServerModule(MP_CLIENT, 2048, "172.24.18.105",17000);
+	AddTCPServerModule(MP_CLIENT, 2048, "0.0.0.0",17000);
 
 	//AddReceiveCallBack();
 	//AddTCPServerModule(MP_ST_CENTER, 3000, 16125);
@@ -50,10 +48,18 @@ void GatewayNetProxy::LogicFinal()
 void GatewayNetProxy::LogicRun()
 {
 	m_Mgrs.Execute();
+
+	if (0)
+	{
+		this->Final("");
+	}
+
 }
 
 void GatewayNetProxy::OnClientDisconnect(const uint8_t nType, const MPSOCK nSockIndex)
 {
+	auto pNetModule = GetNetModule(nType);
+	pNetModule->DelNetObject(nSockIndex);
 	switch (nType)
 	{
 	case MP_CLIENT:
@@ -64,7 +70,13 @@ void GatewayNetProxy::OnClientDisconnect(const uint8_t nType, const MPSOCK nSock
 	break;
 	case MP_ST_GAME:
 	{
+		auto pGameServerMgr = GetModule<GameServerManager>(eGatewayMgr_GameServer);
+		pGameServerMgr->DelGameServer(nSockIndex);
+
 		MP_DEBUG("Can Not Connect To GameServer!");
+
+		auto pGateUserMgr = GetModule<GateUserManager>(eGatewayMgr_GateUser);
+		pGateUserMgr->KickAll();
 	}
 	break;
 	case MP_ST_SUPER:

@@ -18,8 +18,8 @@ SuperNetProxy::~SuperNetProxy()
 
 bool SuperNetProxy::InitServerCfg(const std::string& filename)
 {
-	AddTCPServerModule(MP_ST_GAME, 3000, "127.0.0.1", 16123);
-	AddTCPServerModule(MP_ST_GATE, 3000, "127.0.0.1", 16124);
+	AddTCPServerModule(MP_ST_GAME, 3000, "127.0.0.1", 16123, 1);
+	AddTCPServerModule(MP_ST_GATE, 3000, "127.0.0.1", 16124, 1);
 
 	//AddReceiveCallBack();
 	//AddTCPServerModule(MP_ST_CENTER, 3000, 16125);
@@ -40,7 +40,7 @@ void SuperNetProxy::LogicRun()
 	m_Mgrs.Execute();
 	if (0)
 	{
-		Kick(1,123);
+		Final("");
 	}
 }
 

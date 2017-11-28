@@ -55,7 +55,9 @@ void GameServerManager::DelGameServer(uint64_t nSockIndex)
 #ifdef _DEBUG 
 	auto it = m_mGameServers.find(nSockIndex);
 	if (it != m_mGameServers.end())
-		MP_DEBUG("Del GameServer [%lld][%s][%d]",nSockIndex, it->second->GetIP().c_str(), it->second->GetPort());
+	{
+		MP_DEBUG("Del GameServer [%lld][%s][%d]", nSockIndex, it->second->GetIP().c_str(), it->second->GetPort());
+	}
 #endif
 	m_mGameServers.erase(nSockIndex);
 }

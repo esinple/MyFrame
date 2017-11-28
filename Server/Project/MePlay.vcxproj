@@ -167,7 +167,6 @@
     <ClInclude Include="..\src\meplay\evpp\dns_resolver.h" />
     <ClInclude Include="..\src\meplay\evpp\duration.h" />
     <ClInclude Include="..\src\meplay\evpp\duration.inl.h" />
-    <ClInclude Include="..\src\meplay\evpp\easylogging++.h" />
     <ClInclude Include="..\src\meplay\evpp\event_loop.h" />
     <ClInclude Include="..\src\meplay\evpp\event_loop_thread.h" />
     <ClInclude Include="..\src\meplay\evpp\event_loop_thread_pool.h" />

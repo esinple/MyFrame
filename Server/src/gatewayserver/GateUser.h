@@ -14,15 +14,15 @@ public:
 
 	uint64_t GetFD()const;
 
-	inline const meplay::MPTime& GetLogonTime()const { return m_LogonTime; };
-	inline void SetLogonTime(const meplay::MPTime& time){ m_LogonTime = time; };
+	inline const meplay::MPTime& GetLoginTime()const { return m_LoginTime; };
+	inline void SetLoginTime(const meplay::MPTime& time){ m_LoginTime = time; };
 private:
 	//ÓÃ»§Î¨Ò»id
 	MPGUID m_uid;
 	uint64_t m_nSockIndex;
 	std::string m_sIP;
 
-	meplay::MPTime m_LogonTime;
+	meplay::MPTime m_LoginTime;
 };
 
 typedef std::shared_ptr<GateUser> GateUserPtr;

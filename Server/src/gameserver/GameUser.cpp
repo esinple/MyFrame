@@ -56,3 +56,7 @@ void GameUser::Send(uint32_t nMsgId,google::protobuf::Message& msg)
 
 	SEND2GATE(GetGateSock(), MPMsg::eGameMsg_GameMsgWrapper, outMsg);
 }
+
+void GameUser::LoadFromDB()
+{
+}

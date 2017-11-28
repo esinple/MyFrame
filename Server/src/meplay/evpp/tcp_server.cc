@@ -92,12 +92,16 @@ void TCPServer::StopInLoop(DoneCallback on_stopped_cb) {
     if (connections_.empty()) {
         // Stop all the working threads now.
         MPLOG_TRACE << "no connections";
-        StopThreadPool();
-        if (on_stopped_cb) {
-            on_stopped_cb();
-            on_stopped_cb = DoneCallback();
-        }
-        status_.store(kStopped);
+		if (status_.load() != kStopped)
+		{
+			StopThreadPool();
+			if (on_stopped_cb)
+			{
+				on_stopped_cb();
+				on_stopped_cb = DoneCallback();
+			}
+			status_.store(kStopped);
+		}
     } else {
         MPLOG_TRACE << "close connections";
         for (auto& c : connections_) {

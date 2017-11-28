@@ -11,7 +11,8 @@ namespace meplay
 	{
 	public:
 		MPTime(std::chrono::time_point<std::chrono::system_clock> time = std::chrono::system_clock::now());
-		MPTime(uint8_t hour, uint8_t min = 0, uint8_t sec = 0);
+		MPTime(time_t timestamp);
+		MPTime(uint8_t hour, uint8_t min , uint8_t sec = 0);
 		MPTime(uint16_t year, uint8_t month, uint8_t day,uint8_t hour, uint8_t min, uint8_t sec, int8_t dst = -1);
 		MPTime(const MPTime&);
 		MPTime(MPTime&&);

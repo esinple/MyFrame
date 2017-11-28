@@ -16,11 +16,13 @@
 #include <google/protobuf/reflection_ops.h>
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
-class GameUserBaseDefaultTypeInternal {
+
+namespace UserDB {
+class GameUserLogonDefaultTypeInternal {
 public:
- ::google::protobuf::internal::ExplicitlyConstructed<GameUserBase>
+ ::google::protobuf::internal::ExplicitlyConstructed<GameUserLogon>
      _instance;
-} _GameUserBase_default_instance_;
+} _GameUserLogon_default_instance_;
 
 namespace protobuf_DBGameUser_2eproto {
 
@@ -47,23 +49,23 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserBase, _internal_metadata_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserLogon, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserBase, account_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserBase, passwd_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserBase, uid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserBase, ip_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserBase, login_time_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserBase, logout_time_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserLogon, account_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserLogon, passwd_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserLogon, uid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserLogon, ip_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserLogon, login_time_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GameUserLogon, logout_time_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(GameUserBase)},
+  { 0, -1, sizeof(GameUserLogon)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::google::protobuf::Message*>(&_GameUserBase_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_GameUserLogon_default_instance_),
 };
 
 namespace {
@@ -92,9 +94,9 @@ void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::internal::InitProtobufDefaults();
-  _GameUserBase_default_instance_._instance.DefaultConstruct();
+  _GameUserLogon_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_GameUserBase_default_instance_);}
+      &_GameUserLogon_default_instance_);}
 
 void InitDefaults() {
   static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
@@ -104,13 +106,13 @@ namespace {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\020DBGameUser.proto\"q\n\014GameUserBase\022\017\n\007ac"
-      "count\030\001 \001(\t\022\016\n\006passwd\030\002 \001(\t\022\013\n\003uid\030\003 \001(\004"
-      "\022\n\n\002ip\030\004 \001(\t\022\022\n\nlogin_time\030\005 \001(\t\022\023\n\013logo"
-      "ut_time\030\006 \001(\tb\006proto3"
+      "\n\020DBGameUser.proto\022\006UserDB\"r\n\rGameUserLo"
+      "gon\022\017\n\007account\030\001 \001(\t\022\016\n\006passwd\030\002 \001(\t\022\013\n\003"
+      "uid\030\003 \001(\004\022\n\n\002ip\030\004 \001(\t\022\022\n\nlogin_time\030\005 \001("
+      "\004\022\023\n\013logout_time\030\006 \001(\004b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 141);
+      descriptor, 150);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "DBGameUser.proto", &protobuf_RegisterTypes);
 }
@@ -133,23 +135,23 @@ struct StaticDescriptorInitializer {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int GameUserBase::kAccountFieldNumber;
-const int GameUserBase::kPasswdFieldNumber;
-const int GameUserBase::kUidFieldNumber;
-const int GameUserBase::kIpFieldNumber;
-const int GameUserBase::kLoginTimeFieldNumber;
-const int GameUserBase::kLogoutTimeFieldNumber;
+const int GameUserLogon::kAccountFieldNumber;
+const int GameUserLogon::kPasswdFieldNumber;
+const int GameUserLogon::kUidFieldNumber;
+const int GameUserLogon::kIpFieldNumber;
+const int GameUserLogon::kLoginTimeFieldNumber;
+const int GameUserLogon::kLogoutTimeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-GameUserBase::GameUserBase()
+GameUserLogon::GameUserLogon()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
     protobuf_DBGameUser_2eproto::InitDefaults();
   }
   SharedCtor();
-  // @@protoc_insertion_point(constructor:GameUserBase)
+  // @@protoc_insertion_point(constructor:UserDB.GameUserLogon)
 }
-GameUserBase::GameUserBase(const GameUserBase& from)
+GameUserLogon::GameUserLogon(const GameUserLogon& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       _cached_size_(0) {
@@ -166,66 +168,58 @@ GameUserBase::GameUserBase(const GameUserBase& from)
   if (from.ip().size() > 0) {
     ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ip_);
   }
-  login_time_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.login_time().size() > 0) {
-    login_time_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.login_time_);
-  }
-  logout_time_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.logout_time().size() > 0) {
-    logout_time_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.logout_time_);
-  }
-  uid_ = from.uid_;
-  // @@protoc_insertion_point(copy_constructor:GameUserBase)
+  ::memcpy(&uid_, &from.uid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&logout_time_) -
+    reinterpret_cast<char*>(&uid_)) + sizeof(logout_time_));
+  // @@protoc_insertion_point(copy_constructor:UserDB.GameUserLogon)
 }
 
-void GameUserBase::SharedCtor() {
+void GameUserLogon::SharedCtor() {
   account_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   passwd_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  login_time_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  logout_time_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  uid_ = GOOGLE_ULONGLONG(0);
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&logout_time_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(logout_time_));
   _cached_size_ = 0;
 }
 
-GameUserBase::~GameUserBase() {
-  // @@protoc_insertion_point(destructor:GameUserBase)
+GameUserLogon::~GameUserLogon() {
+  // @@protoc_insertion_point(destructor:UserDB.GameUserLogon)
   SharedDtor();
 }
 
-void GameUserBase::SharedDtor() {
+void GameUserLogon::SharedDtor() {
   account_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   passwd_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ip_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  login_time_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  logout_time_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
-void GameUserBase::SetCachedSize(int size) const {
+void GameUserLogon::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* GameUserBase::descriptor() {
+const ::google::protobuf::Descriptor* GameUserLogon::descriptor() {
   protobuf_DBGameUser_2eproto::protobuf_AssignDescriptorsOnce();
   return protobuf_DBGameUser_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
-const GameUserBase& GameUserBase::default_instance() {
+const GameUserLogon& GameUserLogon::default_instance() {
   protobuf_DBGameUser_2eproto::InitDefaults();
   return *internal_default_instance();
 }
 
-GameUserBase* GameUserBase::New(::google::protobuf::Arena* arena) const {
-  GameUserBase* n = new GameUserBase;
+GameUserLogon* GameUserLogon::New(::google::protobuf::Arena* arena) const {
+  GameUserLogon* n = new GameUserLogon;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void GameUserBase::Clear() {
-// @@protoc_insertion_point(message_clear_start:GameUserBase)
+void GameUserLogon::Clear() {
+// @@protoc_insertion_point(message_clear_start:UserDB.GameUserLogon)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -233,17 +227,17 @@ void GameUserBase::Clear() {
   account_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   passwd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  login_time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  logout_time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  uid_ = GOOGLE_ULONGLONG(0);
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&logout_time_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(logout_time_));
   _internal_metadata_.Clear();
 }
 
-bool GameUserBase::MergePartialFromCodedStream(
+bool GameUserLogon::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:GameUserBase)
+  // @@protoc_insertion_point(parse_start:UserDB.GameUserLogon)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
@@ -258,7 +252,7 @@ bool GameUserBase::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->account().data(), static_cast<int>(this->account().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "GameUserBase.account"));
+            "UserDB.GameUserLogon.account"));
         } else {
           goto handle_unusual;
         }
@@ -274,7 +268,7 @@ bool GameUserBase::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->passwd().data(), static_cast<int>(this->passwd().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "GameUserBase.passwd"));
+            "UserDB.GameUserLogon.passwd"));
         } else {
           goto handle_unusual;
         }
@@ -304,39 +298,35 @@ bool GameUserBase::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->ip().data(), static_cast<int>(this->ip().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "GameUserBase.ip"));
+            "UserDB.GameUserLogon.ip"));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // string login_time = 5;
+      // uint64 login_time = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_login_time()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->login_time().data(), static_cast<int>(this->login_time().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "GameUserBase.login_time"));
+            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &login_time_)));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // string logout_time = 6;
+      // uint64 logout_time = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_logout_time()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->logout_time().data(), static_cast<int>(this->logout_time().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "GameUserBase.logout_time"));
+            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &logout_time_)));
         } else {
           goto handle_unusual;
         }
@@ -355,17 +345,17 @@ bool GameUserBase::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:GameUserBase)
+  // @@protoc_insertion_point(parse_success:UserDB.GameUserLogon)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:GameUserBase)
+  // @@protoc_insertion_point(parse_failure:UserDB.GameUserLogon)
   return false;
 #undef DO_
 }
 
-void GameUserBase::SerializeWithCachedSizes(
+void GameUserLogon::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:GameUserBase)
+  // @@protoc_insertion_point(serialize_start:UserDB.GameUserLogon)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -374,7 +364,7 @@ void GameUserBase::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account().data(), static_cast<int>(this->account().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.account");
+      "UserDB.GameUserLogon.account");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->account(), output);
   }
@@ -384,7 +374,7 @@ void GameUserBase::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->passwd().data(), static_cast<int>(this->passwd().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.passwd");
+      "UserDB.GameUserLogon.passwd");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->passwd(), output);
   }
@@ -399,42 +389,32 @@ void GameUserBase::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->ip().data(), static_cast<int>(this->ip().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.ip");
+      "UserDB.GameUserLogon.ip");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       4, this->ip(), output);
   }
 
-  // string login_time = 5;
-  if (this->login_time().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->login_time().data(), static_cast<int>(this->login_time().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.login_time");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->login_time(), output);
+  // uint64 login_time = 5;
+  if (this->login_time() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(5, this->login_time(), output);
   }
 
-  // string logout_time = 6;
-  if (this->logout_time().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->logout_time().data(), static_cast<int>(this->logout_time().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.logout_time");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      6, this->logout_time(), output);
+  // uint64 logout_time = 6;
+  if (this->logout_time() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(6, this->logout_time(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
   }
-  // @@protoc_insertion_point(serialize_end:GameUserBase)
+  // @@protoc_insertion_point(serialize_end:UserDB.GameUserLogon)
 }
 
-::google::protobuf::uint8* GameUserBase::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* GameUserLogon::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:GameUserBase)
+  // @@protoc_insertion_point(serialize_to_array_start:UserDB.GameUserLogon)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -443,7 +423,7 @@ void GameUserBase::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account().data(), static_cast<int>(this->account().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.account");
+      "UserDB.GameUserLogon.account");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->account(), target);
@@ -454,7 +434,7 @@ void GameUserBase::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->passwd().data(), static_cast<int>(this->passwd().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.passwd");
+      "UserDB.GameUserLogon.passwd");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->passwd(), target);
@@ -470,44 +450,32 @@ void GameUserBase::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->ip().data(), static_cast<int>(this->ip().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.ip");
+      "UserDB.GameUserLogon.ip");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         4, this->ip(), target);
   }
 
-  // string login_time = 5;
-  if (this->login_time().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->login_time().data(), static_cast<int>(this->login_time().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.login_time");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->login_time(), target);
+  // uint64 login_time = 5;
+  if (this->login_time() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(5, this->login_time(), target);
   }
 
-  // string logout_time = 6;
-  if (this->logout_time().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->logout_time().data(), static_cast<int>(this->logout_time().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "GameUserBase.logout_time");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        6, this->logout_time(), target);
+  // uint64 logout_time = 6;
+  if (this->logout_time() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(6, this->logout_time(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:GameUserBase)
+  // @@protoc_insertion_point(serialize_to_array_end:UserDB.GameUserLogon)
   return target;
 }
 
-size_t GameUserBase::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:GameUserBase)
+size_t GameUserLogon::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:UserDB.GameUserLogon)
   size_t total_size = 0;
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -536,25 +504,25 @@ size_t GameUserBase::ByteSizeLong() const {
         this->ip());
   }
 
-  // string login_time = 5;
-  if (this->login_time().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->login_time());
-  }
-
-  // string logout_time = 6;
-  if (this->logout_time().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->logout_time());
-  }
-
   // uint64 uid = 3;
   if (this->uid() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt64Size(
         this->uid());
+  }
+
+  // uint64 login_time = 5;
+  if (this->login_time() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->login_time());
+  }
+
+  // uint64 logout_time = 6;
+  if (this->logout_time() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->logout_time());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -564,23 +532,23 @@ size_t GameUserBase::ByteSizeLong() const {
   return total_size;
 }
 
-void GameUserBase::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:GameUserBase)
+void GameUserLogon::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:UserDB.GameUserLogon)
   GOOGLE_DCHECK_NE(&from, this);
-  const GameUserBase* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const GameUserBase>(
+  const GameUserLogon* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const GameUserLogon>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameUserBase)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:UserDB.GameUserLogon)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameUserBase)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:UserDB.GameUserLogon)
     MergeFrom(*source);
   }
 }
 
-void GameUserBase::MergeFrom(const GameUserBase& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:GameUserBase)
+void GameUserLogon::MergeFrom(const GameUserLogon& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:UserDB.GameUserLogon)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
@@ -598,342 +566,264 @@ void GameUserBase::MergeFrom(const GameUserBase& from) {
 
     ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ip_);
   }
-  if (from.login_time().size() > 0) {
-
-    login_time_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.login_time_);
-  }
-  if (from.logout_time().size() > 0) {
-
-    logout_time_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.logout_time_);
-  }
   if (from.uid() != 0) {
     set_uid(from.uid());
   }
+  if (from.login_time() != 0) {
+    set_login_time(from.login_time());
+  }
+  if (from.logout_time() != 0) {
+    set_logout_time(from.logout_time());
+  }
 }
 
-void GameUserBase::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:GameUserBase)
+void GameUserLogon::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:UserDB.GameUserLogon)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void GameUserBase::CopyFrom(const GameUserBase& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:GameUserBase)
+void GameUserLogon::CopyFrom(const GameUserLogon& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:UserDB.GameUserLogon)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool GameUserBase::IsInitialized() const {
+bool GameUserLogon::IsInitialized() const {
   return true;
 }
 
-void GameUserBase::Swap(GameUserBase* other) {
+void GameUserLogon::Swap(GameUserLogon* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void GameUserBase::InternalSwap(GameUserBase* other) {
+void GameUserLogon::InternalSwap(GameUserLogon* other) {
   using std::swap;
   account_.Swap(&other->account_);
   passwd_.Swap(&other->passwd_);
   ip_.Swap(&other->ip_);
-  login_time_.Swap(&other->login_time_);
-  logout_time_.Swap(&other->logout_time_);
   swap(uid_, other->uid_);
+  swap(login_time_, other->login_time_);
+  swap(logout_time_, other->logout_time_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata GameUserBase::GetMetadata() const {
+::google::protobuf::Metadata GameUserLogon::GetMetadata() const {
   protobuf_DBGameUser_2eproto::protobuf_AssignDescriptorsOnce();
   return protobuf_DBGameUser_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// GameUserBase
+// GameUserLogon
 
 // string account = 1;
-void GameUserBase::clear_account() {
+void GameUserLogon::clear_account() {
   account_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-const ::std::string& GameUserBase::account() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.account)
+const ::std::string& GameUserLogon::account() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.account)
   return account_.GetNoArena();
 }
-void GameUserBase::set_account(const ::std::string& value) {
+void GameUserLogon::set_account(const ::std::string& value) {
   
   account_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.account)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.account)
 }
 #if LANG_CXX11
-void GameUserBase::set_account(::std::string&& value) {
+void GameUserLogon::set_account(::std::string&& value) {
   
   account_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_rvalue:UserDB.GameUserLogon.account)
 }
 #endif
-void GameUserBase::set_account(const char* value) {
+void GameUserLogon::set_account(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   account_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_char:UserDB.GameUserLogon.account)
 }
-void GameUserBase::set_account(const char* value, size_t size) {
+void GameUserLogon::set_account(const char* value, size_t size) {
   
   account_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_pointer:UserDB.GameUserLogon.account)
 }
-::std::string* GameUserBase::mutable_account() {
+::std::string* GameUserLogon::mutable_account() {
   
-  // @@protoc_insertion_point(field_mutable:GameUserBase.account)
+  // @@protoc_insertion_point(field_mutable:UserDB.GameUserLogon.account)
   return account_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-::std::string* GameUserBase::release_account() {
-  // @@protoc_insertion_point(field_release:GameUserBase.account)
+::std::string* GameUserLogon::release_account() {
+  // @@protoc_insertion_point(field_release:UserDB.GameUserLogon.account)
   
   return account_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-void GameUserBase::set_allocated_account(::std::string* account) {
+void GameUserLogon::set_allocated_account(::std::string* account) {
   if (account != NULL) {
     
   } else {
     
   }
   account_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_allocated:UserDB.GameUserLogon.account)
 }
 
 // string passwd = 2;
-void GameUserBase::clear_passwd() {
+void GameUserLogon::clear_passwd() {
   passwd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-const ::std::string& GameUserBase::passwd() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.passwd)
+const ::std::string& GameUserLogon::passwd() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.passwd)
   return passwd_.GetNoArena();
 }
-void GameUserBase::set_passwd(const ::std::string& value) {
+void GameUserLogon::set_passwd(const ::std::string& value) {
   
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.passwd)
 }
 #if LANG_CXX11
-void GameUserBase::set_passwd(::std::string&& value) {
+void GameUserLogon::set_passwd(::std::string&& value) {
   
   passwd_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_rvalue:UserDB.GameUserLogon.passwd)
 }
 #endif
-void GameUserBase::set_passwd(const char* value) {
+void GameUserLogon::set_passwd(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_char:UserDB.GameUserLogon.passwd)
 }
-void GameUserBase::set_passwd(const char* value, size_t size) {
+void GameUserLogon::set_passwd(const char* value, size_t size) {
   
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_pointer:UserDB.GameUserLogon.passwd)
 }
-::std::string* GameUserBase::mutable_passwd() {
+::std::string* GameUserLogon::mutable_passwd() {
   
-  // @@protoc_insertion_point(field_mutable:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_mutable:UserDB.GameUserLogon.passwd)
   return passwd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-::std::string* GameUserBase::release_passwd() {
-  // @@protoc_insertion_point(field_release:GameUserBase.passwd)
+::std::string* GameUserLogon::release_passwd() {
+  // @@protoc_insertion_point(field_release:UserDB.GameUserLogon.passwd)
   
   return passwd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-void GameUserBase::set_allocated_passwd(::std::string* passwd) {
+void GameUserLogon::set_allocated_passwd(::std::string* passwd) {
   if (passwd != NULL) {
     
   } else {
     
   }
   passwd_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), passwd);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_allocated:UserDB.GameUserLogon.passwd)
 }
 
 // uint64 uid = 3;
-void GameUserBase::clear_uid() {
+void GameUserLogon::clear_uid() {
   uid_ = GOOGLE_ULONGLONG(0);
 }
-::google::protobuf::uint64 GameUserBase::uid() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.uid)
+::google::protobuf::uint64 GameUserLogon::uid() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.uid)
   return uid_;
 }
-void GameUserBase::set_uid(::google::protobuf::uint64 value) {
+void GameUserLogon::set_uid(::google::protobuf::uint64 value) {
   
   uid_ = value;
-  // @@protoc_insertion_point(field_set:GameUserBase.uid)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.uid)
 }
 
 // string ip = 4;
-void GameUserBase::clear_ip() {
+void GameUserLogon::clear_ip() {
   ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-const ::std::string& GameUserBase::ip() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.ip)
+const ::std::string& GameUserLogon::ip() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.ip)
   return ip_.GetNoArena();
 }
-void GameUserBase::set_ip(const ::std::string& value) {
+void GameUserLogon::set_ip(const ::std::string& value) {
   
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.ip)
 }
 #if LANG_CXX11
-void GameUserBase::set_ip(::std::string&& value) {
+void GameUserLogon::set_ip(::std::string&& value) {
   
   ip_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_rvalue:UserDB.GameUserLogon.ip)
 }
 #endif
-void GameUserBase::set_ip(const char* value) {
+void GameUserLogon::set_ip(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_char:UserDB.GameUserLogon.ip)
 }
-void GameUserBase::set_ip(const char* value, size_t size) {
+void GameUserLogon::set_ip(const char* value, size_t size) {
   
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_pointer:UserDB.GameUserLogon.ip)
 }
-::std::string* GameUserBase::mutable_ip() {
+::std::string* GameUserLogon::mutable_ip() {
   
-  // @@protoc_insertion_point(field_mutable:GameUserBase.ip)
+  // @@protoc_insertion_point(field_mutable:UserDB.GameUserLogon.ip)
   return ip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-::std::string* GameUserBase::release_ip() {
-  // @@protoc_insertion_point(field_release:GameUserBase.ip)
+::std::string* GameUserLogon::release_ip() {
+  // @@protoc_insertion_point(field_release:UserDB.GameUserLogon.ip)
   
   return ip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-void GameUserBase::set_allocated_ip(::std::string* ip) {
+void GameUserLogon::set_allocated_ip(::std::string* ip) {
   if (ip != NULL) {
     
   } else {
     
   }
   ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_allocated:UserDB.GameUserLogon.ip)
 }
 
-// string login_time = 5;
-void GameUserBase::clear_login_time() {
-  login_time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// uint64 login_time = 5;
+void GameUserLogon::clear_login_time() {
+  login_time_ = GOOGLE_ULONGLONG(0);
 }
-const ::std::string& GameUserBase::login_time() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.login_time)
-  return login_time_.GetNoArena();
+::google::protobuf::uint64 GameUserLogon::login_time() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.login_time)
+  return login_time_;
 }
-void GameUserBase::set_login_time(const ::std::string& value) {
+void GameUserLogon::set_login_time(::google::protobuf::uint64 value) {
   
-  login_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.login_time)
-}
-#if LANG_CXX11
-void GameUserBase::set_login_time(::std::string&& value) {
-  
-  login_time_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.login_time)
-}
-#endif
-void GameUserBase::set_login_time(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  login_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.login_time)
-}
-void GameUserBase::set_login_time(const char* value, size_t size) {
-  
-  login_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.login_time)
-}
-::std::string* GameUserBase::mutable_login_time() {
-  
-  // @@protoc_insertion_point(field_mutable:GameUserBase.login_time)
-  return login_time_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-::std::string* GameUserBase::release_login_time() {
-  // @@protoc_insertion_point(field_release:GameUserBase.login_time)
-  
-  return login_time_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-void GameUserBase::set_allocated_login_time(::std::string* login_time) {
-  if (login_time != NULL) {
-    
-  } else {
-    
-  }
-  login_time_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), login_time);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.login_time)
+  login_time_ = value;
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.login_time)
 }
 
-// string logout_time = 6;
-void GameUserBase::clear_logout_time() {
-  logout_time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// uint64 logout_time = 6;
+void GameUserLogon::clear_logout_time() {
+  logout_time_ = GOOGLE_ULONGLONG(0);
 }
-const ::std::string& GameUserBase::logout_time() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.logout_time)
-  return logout_time_.GetNoArena();
+::google::protobuf::uint64 GameUserLogon::logout_time() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.logout_time)
+  return logout_time_;
 }
-void GameUserBase::set_logout_time(const ::std::string& value) {
+void GameUserLogon::set_logout_time(::google::protobuf::uint64 value) {
   
-  logout_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.logout_time)
-}
-#if LANG_CXX11
-void GameUserBase::set_logout_time(::std::string&& value) {
-  
-  logout_time_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.logout_time)
-}
-#endif
-void GameUserBase::set_logout_time(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  logout_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.logout_time)
-}
-void GameUserBase::set_logout_time(const char* value, size_t size) {
-  
-  logout_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.logout_time)
-}
-::std::string* GameUserBase::mutable_logout_time() {
-  
-  // @@protoc_insertion_point(field_mutable:GameUserBase.logout_time)
-  return logout_time_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-::std::string* GameUserBase::release_logout_time() {
-  // @@protoc_insertion_point(field_release:GameUserBase.logout_time)
-  
-  return logout_time_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-void GameUserBase::set_allocated_logout_time(::std::string* logout_time) {
-  if (logout_time != NULL) {
-    
-  } else {
-    
-  }
-  logout_time_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), logout_time);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.logout_time)
+  logout_time_ = value;
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.logout_time)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace UserDB
 
 // @@protoc_insertion_point(global_scope)

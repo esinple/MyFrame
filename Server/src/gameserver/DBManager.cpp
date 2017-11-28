@@ -1,5 +1,4 @@
 #include "DBManager.h"
-#include "DBClientMgr.h"
 
 CPP_GAME_MANAGER_REG(DBManager)
 
@@ -14,9 +13,9 @@ DBManager::~DBManager()
 
 bool DBManager::Awake()
 {
-	//g_pDBMgr->RegisterIndex()
+	DBClientMgr::GetInstance()->RegisterIndex(eGameDB_Normal, CREATE_INDEX("UserDB.GameUserLogon", KEYS("account"), true));
 	//config maybe?
-	if (!g_pDBMgr->Connect(eGameDB_Normal, "172.24.3.89", 27017, "ajiang_test"))
+	if (!DBClientMgr::GetInstance()->Connect(eGameDB_Normal, "172.24.3.89", 27017, "ajiang_test"))
 	{
 		return false;
 	}
@@ -25,6 +24,7 @@ bool DBManager::Awake()
 }
 bool DBManager::AfterAwake()
 {
+
 	return true;
 }
 bool DBManager::Execute()
@@ -42,16 +42,16 @@ bool DBManager::ShutDown()
 
 void DBManager::SaveToDB(google::protobuf::Message& msg)
 {
-	if (g_pDBMgr->ExecInsert(eGameDB_Normal, msg) <= 0)
+	if (g_pDBMgr->ExecInsert(msg) <= 0)
 	{
-		g_pDBMgr->ExecUpdate(eGameDB_Normal, msg, msg);
+		g_pDBMgr->ExecUpdate( msg, msg);
 	}
 }
 
 void DBManager::SaveToDB(uint32_t nType,google::protobuf::Message& msg)
 {
-	if (g_pDBMgr->ExecInsert(nType, msg) <= 0)
+	if (DBClientMgr::GetInstance()->ExecInsert(nType, msg) <= 0)
 	{
-		g_pDBMgr->ExecUpdate(nType, msg, msg);
+		DBClientMgr::GetInstance()->ExecUpdate(nType, msg, msg);
 	}
 }

@@ -37,6 +37,9 @@ bool MPUDPServer::Execute()
 void MPUDPServer::Run()
 {
 	m_pEventLoop->Run();
+	while (!IsThreadFinal())
+	{
+	}
 }
 
 int MPUDPServer::InitializationAsClient(const char* strIP, const unsigned short nPort, bool bAutoReconnect, const uint32_t milliseconds)

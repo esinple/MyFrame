@@ -30,6 +30,8 @@ public:
 	void OnGameUserLogonSuccess(const std::string& data,const uint64_t nSockIndex);
 
 	GateUserPtr GetGateUser(MPGUID uid);
+
+	void KickAll();
 private:
 	void checkTempGateUsers();
 

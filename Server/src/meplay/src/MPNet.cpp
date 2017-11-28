@@ -1,6 +1,7 @@
 #include "MPNet.h"
 #include "MPNetObject.h"
 #include "MPMsg.h"
+#include "tcp_conn.h"
 
 using namespace meplay;
 
@@ -46,6 +47,13 @@ bool MPNet::AddNetObject(const MPSOCK nSockIndex, MPNetObjectPtr pObject)
 
 bool MPNet::DelNetObject(const MPSOCK nSockIndex)
 {
+	auto it = m_mNetObjects.find(nSockIndex);
+	if (it == m_mNetObjects.end())
+	{
+		return false;
+	}
+	auto pNetObject = it->second;
+	pNetObject->GetConn()->Close();
 	m_mNetObjects.erase(nSockIndex);
 
 	return true;

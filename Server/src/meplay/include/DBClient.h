@@ -34,10 +34,10 @@ public:
 	}
 
 	template<typename PB>
-	int ExecSelect(google::protobuf::Message& filter, std::vector<PB>& results, bool all = true)
+	int ExecSelectAll(google::protobuf::Message& filter, std::vector<PB>& results)
 	{
 		std::vector<std::string> json_results;
-		auto count = execQuery(filter, json_results, all);
+		auto count = execQuery(filter, json_results, true);
 		for (auto& json_string : json_results)
 		{
 			PB pb;
@@ -49,7 +49,22 @@ public:
 		}
 		return count;
 	}
-	
+
+	template<typename PB>
+	int ExecSelectOne(google::protobuf::Message& filter, PB& pb)
+	{
+		std::vector<std::string> json_results;
+		auto count = execQuery(filter, json_results, false);
+		for (auto& json_string : json_results)
+		{
+			if (!loadPB(json_string, pb))
+			{
+				continue;
+			}
+		}
+		return count;
+	}
+
 	void CreateIndex(const std::string&, const std::vector<std::string>&, bool);
 private:
 	int execInsert(google::protobuf::Message& data);

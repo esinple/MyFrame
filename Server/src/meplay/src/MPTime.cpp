@@ -8,6 +8,11 @@ MPTime::MPTime(std::chrono::time_point<std::chrono::system_clock> time)
 {
 }
 
+MPTime::MPTime(time_t timestamp)
+{
+	m_timepoint = system_clock::from_time_t(timestamp);
+}
+
 MPTime::MPTime(uint8_t hour, uint8_t min, uint8_t sec)
 	: m_timepoint(system_clock::now())
 {

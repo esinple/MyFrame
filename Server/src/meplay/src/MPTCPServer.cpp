@@ -64,6 +64,8 @@ void MPTCPServer::connectCB(const std::shared_ptr<evpp::TCPConn>& pConn)
 		//disconnect
 		m_DisConnectCB(GetServerType(), pConn->fd());
 		DelNetObject(pConn->fd());
+
+		cv.notify_all();
 	}
 	
 }
@@ -121,10 +123,12 @@ bool MPTCPServer::Final()
 {
 //#ifdef WIN_SYSTEM
 	MP_DEBUG("TcpServer Final!");
-	auto& mNetObjs = GetAllNetObject();
+	auto mNetObjs = GetAllNetObject();
 	for (auto& ni : mNetObjs)
 	{
 		ni.second->GetConn()->Close();
+		std::unique_lock<std::mutex> lck(mtx);
+		cv.wait(lck);
 	}
 	MP_DEBUG("TcpServer Close Conns!");
 

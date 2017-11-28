@@ -62,6 +62,9 @@ private:
 		);
 
 	void onGameUserLogonSuccess(GameUserPtr pGameUser);
+
+	int loadGameUser(GameUserPtr pGameUser);
+	void saveGameUserLogon(GameUserPtr pGameUser);
 private:
 	H_GAME_MANAGER_REG(GameUserManager);
 

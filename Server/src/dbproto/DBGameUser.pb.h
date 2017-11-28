@@ -30,9 +30,13 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
-class GameUserBase;
-class GameUserBaseDefaultTypeInternal;
-extern GameUserBaseDefaultTypeInternal _GameUserBase_default_instance_;
+namespace UserDB {
+class GameUserLogon;
+class GameUserLogonDefaultTypeInternal;
+extern GameUserLogonDefaultTypeInternal _GameUserLogon_default_instance_;
+}  // namespace UserDB
+
+namespace UserDB {
 
 namespace protobuf_DBGameUser_2eproto {
 // Internal implementation detail -- do not call these.
@@ -51,24 +55,24 @@ void InitDefaults();
 
 // ===================================================================
 
-class GameUserBase : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:GameUserBase) */ {
+class GameUserLogon : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:UserDB.GameUserLogon) */ {
  public:
-  GameUserBase();
-  virtual ~GameUserBase();
+  GameUserLogon();
+  virtual ~GameUserLogon();
 
-  GameUserBase(const GameUserBase& from);
+  GameUserLogon(const GameUserLogon& from);
 
-  inline GameUserBase& operator=(const GameUserBase& from) {
+  inline GameUserLogon& operator=(const GameUserLogon& from) {
     CopyFrom(from);
     return *this;
   }
   #if LANG_CXX11
-  GameUserBase(GameUserBase&& from) noexcept
-    : GameUserBase() {
+  GameUserLogon(GameUserLogon&& from) noexcept
+    : GameUserLogon() {
     *this = ::std::move(from);
   }
 
-  inline GameUserBase& operator=(GameUserBase&& from) noexcept {
+  inline GameUserLogon& operator=(GameUserLogon&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -78,29 +82,29 @@ class GameUserBase : public ::google::protobuf::Message /* @@protoc_insertion_po
   }
   #endif
   static const ::google::protobuf::Descriptor* descriptor();
-  static const GameUserBase& default_instance();
+  static const GameUserLogon& default_instance();
 
-  static inline const GameUserBase* internal_default_instance() {
-    return reinterpret_cast<const GameUserBase*>(
-               &_GameUserBase_default_instance_);
+  static inline const GameUserLogon* internal_default_instance() {
+    return reinterpret_cast<const GameUserLogon*>(
+               &_GameUserLogon_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
     0;
 
-  void Swap(GameUserBase* other);
-  friend void swap(GameUserBase& a, GameUserBase& b) {
+  void Swap(GameUserLogon* other);
+  friend void swap(GameUserLogon& a, GameUserLogon& b) {
     a.Swap(&b);
   }
 
   // implements Message ----------------------------------------------
 
-  inline GameUserBase* New() const PROTOBUF_FINAL { return New(NULL); }
+  inline GameUserLogon* New() const PROTOBUF_FINAL { return New(NULL); }
 
-  GameUserBase* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  GameUserLogon* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
   void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
   void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const GameUserBase& from);
-  void MergeFrom(const GameUserBase& from);
+  void CopyFrom(const GameUserLogon& from);
+  void MergeFrom(const GameUserLogon& from);
   void Clear() PROTOBUF_FINAL;
   bool IsInitialized() const PROTOBUF_FINAL;
 
@@ -116,7 +120,7 @@ class GameUserBase : public ::google::protobuf::Message /* @@protoc_insertion_po
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(GameUserBase* other);
+  void InternalSwap(GameUserLogon* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -174,50 +178,34 @@ class GameUserBase : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* release_ip();
   void set_allocated_ip(::std::string* ip);
 
-  // string login_time = 5;
-  void clear_login_time();
-  static const int kLoginTimeFieldNumber = 5;
-  const ::std::string& login_time() const;
-  void set_login_time(const ::std::string& value);
-  #if LANG_CXX11
-  void set_login_time(::std::string&& value);
-  #endif
-  void set_login_time(const char* value);
-  void set_login_time(const char* value, size_t size);
-  ::std::string* mutable_login_time();
-  ::std::string* release_login_time();
-  void set_allocated_login_time(::std::string* login_time);
-
-  // string logout_time = 6;
-  void clear_logout_time();
-  static const int kLogoutTimeFieldNumber = 6;
-  const ::std::string& logout_time() const;
-  void set_logout_time(const ::std::string& value);
-  #if LANG_CXX11
-  void set_logout_time(::std::string&& value);
-  #endif
-  void set_logout_time(const char* value);
-  void set_logout_time(const char* value, size_t size);
-  ::std::string* mutable_logout_time();
-  ::std::string* release_logout_time();
-  void set_allocated_logout_time(::std::string* logout_time);
-
   // uint64 uid = 3;
   void clear_uid();
   static const int kUidFieldNumber = 3;
   ::google::protobuf::uint64 uid() const;
   void set_uid(::google::protobuf::uint64 value);
 
-  // @@protoc_insertion_point(class_scope:GameUserBase)
+  // uint64 login_time = 5;
+  void clear_login_time();
+  static const int kLoginTimeFieldNumber = 5;
+  ::google::protobuf::uint64 login_time() const;
+  void set_login_time(::google::protobuf::uint64 value);
+
+  // uint64 logout_time = 6;
+  void clear_logout_time();
+  static const int kLogoutTimeFieldNumber = 6;
+  ::google::protobuf::uint64 logout_time() const;
+  void set_logout_time(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:UserDB.GameUserLogon)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr account_;
   ::google::protobuf::internal::ArenaStringPtr passwd_;
   ::google::protobuf::internal::ArenaStringPtr ip_;
-  ::google::protobuf::internal::ArenaStringPtr login_time_;
-  ::google::protobuf::internal::ArenaStringPtr logout_time_;
   ::google::protobuf::uint64 uid_;
+  ::google::protobuf::uint64 login_time_;
+  ::google::protobuf::uint64 logout_time_;
   mutable int _cached_size_;
   friend struct protobuf_DBGameUser_2eproto::TableStruct;
 };
@@ -231,285 +219,207 @@ class GameUserBase : public ::google::protobuf::Message /* @@protoc_insertion_po
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// GameUserBase
+// GameUserLogon
 
 // string account = 1;
-inline void GameUserBase::clear_account() {
+inline void GameUserLogon::clear_account() {
   account_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& GameUserBase::account() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.account)
+inline const ::std::string& GameUserLogon::account() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.account)
   return account_.GetNoArena();
 }
-inline void GameUserBase::set_account(const ::std::string& value) {
+inline void GameUserLogon::set_account(const ::std::string& value) {
   
   account_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.account)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.account)
 }
 #if LANG_CXX11
-inline void GameUserBase::set_account(::std::string&& value) {
+inline void GameUserLogon::set_account(::std::string&& value) {
   
   account_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_rvalue:UserDB.GameUserLogon.account)
 }
 #endif
-inline void GameUserBase::set_account(const char* value) {
+inline void GameUserLogon::set_account(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   account_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_char:UserDB.GameUserLogon.account)
 }
-inline void GameUserBase::set_account(const char* value, size_t size) {
+inline void GameUserLogon::set_account(const char* value, size_t size) {
   
   account_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_pointer:UserDB.GameUserLogon.account)
 }
-inline ::std::string* GameUserBase::mutable_account() {
+inline ::std::string* GameUserLogon::mutable_account() {
   
-  // @@protoc_insertion_point(field_mutable:GameUserBase.account)
+  // @@protoc_insertion_point(field_mutable:UserDB.GameUserLogon.account)
   return account_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* GameUserBase::release_account() {
-  // @@protoc_insertion_point(field_release:GameUserBase.account)
+inline ::std::string* GameUserLogon::release_account() {
+  // @@protoc_insertion_point(field_release:UserDB.GameUserLogon.account)
   
   return account_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void GameUserBase::set_allocated_account(::std::string* account) {
+inline void GameUserLogon::set_allocated_account(::std::string* account) {
   if (account != NULL) {
     
   } else {
     
   }
   account_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.account)
+  // @@protoc_insertion_point(field_set_allocated:UserDB.GameUserLogon.account)
 }
 
 // string passwd = 2;
-inline void GameUserBase::clear_passwd() {
+inline void GameUserLogon::clear_passwd() {
   passwd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& GameUserBase::passwd() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.passwd)
+inline const ::std::string& GameUserLogon::passwd() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.passwd)
   return passwd_.GetNoArena();
 }
-inline void GameUserBase::set_passwd(const ::std::string& value) {
+inline void GameUserLogon::set_passwd(const ::std::string& value) {
   
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.passwd)
 }
 #if LANG_CXX11
-inline void GameUserBase::set_passwd(::std::string&& value) {
+inline void GameUserLogon::set_passwd(::std::string&& value) {
   
   passwd_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_rvalue:UserDB.GameUserLogon.passwd)
 }
 #endif
-inline void GameUserBase::set_passwd(const char* value) {
+inline void GameUserLogon::set_passwd(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_char:UserDB.GameUserLogon.passwd)
 }
-inline void GameUserBase::set_passwd(const char* value, size_t size) {
+inline void GameUserLogon::set_passwd(const char* value, size_t size) {
   
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_pointer:UserDB.GameUserLogon.passwd)
 }
-inline ::std::string* GameUserBase::mutable_passwd() {
+inline ::std::string* GameUserLogon::mutable_passwd() {
   
-  // @@protoc_insertion_point(field_mutable:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_mutable:UserDB.GameUserLogon.passwd)
   return passwd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* GameUserBase::release_passwd() {
-  // @@protoc_insertion_point(field_release:GameUserBase.passwd)
+inline ::std::string* GameUserLogon::release_passwd() {
+  // @@protoc_insertion_point(field_release:UserDB.GameUserLogon.passwd)
   
   return passwd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void GameUserBase::set_allocated_passwd(::std::string* passwd) {
+inline void GameUserLogon::set_allocated_passwd(::std::string* passwd) {
   if (passwd != NULL) {
     
   } else {
     
   }
   passwd_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), passwd);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.passwd)
+  // @@protoc_insertion_point(field_set_allocated:UserDB.GameUserLogon.passwd)
 }
 
 // uint64 uid = 3;
-inline void GameUserBase::clear_uid() {
+inline void GameUserLogon::clear_uid() {
   uid_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint64 GameUserBase::uid() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.uid)
+inline ::google::protobuf::uint64 GameUserLogon::uid() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.uid)
   return uid_;
 }
-inline void GameUserBase::set_uid(::google::protobuf::uint64 value) {
+inline void GameUserLogon::set_uid(::google::protobuf::uint64 value) {
   
   uid_ = value;
-  // @@protoc_insertion_point(field_set:GameUserBase.uid)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.uid)
 }
 
 // string ip = 4;
-inline void GameUserBase::clear_ip() {
+inline void GameUserLogon::clear_ip() {
   ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& GameUserBase::ip() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.ip)
+inline const ::std::string& GameUserLogon::ip() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.ip)
   return ip_.GetNoArena();
 }
-inline void GameUserBase::set_ip(const ::std::string& value) {
+inline void GameUserLogon::set_ip(const ::std::string& value) {
   
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.ip)
 }
 #if LANG_CXX11
-inline void GameUserBase::set_ip(::std::string&& value) {
+inline void GameUserLogon::set_ip(::std::string&& value) {
   
   ip_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_rvalue:UserDB.GameUserLogon.ip)
 }
 #endif
-inline void GameUserBase::set_ip(const char* value) {
+inline void GameUserLogon::set_ip(const char* value) {
   GOOGLE_DCHECK(value != NULL);
   
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_char:UserDB.GameUserLogon.ip)
 }
-inline void GameUserBase::set_ip(const char* value, size_t size) {
+inline void GameUserLogon::set_ip(const char* value, size_t size) {
   
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_pointer:UserDB.GameUserLogon.ip)
 }
-inline ::std::string* GameUserBase::mutable_ip() {
+inline ::std::string* GameUserLogon::mutable_ip() {
   
-  // @@protoc_insertion_point(field_mutable:GameUserBase.ip)
+  // @@protoc_insertion_point(field_mutable:UserDB.GameUserLogon.ip)
   return ip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* GameUserBase::release_ip() {
-  // @@protoc_insertion_point(field_release:GameUserBase.ip)
+inline ::std::string* GameUserLogon::release_ip() {
+  // @@protoc_insertion_point(field_release:UserDB.GameUserLogon.ip)
   
   return ip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void GameUserBase::set_allocated_ip(::std::string* ip) {
+inline void GameUserLogon::set_allocated_ip(::std::string* ip) {
   if (ip != NULL) {
     
   } else {
     
   }
   ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.ip)
+  // @@protoc_insertion_point(field_set_allocated:UserDB.GameUserLogon.ip)
 }
 
-// string login_time = 5;
-inline void GameUserBase::clear_login_time() {
-  login_time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// uint64 login_time = 5;
+inline void GameUserLogon::clear_login_time() {
+  login_time_ = GOOGLE_ULONGLONG(0);
 }
-inline const ::std::string& GameUserBase::login_time() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.login_time)
-  return login_time_.GetNoArena();
+inline ::google::protobuf::uint64 GameUserLogon::login_time() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.login_time)
+  return login_time_;
 }
-inline void GameUserBase::set_login_time(const ::std::string& value) {
+inline void GameUserLogon::set_login_time(::google::protobuf::uint64 value) {
   
-  login_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.login_time)
-}
-#if LANG_CXX11
-inline void GameUserBase::set_login_time(::std::string&& value) {
-  
-  login_time_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.login_time)
-}
-#endif
-inline void GameUserBase::set_login_time(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  login_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.login_time)
-}
-inline void GameUserBase::set_login_time(const char* value, size_t size) {
-  
-  login_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.login_time)
-}
-inline ::std::string* GameUserBase::mutable_login_time() {
-  
-  // @@protoc_insertion_point(field_mutable:GameUserBase.login_time)
-  return login_time_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* GameUserBase::release_login_time() {
-  // @@protoc_insertion_point(field_release:GameUserBase.login_time)
-  
-  return login_time_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void GameUserBase::set_allocated_login_time(::std::string* login_time) {
-  if (login_time != NULL) {
-    
-  } else {
-    
-  }
-  login_time_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), login_time);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.login_time)
+  login_time_ = value;
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.login_time)
 }
 
-// string logout_time = 6;
-inline void GameUserBase::clear_logout_time() {
-  logout_time_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// uint64 logout_time = 6;
+inline void GameUserLogon::clear_logout_time() {
+  logout_time_ = GOOGLE_ULONGLONG(0);
 }
-inline const ::std::string& GameUserBase::logout_time() const {
-  // @@protoc_insertion_point(field_get:GameUserBase.logout_time)
-  return logout_time_.GetNoArena();
+inline ::google::protobuf::uint64 GameUserLogon::logout_time() const {
+  // @@protoc_insertion_point(field_get:UserDB.GameUserLogon.logout_time)
+  return logout_time_;
 }
-inline void GameUserBase::set_logout_time(const ::std::string& value) {
+inline void GameUserLogon::set_logout_time(::google::protobuf::uint64 value) {
   
-  logout_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:GameUserBase.logout_time)
-}
-#if LANG_CXX11
-inline void GameUserBase::set_logout_time(::std::string&& value) {
-  
-  logout_time_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:GameUserBase.logout_time)
-}
-#endif
-inline void GameUserBase::set_logout_time(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  logout_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:GameUserBase.logout_time)
-}
-inline void GameUserBase::set_logout_time(const char* value, size_t size) {
-  
-  logout_time_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:GameUserBase.logout_time)
-}
-inline ::std::string* GameUserBase::mutable_logout_time() {
-  
-  // @@protoc_insertion_point(field_mutable:GameUserBase.logout_time)
-  return logout_time_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* GameUserBase::release_logout_time() {
-  // @@protoc_insertion_point(field_release:GameUserBase.logout_time)
-  
-  return logout_time_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void GameUserBase::set_allocated_logout_time(::std::string* logout_time) {
-  if (logout_time != NULL) {
-    
-  } else {
-    
-  }
-  logout_time_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), logout_time);
-  // @@protoc_insertion_point(field_set_allocated:GameUserBase.logout_time)
+  logout_time_ = value;
+  // @@protoc_insertion_point(field_set:UserDB.GameUserLogon.logout_time)
 }
 
 #ifdef __GNUC__
@@ -519,6 +429,8 @@ inline void GameUserBase::set_allocated_logout_time(::std::string* logout_time) 
 
 // @@protoc_insertion_point(namespace_scope)
 
+
+}  // namespace UserDB
 
 // @@protoc_insertion_point(global_scope)
 

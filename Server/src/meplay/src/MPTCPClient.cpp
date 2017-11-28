@@ -27,6 +27,9 @@ bool MPTCPClient::Execute()
 void MPTCPClient::Run()
 {
 	m_pEventLoop->Run();
+	while (!IsThreadFinal())
+	{
+	}
 }
 
 void MPTCPClient::connectCB(const std::shared_ptr<evpp::TCPConn>& pConn)
@@ -43,6 +46,8 @@ void MPTCPClient::connectCB(const std::shared_ptr<evpp::TCPConn>& pConn)
 		//disconnect
 		m_DisConnectCB(GetServerType(), pConn->fd());
 		DelNetObject(pConn->fd());
+
+		cv.notify_all();
 		//auto pNetObj = GetNetObject(pConn->fd());
 		//if (pNetObj != nullptr)
 		//{
@@ -81,7 +86,7 @@ int MPTCPClient::InitializationAsClient(const char* strIP, const unsigned short 
 #endif
 	if (m_pEventLoop == nullptr)
 	{
-		m_pEventLoop = std::make_shared<EventLoop>();
+		m_pEventLoop.reset(new EventLoop());
 		//m_pEventLoop = new EventLoop();
 	}
 	auto pClient = std::make_shared<TCPClient>(m_pEventLoop.get(), std::string(strIP) + ":" + std::to_string(nPort), m_sServiceName);
@@ -108,14 +113,20 @@ int MPTCPClient::InitializationAsServer(const char* strIP, const unsigned int nM
 
 bool MPTCPClient::Final()
 {
-	/*for (auto& ni : GetAllNetObject())
+	auto mNetObjs = GetAllNetObject();
+	for (auto& ni : mNetObjs)
 	{
 		ni.second->GetConn()->Close();
-	}*/
+		std::unique_lock<std::mutex> lck(mtx);
+		cv.wait(lck);
+	}
 
+	//auto vWaitClients = m_vWaitClients;
 	for (auto& pWaitObj : m_vWaitClients)
 	{
 		pWaitObj->Disconnect();
+		/*std::unique_lock<std::mutex> lck(mtx);
+		cv.wait(lck);*/
 	}
 
 	if (!m_pEventLoop->IsStopped())

@@ -19,7 +19,7 @@ private:
 	uint64_t m_nSockIndex;
 	std::string m_sIP;
 	int	m_nPort;
-	meplay::MPTime m_LogonTime;
+	meplay::MPTime m_LoginTime;
 };
 
 typedef std::shared_ptr<GameServer> GameServerPtr;

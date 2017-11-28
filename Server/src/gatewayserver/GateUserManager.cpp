@@ -76,7 +76,7 @@ void GateUserManager::addTempGateUser(uint64_t nSockIndex, const std::string& sI
 		MP_ERROR("Cannot Create GateUser! SockIndex [%lld],ip [%s]",nSockIndex,sIP.c_str());
 		return;
 	}
-	pGateUser->SetLogonTime(GATE_CUR_TIME);
+	pGateUser->SetLoginTime(GATE_CUR_TIME);
 
 	mtx.lock();
 	if (!m_mTempGateUsers.emplace(nSockIndex, pGateUser).second)
@@ -156,7 +156,7 @@ void GateUserManager::checkTempGateUsers()
 	auto it = m_mTempGateUsers.begin();
 	while (it != m_mTempGateUsers.end())
 	{
-		if (it->second->GetLogonTime() + 60 > GATE_CUR_TIME)
+		if (it->second->GetLoginTime() + 60 > GATE_CUR_TIME)
 		{
 			++it;
 			continue;
@@ -258,4 +258,24 @@ void GateUserManager::onGateUserDisConnect(MPGUID uid)
 	MPMsg::GateUserLogout_Gate2Game outMsg;
 	outMsg.set_user_id(uid);
 	SEND2GAME_ALL(MPMsg::eGameMsg_GateUserLogout, outMsg);
+}
+
+
+void GateUserManager::KickAll()
+{
+	auto mGateUsers = m_mGateUsers;
+	for (auto&&[uid, pGateUser] : mGateUsers)
+	{
+		g_pGatewayNetProxy->Kick(MP_CLIENT, pGateUser->GetFD(),"GameServer Offline");
+	}
+	m_mGateUsers.clear();
+
+	auto mTempGateUsers = m_mTempGateUsers;
+	for (auto&&[nSockIndex, pGateUser] : mTempGateUsers)
+	{
+		g_pGatewayNetProxy->Kick(MP_CLIENT, nSockIndex,"GameServer Offline");
+	}
+	m_mTempGateUsers.clear();
+
+	m_mSock2GUID.clear();
 }

@@ -57,5 +57,8 @@ namespace meplay{
 		NET_CONNECT_FUNCTOR m_ConnectCB;
 		NET_DISCONNECT_FUNCTOR m_DisConnectCB;
 		NET_TYPE_DATA_FUNCTOR m_MsgCB;
+
+	/*	std::mutex mtx;
+		std::condition_variable cv;*/
 	};
 }

@@ -4,7 +4,7 @@
 
 GameServer::GameServer(uint64_t nSockIndex,const char* ip, int nPort)
 {
-	
+	ReuseInit(nSockIndex, ip, nPort);
 }
 
 GameServer::~GameServer()
@@ -17,5 +17,5 @@ void GameServer::ReuseInit(uint64_t nSockIndex, const char* ip, int nPort)
 	m_sIP = ip;
 	m_nPort = nPort;
 	auto pGateTimeMgr = g_pGatewayNetProxy->GetModule<GateTimeManager>(eGatewayMgr_Time);
-	m_LogonTime = pGateTimeMgr->CurrentTime();
+	m_LoginTime = pGateTimeMgr->CurrentTime();
 }

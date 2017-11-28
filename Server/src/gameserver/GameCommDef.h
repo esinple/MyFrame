@@ -2,6 +2,7 @@
 #include "MPAutoRegister.h"
 #include "GameManagerModuleDefine.h"
 #include "GameNetProxy.h"
+#include "UserErrCode.pb.h"
 
 #define H_GAME_MANAGER_REG(SUB) H_AUTO_REGISTER_SUB(MPModule,SUB)
 #define CPP_GAME_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)

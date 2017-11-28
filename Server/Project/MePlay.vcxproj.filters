@@ -82,9 +82,6 @@
     <ClInclude Include="..\src\meplay\evpp\duration.inl.h">
       <Filter>evpp</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\meplay\evpp\easylogging++.h">
-      <Filter>evpp</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\meplay\evpp\event_loop.h">
       <Filter>evpp</Filter>
     </ClInclude>

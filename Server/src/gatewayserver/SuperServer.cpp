@@ -19,8 +19,8 @@ void SuperServer::ReuseInit(uint64_t nSockIndex, const char* ip, int nPort)
 	m_nSockIndex = nSockIndex;
 	m_sIP = ip;
 	m_nPort = nPort;
-	m_LogonTime = GATE_CUR_TIME;
-	m_VerifyTime = m_LogonTime;
+	m_LoginTime = GATE_CUR_TIME;
+	m_VerifyTime = m_LoginTime;
 }
 
 void SuperServer::Clear()
