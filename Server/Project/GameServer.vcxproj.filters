@@ -63,9 +63,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\base\TimeTick.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\base\XmlManager.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -162,11 +159,11 @@
     <ClCompile Include="..\src\base\ModuleRely.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base\ModuleTimeTick.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\base\TimeTick.h">
-      <Filter>Base</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\base\XmlManager.h">
       <Filter>Base</Filter>
     </ClInclude>
@@ -269,6 +266,9 @@
       <Filter>Logic\ManagerLogic\DBManager</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base\ModuleRely.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ModuleTimeTick.h">
       <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,11 +3,12 @@
 #include <unordered_map>
 #include "ManagerModule.h"
 #include "GameUser.h"
+#include "ModuleTimeTick.h"
 
 typedef std::function<void(GameUserPtr, const std::string&)> USER_CB_FUNCTOR;
 typedef std::shared_ptr<USER_CB_FUNCTOR> USER_CB_FUNCTOR_PTR;
 
-class GameUserManager : public ManagerModule
+class GameUserManager : public ManagerModule,public ModuleTimeTick
 {
 public:
 	GameUserManager();
@@ -42,6 +43,8 @@ public:
 
 	void GameUserLogon(GameUserPtr pGameUser);
 	void GameUserLogout(const MPGUID uid);
+
+	void KickAllByGateSock(const uint64_t nGateSock);
 private:
 	void addGameUser(GameUserPtr pGameUser);
 	void delGameUser(const MPGUID uid);

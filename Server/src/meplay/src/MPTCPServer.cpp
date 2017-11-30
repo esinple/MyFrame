@@ -30,6 +30,7 @@ MPTCPServer::~MPTCPServer()
 
 bool MPTCPServer::Execute()
 {
+	MPThread::ThreadStart();
 	if (0)
 	{
 		Final();
@@ -115,7 +116,6 @@ int MPTCPServer::InitializationAsServer(const char * strIP, const unsigned int n
 		return -1;
 	}
 
-	MPThread::ThreadStart();
 	return 0;
 }
 

@@ -27,6 +27,7 @@ MPUDPServer::~MPUDPServer()
 
 bool MPUDPServer::Execute()
 {
+	ThreadStart();
 	if (0)
 	{
 		Final();

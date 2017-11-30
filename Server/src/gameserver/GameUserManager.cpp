@@ -12,7 +12,7 @@
 CPP_GAME_MANAGER_REG(GameUserManager)
 
 GameUserManager::GameUserManager()
-	: ManagerModule(eGameMgr_GameUser)
+	: ManagerModule(eGameMgr_GameUser),ModuleTimeTick()
 {
 	AddParent(eGameMgr_Time);
 	AddParent(eGameMgr_DBServer);
@@ -33,6 +33,11 @@ bool GameUserManager::AfterAwake()
 }
 bool GameUserManager::Execute()
 {
+//	if (Tick(GAME_CUR_TIME, std::chrono::minutes(1)))
+	if(_1_SEC_TICK_)
+	{
+		MP_DEBUG("Cur GameUser : %d", m_mGameUsers.size());
+	}
 	return true;
 }
 bool GameUserManager::BeforeShutDown()
@@ -240,6 +245,9 @@ int GameUserManager::loadGameUser(GameUserPtr pGameUser)
 
 void GameUserManager::saveGameUserLogon(GameUserPtr pGameUser)
 {
+	UserDB::GameUserLogon db_logon_info_filter;
+	db_logon_info_filter.set_account(pGameUser->GetAccount());
+
 	UserDB::GameUserLogon db_logon_info;
 	db_logon_info.set_account(pGameUser->GetAccount());
 	db_logon_info.set_passwd(pGameUser->GetPassword());
@@ -248,6 +256,22 @@ void GameUserManager::saveGameUserLogon(GameUserPtr pGameUser)
 	db_logon_info.set_login_time(pGameUser->GetLoginTime().CurrentSec());
 	db_logon_info.set_logout_time(pGameUser->GetLogoutTime().CurrentSec());
 
-	auto pDBMgr = g_pGameNetProxy->GetModule<DBManager>(eGameMgr_DBServer);
-	pDBMgr->SaveToDB(db_logon_info);
+	SAVE2DB(db_logon_info_filter,db_logon_info);
+}
+
+void GameUserManager::KickAllByGateSock(const uint64_t nGateSock)
+{
+	std::vector<MPGUID> vKickUIDs;
+	for (auto&&[uid, pGameUser] : m_mGameUsers)
+	{
+		if (pGameUser->GetGateSock() == nGateSock)
+		{
+			vKickUIDs.emplace_back(uid);
+		}
+	}
+
+	for (auto uid : vKickUIDs)
+	{
+		GameUserLogout(uid);
+	}
 }

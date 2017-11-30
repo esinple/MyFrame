@@ -24,7 +24,7 @@ namespace meplay {
 			void (BaseType::*handleConnect)(const uint8_t, const MPSOCK),
 			void (BaseType::*handleDisConnect)(const uint8_t, const MPSOCK),
 			void (BaseType::*handleMsg)(const uint8_t, const MPSOCK, const char *, const uint32_t)
-		) : MPThread(sClientName + "_TcpClient"), m_bStart(false),m_nPort(0), m_nThreadCount(0), m_sServiceName(sClientName + "_TcpClient"),m_pEventLoop(nullptr)
+		) : MPThread(sClientName + "_TcpClient"),m_nPort(0), m_nThreadCount(0), m_sServiceName(sClientName + "_TcpClient"),m_pEventLoop(nullptr)
 		{
 			m_ConnectCB = std::bind(handleConnect, pBaseType, std::placeholders::_1, std::placeholders::_2);
 			m_DisConnectCB = std::bind(handleDisConnect, pBaseType, std::placeholders::_1, std::placeholders::_2);
@@ -49,7 +49,6 @@ namespace meplay {
 		void connectCB(const std::shared_ptr<evpp::TCPConn>& pConn);
 		void messageCB(const std::shared_ptr<evpp::TCPConn>& pConn, evpp::Buffer* pBuffer);
 	private:
-		bool m_bStart;
 		int m_nPort;
 		int m_nThreadCount;
 		const std::string m_sServiceName;

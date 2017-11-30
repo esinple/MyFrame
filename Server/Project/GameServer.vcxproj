@@ -167,9 +167,9 @@
     <ClCompile Include="..\src\base\ManagerModule.cpp" />
     <ClCompile Include="..\src\base\ManagerModuleManager.cpp" />
     <ClCompile Include="..\src\base\ModuleRely.cpp" />
+    <ClCompile Include="..\src\base\ModuleTimeTick.cpp" />
     <ClCompile Include="..\src\base\NetProxy.cpp" />
     <ClCompile Include="..\src\base\TimeManager.cpp" />
-    <ClCompile Include="..\src\base\TimeTick.cpp" />
     <ClCompile Include="..\src\base\XmlManager.cpp" />
     <ClCompile Include="..\src\dbproto\DBGameUser.pb.cc" />
     <ClCompile Include="..\src\gameserver\BattleBase.cpp" />
@@ -205,10 +205,10 @@
     <ClInclude Include="..\src\base\ManagerModule.h" />
     <ClInclude Include="..\src\base\ManagerModuleManager.h" />
     <ClInclude Include="..\src\base\ModuleRely.h" />
+    <ClInclude Include="..\src\base\ModuleTimeTick.h" />
     <ClInclude Include="..\src\base\NetProxy.h" />
     <ClInclude Include="..\src\base\TimeManager.h" />
     <ClInclude Include="..\src\base\TimeT.h" />
-    <ClInclude Include="..\src\base\TimeTick.h" />
     <ClInclude Include="..\src\base\XmlManager.h" />
     <ClInclude Include="..\src\dbproto\DBGameUser.pb.h" />
     <ClInclude Include="..\src\gameserver\BattleBase.h" />

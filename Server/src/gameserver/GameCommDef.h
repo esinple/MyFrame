@@ -7,8 +7,6 @@
 #define H_GAME_MANAGER_REG(SUB) H_AUTO_REGISTER_SUB(MPModule,SUB)
 #define CPP_GAME_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)
 
-#define GAME_CUR_TIME g_pGameNetProxy->GetModule<GameTimeManager>(eGameMgr_Time)->CurrentTime()
-
 #define REGISTER_GATE(CLASS,MSG,CALLBACK) g_pGameNetProxy->AddReceiveCallBack(MP_ST_GATE,CLASS,MSG,&CALLBACK);
 #define REGISTER_SUPER(CLASS,MSG,CALLBACK) g_pGameNetProxy->AddReceiveCallBack(MP_ST_SUPER,CLASS,MSG,&CALLBACK);
 

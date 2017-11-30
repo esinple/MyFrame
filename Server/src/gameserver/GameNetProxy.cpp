@@ -5,6 +5,7 @@
 #include "StatsServerManager.h"
 #include "SuperServerManager.h"
 #include "DBClientMgr.h"
+#include "GameUserManager.h"
 
 MP_SINGLETON_IMPLEMENT(GameNetProxy);
 
@@ -65,6 +66,9 @@ void GameNetProxy::OnClientDisconnect(const uint8_t nType, const MPSOCK nSockInd
 		auto pGateServerMgr = GetModule<GateServerManager>(eGameMgr_GateServer);
 		pGateServerMgr->DelGateServer(nSockIndex);
 		MP_INFO("GateServer Disconnected![%lld]", nSockIndex);
+
+		auto pGameUserMgr = GetModule<GameUserManager>(eGameMgr_GameUser);
+		pGameUserMgr->KickAllByGateSock(nSockIndex);
 	}
 	break;
 	case MP_ST_CENTER:

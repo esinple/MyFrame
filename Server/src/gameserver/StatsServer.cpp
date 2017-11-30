@@ -22,7 +22,7 @@ void StatsServer::ReuseInit(uint64_t nSockIndex, const char* ip, int nPort)
 	m_sIP = ip;
 	m_nPort = nPort;
 
-	m_LoginTime = GAME_CUR_TIME;
+	//m_LoginTime = GAME_CUR_TIME;
 	m_VerifyTime = m_LoginTime;
 }
 

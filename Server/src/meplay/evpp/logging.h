@@ -9,7 +9,7 @@
 #define GMPLOG_NO_ABBREVIATED_SEVERITIES // 没这个编译会出错,传说因为和Windows.h冲突
 
 
-#define LOG_FLAG true 
+#define LOG_FLAG false 
 //#define LOG_FLAG false 
 
 #ifdef GOOGLE_STRIP_LOG

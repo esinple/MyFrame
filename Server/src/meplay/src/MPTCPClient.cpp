@@ -15,11 +15,7 @@ MPTCPClient::~MPTCPClient()
 
 bool MPTCPClient::Execute()
 {
-	if (!m_bStart)
-	{
-		m_bStart = true;
-		MPThread::ThreadStart();
-	}
+	MPThread::ThreadStart();
 	
 	return true;
 }

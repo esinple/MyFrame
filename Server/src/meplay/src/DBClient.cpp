@@ -155,14 +155,14 @@ bsoncxx::document::view_or_value parseString(google::protobuf::Message& msg, boo
 int DBClient::execInsert(google::protobuf::Message& msg)
 {
 	try {
-		auto name = msg.GetTypeName();
+		auto name = getPBName(msg);
 		auto res = m_DataBase.collection(name).insert_one(parseString(msg));
 		return res->result().inserted_count();
 	}
 	catch (...)
 	{
 		//error 
-		MP_ERROR("ExeInsert Error! msg : %s", msg.GetTypeName().c_str());
+		//MP_DEBUG("ExeInsert Error! msg : %s", getPBName(msg).c_str());
 		return 0;
 	}
 	return 0;
@@ -170,7 +170,7 @@ int DBClient::execInsert(google::protobuf::Message& msg)
 
 int DBClient::execDelete(google::protobuf::Message& msg, bool all)
 {
-	auto name = msg.GetTypeName();
+	auto name = getPBName(msg);
 	auto res = all ?
 		m_DataBase.collection(name).delete_many(parseString(msg)) :
 		m_DataBase.collection(name).delete_one(parseString(msg));
@@ -180,8 +180,8 @@ int DBClient::execDelete(google::protobuf::Message& msg, bool all)
 
 int DBClient::execUpdate(google::protobuf::Message& filter, google::protobuf::Message& update, bool all)
 {
-	auto filter_collection = filter.GetTypeName();
-	auto update_collection = update.GetTypeName();
+	auto filter_collection = getPBName(filter);
+	auto update_collection = getPBName(update);
 	if (filter_collection != update_collection)
 	{
 		return 0;
@@ -206,7 +206,7 @@ int DBClient::execQuery(
 	std::vector<std::string>& vResult,
 	bool all)
 {
-	auto name = msg.GetTypeName();
+	auto name = getPBName(msg);
 	if (all)
 	{
 		auto cursor = m_DataBase.collection(name).find(parseString(msg));
@@ -346,3 +346,13 @@ QueryData DBClient::pb2json(google::protobuf::Message& pb)
 	return std::move(std::make_tuple(pb.GetDescriptor()->name(), sJson, pb.SerializeAsString()));
 }
 
+std::string DBClient::getPBName(google::protobuf::Message& pb)
+{
+	auto sFullName = pb.GetTypeName();
+	auto nPos = sFullName.find_last_of('.');
+	if (nPos == std::string::npos)
+	{
+		return sFullName;
+	}
+	return sFullName.substr(nPos + 1, sFullName.size());
+}

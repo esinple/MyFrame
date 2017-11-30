@@ -30,11 +30,11 @@ void SuperServer::Clear()
 void SuperServer::VerifySuperServer()
 {
 	//Message msg;
-	if (GAME_CUR_TIME < m_VerifyTime)
+	/*if (GAME_CUR_TIME < m_VerifyTime)
 	{
 		return;
 	}
 	m_VerifyTime += 10;
 	MPMsg::GateVerify_Gate2Super msg;
-	SEND2SUPER(m_nSockIndex,MPMsg::eGate2Super_VerifyMe, msg);
+	SEND2SUPER(m_nSockIndex,MPMsg::eGate2Super_VerifyMe, msg);*/
 }

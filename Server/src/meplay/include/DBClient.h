@@ -79,6 +79,7 @@ private:
 	
 	bool loadPB(const std::string& json, google::protobuf::Message&pb);
 	
+	std::string getPBName(google::protobuf::Message& pb);
 private:
 	std::shared_ptr<mongocxx::client> m_pConn;
 	mongocxx::database m_DataBase;

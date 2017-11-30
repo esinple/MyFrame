@@ -38,5 +38,7 @@ namespace meplay {
 		std::mutex mtx;
 		std::condition_variable cv;
 		std::thread m_thread;
+	private:
+		bool m_bStart;
 	};
 }
