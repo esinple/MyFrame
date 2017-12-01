@@ -13,6 +13,7 @@ enum Enum_GameManagerModule : int32_t
 	eGameMgr_StatsServer = 3,
 	eGameMgr_GameUser = 4,
 	eGameMgr_DBServer = 5,
+	eGameMgr_TimeStamp = 6,
 
 	eGameMgr_End
 };

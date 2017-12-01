@@ -7,9 +7,6 @@
     <ClCompile Include="..\src\base\NetProxy.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\base\TimeTick.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\base\XmlManager.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -53,6 +50,9 @@
     <ClCompile Include="..\src\base\ModuleRely.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base\ModuleTimeTick.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NetProxy">
@@ -91,9 +91,6 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base\NetProxy.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\base\TimeTick.h">
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base\XmlManager.h">
@@ -145,6 +142,9 @@
       <Filter>protobuf\pbcc</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base\ModuleRely.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ModuleTimeTick.h">
       <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>

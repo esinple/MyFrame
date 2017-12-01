@@ -13,7 +13,6 @@ DBManager::~DBManager()
 
 bool DBManager::Awake()
 {
-	DBClientMgr::GetInstance()->RegisterIndex(eGameDB_Normal, CREATE_INDEX("GameUserLogon", KEYS("account"), true));
 	//config maybe?
 	if (!DBClientMgr::GetInstance()->Connect(eGameDB_Normal, "172.24.3.89", 27017, "ajiang_test"))
 	{
@@ -54,4 +53,11 @@ void DBManager::SaveToDB(uint32_t nType, google::protobuf::Message& filter, goog
 	{
 		DBClientMgr::GetInstance()->ExecUpdate(nType, filter, msg, all);
 	}
+}
+
+void DBManager::registerDBKeys()
+{
+	//keys should be lower case
+	DBClientMgr::GetInstance()->RegisterIndex(eGameDB_Normal, CREATE_INDEX("GameUserLogon", KEYS("account"), true));
+	DBClientMgr::GetInstance()->RegisterIndex(eGameDB_Normal, CREATE_INDEX("TimeStamp", KEYS("id","main_type","sub_type"), true));
 }

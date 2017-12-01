@@ -43,8 +43,9 @@ bool UserModuleManager::Awake()
 		//≥ı ºªØº”‘ÿÀ≥–Ú
 	}
 
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+	for (uint32_t order = 0; order < m_nModuleNum; ++order)
 	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->UserAwake())
 		{
 			MP_ERROR("Module [%d : %s] Awake Failed!", index, m_pFunc(index));
@@ -52,8 +53,9 @@ bool UserModuleManager::Awake()
 		}
 		MP_INFO("Module [%d : %s] Awake Success!", index, m_pFunc(index));
 	}
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+	for (uint32_t order = 0; order < m_nModuleNum; ++order)
 	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->UserAfterAwake())
 		{
 			MP_ERROR("Module [%d : %s] AfterAwake Failed!", index, m_pFunc(index));
@@ -82,8 +84,9 @@ bool UserModuleManager::Execute()
 }
 bool UserModuleManager::ShutDown()
 {
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+	for (uint32_t order = m_nModuleNum - 1; order != 0; --order)
 	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->UserBeforeShutDown())
 		{
 			MP_ERROR("Module [%d : %s] BeforeShutDown Failed!", index, m_pFunc(index));
@@ -91,8 +94,9 @@ bool UserModuleManager::ShutDown()
 		}
 		MP_INFO("Module [%d : %s] BeforeShutDown Success!", index, m_pFunc(index));
 	}
-	for (uint32_t index = 0; index < m_nModuleNum; ++index)
+	for (uint32_t order = m_nModuleNum - 1; order != 0; --order)
 	{
+		auto index = m_vOrder[order];
 		if (!m_vModules[index]->UserShutDown())
 		{
 			MP_ERROR("Module [%d : %s] ShutDown Failed!", index, m_pFunc(index));
@@ -100,10 +104,5 @@ bool UserModuleManager::ShutDown()
 		}
 		MP_INFO("Module [%d : %s] ShutDown Success!", index, m_pFunc(index));
 	}
-	return true;
-}
-
-bool UserModuleManager::topologicalSort()
-{
 	return true;
 }

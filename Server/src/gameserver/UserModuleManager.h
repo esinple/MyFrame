@@ -33,8 +33,6 @@ public:
 		return (T*)m_vModules[nType];
 	}
 private:
-	bool topologicalSort();
-private:
 	std::vector<UserModule*>	m_vModules;
 	uint32_t					m_nModuleNum;
 	GetUserModuleFuncPtr		m_pFunc;

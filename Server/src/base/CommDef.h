@@ -22,4 +22,6 @@ static const char * ServerTypeNames[] =
 	"GameServer"
 };
 
-#define MAKELONGLONG(a, b) static_cast<long long>(static_cast<unsigned int>(a&0xFFFFFFFF) | static_cast<long long>(b&0xFFFFFFFF) << 32 )
+#define U32_MASK 0xFFFFFFFF
+#define MAKELONGLONG(a, b) static_cast<uint64_t>((((static_cast<uint64_t>(a))&U32_MASK)<<32) | static_cast<uint64_t>(b&U32_MASK))
+#define SPLITLONGLONG(a,b,x) a = x >> 32; b = x & U32_MASK;

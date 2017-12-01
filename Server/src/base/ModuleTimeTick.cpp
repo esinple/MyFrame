@@ -13,7 +13,7 @@ const meplay::MPTime& ModuleTimeTick::GetLastTick()const
 	return m_LastTick;
 }
 
-bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::milliseconds& msec)
+bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::milliseconds msec)
 {
 	if (now.CurrentMSec() >= m_LastTick.CurrentMSec() + msec.count())
 	{
@@ -24,7 +24,7 @@ bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::milliseconds& 
 	return false;
 }
 
-bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::seconds& sec)
+bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::seconds sec)
 {
 	if (now.CurrentSec() >= m_LastTick.CurrentSec() + sec.count())
 	{
@@ -35,7 +35,7 @@ bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::seconds& sec)
 	return false;
 }
 
-bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::minutes& min)
+bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::minutes min)
 {
 	if (now.CurrentSec() >= m_LastTick.CurrentSec() + min.count() * 60)
 	{
@@ -46,7 +46,7 @@ bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::minutes& min)
 	return false;
 }
 
-bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::hours& hour)
+bool ModuleTimeTick::Tick(const meplay::MPTime& now, std::chrono::hours hour)
 {
 	if (now.CurrentSec() >= m_LastTick.CurrentSec() + hour.count() * 60 * 60)
 	{

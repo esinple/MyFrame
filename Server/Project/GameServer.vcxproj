@@ -171,7 +171,7 @@
     <ClCompile Include="..\src\base\NetProxy.cpp" />
     <ClCompile Include="..\src\base\TimeManager.cpp" />
     <ClCompile Include="..\src\base\XmlManager.cpp" />
-    <ClCompile Include="..\src\dbproto\DBGameUser.pb.cc" />
+    <ClCompile Include="..\src\dbproto\DBGameServer.pb.cc" />
     <ClCompile Include="..\src\gameserver\BattleBase.cpp" />
     <ClCompile Include="..\src\gameserver\BattleManager.cpp" />
     <ClCompile Include="..\src\gameserver\DBManager.cpp" />
@@ -187,6 +187,7 @@
     <ClCompile Include="..\src\gameserver\StatsServerManager.cpp" />
     <ClCompile Include="..\src\gameserver\SuperServer.cpp" />
     <ClCompile Include="..\src\gameserver\SuperServerManager.cpp" />
+    <ClCompile Include="..\src\gameserver\TimeStampManager.cpp" />
     <ClCompile Include="..\src\gameserver\UserBase.cpp" />
     <ClCompile Include="..\src\gameserver\UserModuleDefine.cpp" />
     <ClCompile Include="..\src\gameserver\UserModuleEnum.h" />
@@ -210,7 +211,7 @@
     <ClInclude Include="..\src\base\TimeManager.h" />
     <ClInclude Include="..\src\base\TimeT.h" />
     <ClInclude Include="..\src\base\XmlManager.h" />
-    <ClInclude Include="..\src\dbproto\DBGameUser.pb.h" />
+    <ClInclude Include="..\src\dbproto\DBGameServer.pb.h" />
     <ClInclude Include="..\src\gameserver\BattleBase.h" />
     <ClInclude Include="..\src\gameserver\BattleManager.h" />
     <ClInclude Include="..\src\gameserver\DBManager.h" />
@@ -226,6 +227,7 @@
     <ClInclude Include="..\src\gameserver\StatsServerManager.h" />
     <ClInclude Include="..\src\gameserver\SuperServer.h" />
     <ClInclude Include="..\src\gameserver\SuperServerManager.h" />
+    <ClInclude Include="..\src\gameserver\TimeStampManager.h" />
     <ClInclude Include="..\src\gameserver\UserBase.h" />
     <ClInclude Include="..\src\gameserver\UserModule.h" />
     <ClInclude Include="..\src\gameserver\UserModuleDefine.h" />
@@ -248,7 +250,7 @@
     <None Include="..\common\command\UserBase.proto" />
     <None Include="..\common\command\UserErrCode.proto" />
     <None Include="..\common\command\UserMsgDefine.proto" />
-    <None Include="..\common\dbstruct\DBGameUser.proto" />
+    <None Include="..\common\dbstruct\DBGameServer.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

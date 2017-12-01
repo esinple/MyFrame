@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package UserDB; 
+package DBGameServer; 
 
 message GameUserLogon
 {
@@ -10,4 +10,12 @@ message GameUserLogon
 	string ip				= 4;
 	uint64 login_time		= 5;
 	uint64 logout_time		= 6;
+}
+
+message TimeStamp
+{
+	uint64 id			= 1;
+	uint32 main_type	= 2;
+	uint32 sub_type		= 3;
+	uint64 time			= 4;
 }

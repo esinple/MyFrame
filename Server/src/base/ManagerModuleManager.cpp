@@ -76,11 +76,16 @@ bool ManagerModuleManager::Execute()
 		}
 		//MP_INFO("Module [%d : %s] AfterAwake Success!", index, m_pFunc(index));
 	}
+
+	if (0)
+	{
+		ShutDown();
+	}
 	return true;
 }
 bool ManagerModuleManager::ShutDown()
 {
-	for (uint32_t order = m_nModuleNum - 1; order > 0 ; --order)
+	for (uint32_t order = m_nModuleNum - 1; order != 0 ; --order)
 	{
 		auto index = m_vOrder[order];
 		if (!m_vModules[index]->BeforeShutDown())
@@ -92,7 +97,7 @@ bool ManagerModuleManager::ShutDown()
 		MP_INFO("Module [%d : %s] BeforeShutDown Success!", index, m_pFunc(index));
 	}
 	MP_SYSTEM("AllModule [%d] BeforeShutDown Success!", m_nModuleNum);
-	for (uint32_t order = m_nModuleNum - 1; order > 0; --order)
+	for (uint32_t order = m_nModuleNum - 1; order != 0; --order)
 	{
 		auto index = m_vOrder[order];
 		if (!m_vModules[index]->ShutDown())

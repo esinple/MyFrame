@@ -2,6 +2,7 @@
 #include "GameCommDef.h"
 #include <google/protobuf/message.h>
 #include "DBClientMgr.h"
+#include "DBGameServer.pb.h"
 
 enum GameDBType
 {
@@ -22,6 +23,8 @@ public:
 public:
 	void SaveToDB(google::protobuf::Message& filter, google::protobuf::Message& msg, bool all = false);
 	void SaveToDB(uint32_t nType, google::protobuf::Message& filter, google::protobuf::Message& msg, bool all = false);
+private:
+	void registerDBKeys();
 private:
 	H_GAME_MANAGER_REG(DBManager)
 };

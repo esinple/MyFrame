@@ -4,7 +4,6 @@
 #include "Gate2Game.pb.h"
 #include "UserMsgDefine.pb.h"
 #include "UserBase.pb.h"
-#include "DBGameUser.pb.h"
 #include "DBManager.h"
 #include "UserBase.h"
 #include "GameTimeManager.h"
@@ -16,6 +15,7 @@ GameUserManager::GameUserManager()
 {
 	AddParent(eGameMgr_Time);
 	AddParent(eGameMgr_DBServer);
+	AddParent(eGameMgr_TimeStamp);
 }
 
 GameUserManager::~GameUserManager()
@@ -220,10 +220,10 @@ GameUserPtr GameUserManager::createGameUser(
 
 int GameUserManager::loadGameUser(GameUserPtr pGameUser)
 {
-	UserDB::GameUserLogon db_gameuserbase;
+	DBGameServer::GameUserLogon db_gameuserbase;
 	db_gameuserbase.set_account(std::string(pGameUser->GetAccount()));
 	
-	UserDB::GameUserLogon db_result;
+	DBGameServer::GameUserLogon db_result;
 	if (g_pDBMgr->ExecSelectOne(db_gameuserbase, db_result) == 0)
 	{
 		return UEC_Success;
@@ -245,10 +245,10 @@ int GameUserManager::loadGameUser(GameUserPtr pGameUser)
 
 void GameUserManager::saveGameUserLogon(GameUserPtr pGameUser)
 {
-	UserDB::GameUserLogon db_logon_info_filter;
+	DBGameServer::GameUserLogon db_logon_info_filter;
 	db_logon_info_filter.set_account(pGameUser->GetAccount());
 
-	UserDB::GameUserLogon db_logon_info;
+	DBGameServer::GameUserLogon db_logon_info;
 	db_logon_info.set_account(pGameUser->GetAccount());
 	db_logon_info.set_passwd(pGameUser->GetPassword());
 	db_logon_info.set_uid(pGameUser->GetUID());

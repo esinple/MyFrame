@@ -10,6 +10,7 @@ const char * GetGameMgrModuleName(uint32_t type)
 		REG_MODULE_NAME(eGameMgr_StatsServer, "StatsServerManager");
 		REG_MODULE_NAME(eGameMgr_GameUser, "GameUserManager");
 		REG_MODULE_NAME(eGameMgr_DBServer, "DBManager");
+		REG_MODULE_NAME(eGameMgr_TimeStamp, "TimeStampManager");
 	default:
 		return nullptr;
 	}
