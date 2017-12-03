@@ -200,7 +200,6 @@
     <ClInclude Include="..\src\gatewayserver\GateUserManager.h" />
     <ClInclude Include="..\src\gatewayserver\GatewayCommDef.h" />
     <ClInclude Include="..\src\gatewayserver\GatewayManagerModuleDefine.h" />
-    <ClInclude Include="..\src\gatewayserver\GatewayManagerModuleEnum.h" />
     <ClInclude Include="..\src\gatewayserver\GatewayNetProxy.h" />
     <ClInclude Include="..\src\gatewayserver\SuperServer.h" />
     <ClInclude Include="..\src\gatewayserver\SuperServerManager.h" />

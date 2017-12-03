@@ -20,7 +20,7 @@ public:
 	void DelGameServer(uint64_t nSockIndex);
 
 private:
-	H_GATE_MANAGER_REG(GameServerManager);
+	H_GATE_MANAGER_REG(eGateMgr_GameServer,GameServerManager);
 
 	MPMemoryPool<GameServer> m_GameServerPool;
 

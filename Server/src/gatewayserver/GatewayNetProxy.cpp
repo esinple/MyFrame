@@ -1,5 +1,4 @@
 #include "GatewayNetProxy.h"
-#include "GatewayManagerModuleEnum.h"
 #include "GatewayManagerModuleDefine.h"
 #include "CommDef.h"
 #include "GateUser.h"
@@ -12,7 +11,7 @@ MP_SINGLETON_IMPLEMENT(GatewayNetProxy);
 
 
 GatewayNetProxy::GatewayNetProxy() 
-	: NetProxy(100),m_Mgrs(eGatewayMgr_End,GetGatewayMgrModuleName)
+	: NetProxy(100),m_Mgrs(eGateMgr_End)
 {
 }
 
@@ -64,24 +63,24 @@ void GatewayNetProxy::OnClientDisconnect(const uint8_t nType, const MPSOCK nSock
 	{
 	case MP_CLIENT:
 	{
-		auto pGateUserMgr = GetModule<GateUserManager>(eGatewayMgr_GateUser);
+		auto pGateUserMgr = GetModule<GateUserManager>(eGateMgr_GateUser);
 		pGateUserMgr->GateUserDisConnect(nSockIndex);
 	}
 	break;
 	case MP_ST_GAME:
 	{
-		auto pGameServerMgr = GetModule<GameServerManager>(eGatewayMgr_GameServer);
+		auto pGameServerMgr = GetModule<GameServerManager>(eGateMgr_GameServer);
 		pGameServerMgr->DelGameServer(nSockIndex);
 
 		MP_DEBUG("Can Not Connect To GameServer!");
 
-		auto pGateUserMgr = GetModule<GateUserManager>(eGatewayMgr_GateUser);
+		auto pGateUserMgr = GetModule<GateUserManager>(eGateMgr_GateUser);
 		pGateUserMgr->KickAll();
 	}
 	break;
 	case MP_ST_SUPER:
 	{
-		auto pSuperServerMgr = GetModule<SuperServerManager>(eGatewayMgr_SuperServer);
+		auto pSuperServerMgr = GetModule<SuperServerManager>(eGateMgr_SuperServer);
 		pSuperServerMgr->DelSuperServer(nSockIndex);
 		MP_DEBUG("Can Not Connect To SuperServer!");
 	}
@@ -105,19 +104,19 @@ void GatewayNetProxy::OnClientConnected(const uint8_t nType, const MPSOCK nSockI
 	case MP_CLIENT:
 	{
 		auto sIP = pNetObject->GetIP();
-		auto pGateUserMgr = GetModule<GateUserManager>(eGatewayMgr_GateUser);
+		auto pGateUserMgr = GetModule<GateUserManager>(eGateMgr_GateUser);
 		pGateUserMgr->GateUserConnect(nSockIndex, sIP);
 	}
 	break;
 	case MP_ST_GAME:
 	{
-		auto pGameServerMgr = GetModule<GameServerManager>(eGatewayMgr_GameServer);
+		auto pGameServerMgr = GetModule<GameServerManager>(eGateMgr_GameServer);
 		pGameServerMgr->AddGameServer(nSockIndex, pNetObject->GetIP().c_str(), pNetObject->GetPort());
 	}
 	break;
 	case MP_ST_SUPER:
 	{
-		auto pSuperServerMgr = GetModule<SuperServerManager>(eGatewayMgr_SuperServer);
+		auto pSuperServerMgr = GetModule<SuperServerManager>(eGateMgr_SuperServer);
 		pSuperServerMgr->AddSuperServer(nSockIndex, pNetObject->GetIP().c_str(), pNetObject->GetPort());
 	}
 	break;
@@ -130,19 +129,19 @@ const MPGUID GatewayNetProxy::GetGUIDBySock(const uint8_t nType,const MPSOCK nSo
 	{
 	case MP_CLIENT:
 	{
-		auto pGateUserMgr = GetModule<GateUserManager>(eGatewayMgr_GateUser);
+		auto pGateUserMgr = GetModule<GateUserManager>(eGateMgr_GateUser);
 		return pGateUserMgr->GetGUID(nSockIndex);
 	}
 	break;
 	case MP_ST_GAME:
 	{
-		auto pGameServerMgr = GetModule<GameServerManager>(eGatewayMgr_GameServer);
+		auto pGameServerMgr = GetModule<GameServerManager>(eGateMgr_GameServer);
 		return 0;
 	}
 	break;
 	case MP_ST_SUPER:
 	{
-		auto pSuperServerMgr = GetModule<SuperServerManager>(eGatewayMgr_SuperServer);
+		auto pSuperServerMgr = GetModule<SuperServerManager>(eGateMgr_SuperServer);
 		return 0;
 	}
 	break;

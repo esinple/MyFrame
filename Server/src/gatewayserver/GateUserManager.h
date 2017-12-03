@@ -43,7 +43,7 @@ private:
 
 	void onGateUserDisConnect(MPGUID uid);
 private:
-	H_GATE_MANAGER_REG(GateUserManager);
+	H_GATE_MANAGER_REG(eGateMgr_GateUser,GateUserManager);
 
 	MPMemoryPool<GateUser> m_objGateUserPool;
 	std::unordered_map<uint64_t, GateUserPtr> m_mTempGateUsers;

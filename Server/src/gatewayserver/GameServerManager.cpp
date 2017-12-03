@@ -3,7 +3,7 @@
 CPP_GATE_MANAGER_REG(GameServerManager);
 
 GameServerManager::GameServerManager()
-	: ManagerModule(eGatewayMgr_GameServer)
+	: ManagerModule(eGateMgr_GameServer)
 {
 }
 

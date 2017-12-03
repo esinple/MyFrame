@@ -17,7 +17,7 @@ public:
 	void AddGameServer(uint64_t nSockIndex, const char* ip, int nPort);
 	void DelGameServer(uint64_t nSockIndex);
 private:
-	H_SUPER_MANAGER_REG(GameServerManager);
+	H_SUPER_MANAGER_REG(eSuperMgr_GameServer,GameServerManager);
 
 	std::map<const uint64_t, GameServerPtr> m_mGameServers;
 };

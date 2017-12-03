@@ -10,7 +10,7 @@
 MP_SINGLETON_IMPLEMENT(GameNetProxy);
 
 GameNetProxy::GameNetProxy() 
-	: NetProxy(100),m_Mgrs(eGameMgr_End,GetGameMgrModuleName)
+	: NetProxy(100),m_Mgrs(eGameMgr_End)
 {
 }
 

@@ -2,12 +2,10 @@
 #include <vector>
 #include "ManagerModule.h"
 
-typedef const char*(*GetNameFuncPtr)(uint32_t);
-
 class ManagerModuleManager final
 {
 public:
-	ManagerModuleManager(uint32_t nModuleNum, GetNameFuncPtr pFunc);
+	ManagerModuleManager(uint32_t nModuleNum);
 	~ManagerModuleManager();
 public:
 	bool Awake();
@@ -31,10 +29,8 @@ public:
 		return (T*)m_vModules[nType];
 	}
 private:
-	bool topologicalSort();
 private:
 	std::vector<ManagerModule*> m_vModules;
 	uint32_t					m_nModuleNum;
-	GetNameFuncPtr				m_pFunc;
 	std::vector<int>			m_vOrder;
 };

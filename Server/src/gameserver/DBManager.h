@@ -26,7 +26,7 @@ public:
 private:
 	void registerDBKeys();
 private:
-	H_GAME_MANAGER_REG(DBManager)
+	H_GAME_MANAGER_REG(eGameMgr_DBServer, DBManager);
 };
 
 #define g_pDBMgr DBClientMgr::GetInstance()->GetConn(eGameDB_Normal)

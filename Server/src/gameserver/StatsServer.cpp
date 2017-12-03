@@ -7,7 +7,7 @@
 StatsServer::StatsServer(uint64_t nSockIndex,const char* ip, int nPort)
 	//: m_nSockIndex(nSockIndex),m_sIP(ip), m_nPort(nPort)
 {
-	//auto pGateTimeMgr = g_pGatewayNetProxy->GetModule<GateTimeManager>(eGatewayMgr_Time);
+	//auto pGateTimeMgr = g_pGatewayNetProxy->GetModule<GateTimeManager>(eGateMgr_Time);
 	//m_LoginTime = pGateTimeMgr->CurrentTime();
 	ReuseInit(nSockIndex, ip, nPort);
 }

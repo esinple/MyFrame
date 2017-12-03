@@ -23,7 +23,7 @@ public:
 private:
 	void checkVerifySuperServer()const;
 private:
-	H_GAME_MANAGER_REG(SuperServerManager);
+	H_GAME_MANAGER_REG(eGameMgr_SuperServer,SuperServerManager);
 
 	MPMemoryPool<SuperServer> m_SuperServerPool;
 

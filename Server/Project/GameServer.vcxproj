@@ -166,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\base\ManagerModule.cpp" />
     <ClCompile Include="..\src\base\ManagerModuleManager.cpp" />
+    <ClCompile Include="..\src\base\ModuleRefresh.cpp" />
     <ClCompile Include="..\src\base\ModuleRely.cpp" />
     <ClCompile Include="..\src\base\ModuleTimeTick.cpp" />
     <ClCompile Include="..\src\base\NetProxy.cpp" />
@@ -175,7 +176,6 @@
     <ClCompile Include="..\src\gameserver\BattleBase.cpp" />
     <ClCompile Include="..\src\gameserver\BattleManager.cpp" />
     <ClCompile Include="..\src\gameserver\DBManager.cpp" />
-    <ClCompile Include="..\src\gameserver\GameManagerModuleDefine.cpp" />
     <ClCompile Include="..\src\gameserver\GameUser.cpp" />
     <ClCompile Include="..\src\gameserver\GameUserManager.cpp" />
     <ClCompile Include="..\src\gameserver\GateServer.cpp" />
@@ -183,6 +183,7 @@
     <ClCompile Include="..\src\gameserver\main.cpp" />
     <ClCompile Include="..\src\gameserver\GameNetProxy.cpp" />
     <ClCompile Include="..\src\gameserver\GameTimeManager.cpp" />
+    <ClCompile Include="..\src\gameserver\RefreshManager.cpp" />
     <ClCompile Include="..\src\gameserver\StatsServer.cpp" />
     <ClCompile Include="..\src\gameserver\StatsServerManager.cpp" />
     <ClCompile Include="..\src\gameserver\SuperServer.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="..\src\base\CommDef.h" />
     <ClInclude Include="..\src\base\ManagerModule.h" />
     <ClInclude Include="..\src\base\ManagerModuleManager.h" />
+    <ClInclude Include="..\src\base\ModuleRefresh.h" />
     <ClInclude Include="..\src\base\ModuleRely.h" />
     <ClInclude Include="..\src\base\ModuleTimeTick.h" />
     <ClInclude Include="..\src\base\NetProxy.h" />
@@ -223,6 +225,7 @@
     <ClInclude Include="..\src\gameserver\GameUserManager.h" />
     <ClInclude Include="..\src\gameserver\GateServer.h" />
     <ClInclude Include="..\src\gameserver\GateServerManager.h" />
+    <ClInclude Include="..\src\gameserver\RefreshManager.h" />
     <ClInclude Include="..\src\gameserver\StatsServer.h" />
     <ClInclude Include="..\src\gameserver\StatsServerManager.h" />
     <ClInclude Include="..\src\gameserver\SuperServer.h" />

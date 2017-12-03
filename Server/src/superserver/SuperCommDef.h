@@ -1,11 +1,10 @@
 #pragma once
 #include "MPAutoRegister.h"
 #include "SuperManagerModuleDefine.h"
-#include "SuperManagerModuleEnum.h"
 #include "SuperNetProxy.h"
 #include "MPDefine.pb.h"
 
-#define H_SUPER_MANAGER_REG(SUB) H_AUTO_REGISTER_SUB(MPModule,SUB)
+#define H_SUPER_MANAGER_REG(INDEX,SUB) H_AUTO_REGISTER_SUB(INDEX,MPModule,SUB)
 #define CPP_SUPER_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)
 
 #define SUPER_CUR_TIME g_pSuperNetProxy->GetModule<SuperTimeManager>(eSuperMgr_Time)->CurrentTime()

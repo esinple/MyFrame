@@ -1,8 +1,6 @@
 #pragma once
 #include <stdint.h>
 
-#define REG_MODULE_NAME(e,c) case e:return c;
-
 enum Enum_GameManagerModule : int32_t
 {
 	eGameMgr_Unknown = -1,
@@ -17,5 +15,3 @@ enum Enum_GameManagerModule : int32_t
 
 	eGameMgr_End
 };
-
-extern const char * GetGameMgrModuleName(uint32_t type);

@@ -1,17 +1,14 @@
 #pragma once
-#include "SuperManagerModuleEnum.h"
+#include <stdint.h>
 
-#define REG_MODULE_NAME(e,c) case e:return c;
-
-static const char * GetSuperMgrModuleName(uint32_t type)
+enum Enum_SuperManagerModule : int32_t
 {
-	switch (type)
-	{
-		REG_MODULE_NAME(eSuperMgr_GateServer, "GateServerManager");
-		REG_MODULE_NAME(eSuperMgr_CenterServer, "CenterServerManager");
-		REG_MODULE_NAME(eSuperMgr_GameServer, "GameServerManager");
-		REG_MODULE_NAME(eSuperMgr_Time, "SuperTimeManager");
-	default:
-		return nullptr;
-	}
+	eSuperMgr_Unknown = -1,
+	eSuperMgr_Begin = 0,
+	eSuperMgr_GateServer = 0,
+	eSuperMgr_CenterServer = 1,
+	eSuperMgr_GameServer = 2,
+	eSuperMgr_Time = 3,
+
+	eSuperMgr_End
 };

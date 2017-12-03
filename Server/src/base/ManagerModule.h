@@ -18,5 +18,3 @@ public:
 	virtual bool BeforeShutDown() = 0;
 	virtual bool ShutDown() = 0;
 };
-
-#define _1_SEC_TICK(LAST_TICK,NOW) LAST_TICK + 1 < NOW

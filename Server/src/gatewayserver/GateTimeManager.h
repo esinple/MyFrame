@@ -17,7 +17,7 @@ public:
 public:
 	inline const meplay::MPTime& CurrentTime()const { return m_CurTime; };
 private:
-	H_GATE_MANAGER_REG(GateTimeManager);
+	H_GATE_MANAGER_REG(eGateMgr_Time,GateTimeManager);
 
 	meplay::MPTime m_CurTime;
 };

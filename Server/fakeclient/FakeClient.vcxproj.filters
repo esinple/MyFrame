@@ -21,9 +21,6 @@
     <ClCompile Include="..\src\base\TimeManager.cpp">
       <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\base\TimeTick.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\base\XmlManager.cpp">
       <Filter>base</Filter>
     </ClCompile>
@@ -60,6 +57,9 @@
     <ClCompile Include="..\src\base\ModuleRely.cpp">
       <Filter>base</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base\ModuleTimeTick.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base\ManagerModuleManager.h">
@@ -72,9 +72,6 @@
       <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base\TimeT.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\base\TimeTick.h">
       <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\src\base\XmlManager.h">
@@ -115,6 +112,9 @@
     <ClInclude Include="TestManager.h" />
     <ClInclude Include="FCNetProxy.h" />
     <ClInclude Include="..\src\base\ModuleRely.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ModuleTimeTick.h">
       <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>

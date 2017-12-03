@@ -1,12 +1,11 @@
 #include "StatsNetProxy.h"
-#include "StatsManagerModuleEnum.h"
 #include "StatsManagerModuleDefine.h"
 #include "CommDef.h"
 
 MP_SINGLETON_IMPLEMENT(StatsNetProxy);
 
 StatsNetProxy::StatsNetProxy() 
-	: NetProxy(100),m_Mgrs(eStatsMgr_End,GetStatsMgrModuleName)
+	: NetProxy(100),m_Mgrs(eStatsMgr_End)
 {
 }
 

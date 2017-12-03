@@ -21,7 +21,7 @@ public:
 public:
 	
 private:
-	H_SUPER_MANAGER_REG(SuperTimeManager);
+	H_SUPER_MANAGER_REG(eSuperMgr_Time,SuperTimeManager);
 
 	meplay::MPTime m_CurTime;
 

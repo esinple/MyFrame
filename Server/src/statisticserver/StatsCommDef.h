@@ -1,10 +1,9 @@
 #pragma once
 #include "MPAutoRegister.h"
 #include "StatsManagerModuleDefine.h"
-#include "StatsManagerModuleEnum.h"
 #include "StatsNetProxy.h"
 
-#define H_STATS_MANAGER_REG(SUB) H_AUTO_REGISTER_SUB(MPModule,SUB)
+#define H_STATS_MANAGER_REG(INDEX,SUB) H_AUTO_REGISTER_SUB(INDEX,MPModule,SUB)
 #define CPP_STATS_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)
 
 #define SUPER_CUR_TIME g_pStatsNetProxy->GetModule<StatsTimeManager>(eStatsMgr_Time)->CurrentTime()

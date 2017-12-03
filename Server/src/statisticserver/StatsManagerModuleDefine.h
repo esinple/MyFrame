@@ -1,15 +1,12 @@
 #pragma once
-#include "StatsManagerModuleEnum.h"
+#include <stdint.h>
 
-#define REG_MODULE_NAME(e,c) case e:return c;
-
-static const char * GetStatsMgrModuleName(uint32_t type)
+enum Enum_StatsManagerModule : int32_t
 {
-	switch (type)
-	{
-		REG_MODULE_NAME(eStatsMgr_Time, "StatsTimeManager");
-		REG_MODULE_NAME(eStatsMgr_RocketMQ, "RocketMQManager");
-	default:
-		return nullptr;
-	}
+	eStatsMgr_Unknown = -1,
+	eStatsMgr_Begin = 0,
+	eStatsMgr_Time = 0,
+	eStatsMgr_RocketMQ = 1,
+
+	eStatsMgr_End
 };

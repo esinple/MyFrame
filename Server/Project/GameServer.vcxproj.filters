@@ -64,6 +64,15 @@
     <Filter Include="Logic\ManagerLogic\TimeStampManager">
       <UniqueIdentifier>{31c70c4b-8e94-4d98-8c87-182ff6034699}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logic\ManagerLogic\MailManager">
+      <UniqueIdentifier>{1954c838-ef70-4b41-8b39-d84a6e2d1d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\RankManager">
+      <UniqueIdentifier>{4c30f462-2732-428e-b9e6-63896be8e3ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic\ManagerLogic\RefreshManager">
+      <UniqueIdentifier>{2f1b9616-f041-4589-9917-c9795961a466}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\base\XmlManager.cpp">
@@ -145,9 +154,6 @@
     <ClCompile Include="..\src\gameserver\UserBase.cpp">
       <Filter>Logic\UserLogic\UserBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\gameserver\GameManagerModuleDefine.cpp">
-      <Filter>Logic\ManagerLogic\ModuleBase</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\gameserver\UserModuleDefine.cpp">
       <Filter>Logic\UserLogic\UserModuleBase</Filter>
     </ClCompile>
@@ -167,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="..\src\dbproto\DBGameServer.pb.cc">
       <Filter>proto\pbcc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\base\ModuleRefresh.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameserver\RefreshManager.cpp">
+      <Filter>Logic\ManagerLogic\RefreshManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +291,12 @@
     </ClInclude>
     <ClInclude Include="..\src\dbproto\DBGameServer.pb.h">
       <Filter>proto\pbcc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\ModuleRefresh.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\RefreshManager.h">
+      <Filter>Logic\ManagerLogic\RefreshManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

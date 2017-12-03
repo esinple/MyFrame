@@ -19,7 +19,7 @@ public:
 	inline const meplay::MPTime& CurrentTime()const { return m_CurTime; };
 	inline TimeManager& GetTimeRegister() { return m_TimeMgr; };
 private:
-	H_GAME_MANAGER_REG(GameTimeManager);
+	H_GAME_MANAGER_REG(eGameMgr_Time, GameTimeManager);
 
 	meplay::MPTime m_CurTime;
 

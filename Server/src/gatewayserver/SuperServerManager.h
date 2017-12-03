@@ -23,7 +23,7 @@ public:
 private:
 	void checkVerifySuperServer();
 private:
-	H_GATE_MANAGER_REG(SuperServerManager);
+	H_GATE_MANAGER_REG(eGateMgr_SuperServer,SuperServerManager);
 
 	MPMemoryPool<SuperServer> m_SuperServerPool;
 

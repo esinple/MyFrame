@@ -21,8 +21,7 @@ public:
 	template<typename T>
 	static bool TopologicalSort(
 		const std::vector<T>& vModuleRely, 
-		std::vector<int>& vOrder,
-		const char*(*GetNameFuncPtr)(uint32_t)
+		std::vector<int>& vOrder
 	)
 	{
 		//kahn
@@ -68,7 +67,7 @@ public:
 		{
 			if (pModule->HasParentRely())
 			{
-				MP_ERROR("Module [%d][%s] Has Circle!", pModule->GetModuleType(), GetNameFuncPtr(pModule->GetModuleType()));
+				MP_ERROR("Module [%d][%s] Has Circle!", pModule->GetModuleType(),pModule->GetModuleName());
 				return false;
 			}
 		}

@@ -19,7 +19,7 @@ public:
 	void DelStatsServer(uint64_t nSockIndex);
 private:
 private:
-	H_GAME_MANAGER_REG(StatsServerManager);
+	H_GAME_MANAGER_REG(eGameMgr_StatsServer,StatsServerManager);
 
 	MPMemoryPool<StatsServer> m_StatsServerPool;
 

@@ -3,7 +3,7 @@
 
 using namespace meplay;
 
-MPTimeTester::MPTimeTester(const std::string& name,uint64_t nMinDelay)
+MPTimeTester::MPTimeTester(std::string_view name,uint64_t nMinDelay)
 	: m_timepoint(std::chrono::steady_clock::now()),m_sName(name),m_nMinDelay(nMinDelay)
 {
 }
@@ -20,6 +20,6 @@ void MPTimeTester::Show(uint64_t nMinDelay)const
 	auto nDelay = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - m_timepoint).count();
 	if (nDelay > nMinDelay)
 	{
-		MP_WARN("[%s] used %d milliseconds!", m_sName.c_str(), nDelay);
+		MP_WARN("[%s] used %d milliseconds!", m_sName.data(), nDelay);
 	}
 }

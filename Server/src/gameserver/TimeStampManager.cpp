@@ -14,12 +14,12 @@ TimeStampManager::~TimeStampManager()
 
 bool TimeStampManager::Awake()
 {
-	loadTimeStamp();
 	return true;
 }
 
 bool TimeStampManager::AfterAwake()
 {
+	loadTimeStamp();
 	return true;
 }
 
@@ -86,7 +86,6 @@ void TimeStampManager::loadTimeStamp()
 	std::vector<DBGameServer::TimeStamp> vResults;
 
 	g_pDBMgr->ExecSelectAll(filter, vResults);
-
 
 	for (auto& ts : vResults)
 	{

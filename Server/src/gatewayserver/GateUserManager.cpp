@@ -1,5 +1,4 @@
 #include "GateUserManager.h"
-#include "GatewayManagerModuleEnum.h"
 #include "GatewayNetProxy.h"
 #include "GateTimeManager.h"
 #include "Gate2Game.pb.h"
@@ -10,7 +9,7 @@
 CPP_GATE_MANAGER_REG(GateUserManager);
 
 GateUserManager::GateUserManager() 
-	: ManagerModule(eGatewayMgr_GateUser)
+	: ManagerModule(eGateMgr_GateUser)
 {
 }
 

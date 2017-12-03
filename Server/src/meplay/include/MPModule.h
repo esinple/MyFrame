@@ -12,6 +12,7 @@ namespace meplay {
 		
 	public:
 		inline uint32_t GetModuleType()const { return m_nModuleType; }
+		const char * GetModuleName()const { return ClassNameMap().find(m_nModuleType)->second.data(); }
 	private:
 		uint32_t m_nModuleType;
 

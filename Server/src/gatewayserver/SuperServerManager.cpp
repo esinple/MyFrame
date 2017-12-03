@@ -4,7 +4,7 @@
 CPP_GATE_MANAGER_REG(SuperServerManager)
 
 SuperServerManager::SuperServerManager()
-	: ManagerModule(eGatewayMgr_SuperServer)
+	: ManagerModule(eGateMgr_SuperServer)
 {
 }
 

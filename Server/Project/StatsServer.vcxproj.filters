@@ -102,9 +102,6 @@
     <ClInclude Include="..\src\statisticserver\StatsManagerModuleDefine.h">
       <Filter>Logic\ModuleBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\statisticserver\StatsManagerModuleEnum.h">
-      <Filter>Logic\ModuleBase</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\statisticserver\StatsTimeManager.h">
       <Filter>Logic\StatsTimeManager</Filter>
     </ClInclude>

@@ -57,7 +57,6 @@
     <ClInclude Include="..\src\statisticserver\RocketMQManager.h" />
     <ClInclude Include="..\src\statisticserver\StatsCommDef.h" />
     <ClInclude Include="..\src\statisticserver\StatsManagerModuleDefine.h" />
-    <ClInclude Include="..\src\statisticserver\StatsManagerModuleEnum.h" />
     <ClInclude Include="..\src\statisticserver\StatsNetProxy.h" />
     <ClInclude Include="..\src\statisticserver\StatsTimeManager.h" />
   </ItemGroup>

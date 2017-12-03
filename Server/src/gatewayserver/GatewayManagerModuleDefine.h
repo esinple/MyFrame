@@ -1,20 +1,14 @@
-#ifndef _GATE_MODULE_DEFINE_H_
-#define _GATE_MODULE_DEFINE_H_
+#pragma once
+#include <stdint.h>
 
-#include "GatewayManagerModuleEnum.h"
-
-#define REG_MODULE_NAME(e,c) case e:return c;
-
-static const char * GetGatewayMgrModuleName(uint32_t type)
+enum Enum_GatewayManagerModule : int32_t
 {
-	switch (type)
-	{
-		REG_MODULE_NAME(eGatewayMgr_Time, "GateTimeManager");
-		REG_MODULE_NAME(eGatewayMgr_GateUser, "GateUserManager");
-		REG_MODULE_NAME(eGatewayMgr_GameServer, "GameServerManager");
-		REG_MODULE_NAME(eGatewayMgr_SuperServer, "SuperServerManager");
-	default:
-		return nullptr;
-	}
+	eGateMgr_Unknown = -1,
+	eGateMgr_Begin = 0,
+	eGateMgr_Time = 0,
+	eGateMgr_GateUser = 1,
+	eGateMgr_GameServer = 2,
+	eGateMgr_SuperServer = 3,
+
+	eGateMgr_End
 };
-#endif

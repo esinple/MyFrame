@@ -136,9 +136,6 @@
     <ClInclude Include="..\src\superserver\SuperManagerModuleDefine.h">
       <Filter>Logic\ModuleBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\superserver\SuperManagerModuleEnum.h">
-      <Filter>Logic\ModuleBase</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\superserver\SuperNetProxy.h">
       <Filter>NetProxy</Filter>
     </ClInclude>

@@ -17,7 +17,7 @@ public:
 public:
 	inline const meplay::MPTime& CurrentTime()const { return m_CurTime; };
 private:
-	H_STATS_MANAGER_REG(StatsTimeManager);
+	H_STATS_MANAGER_REG(eStatsMgr_Time,StatsTimeManager);
 
 	meplay::MPTime m_CurTime;
 };

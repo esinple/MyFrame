@@ -3,7 +3,7 @@
 CPP_GATE_MANAGER_REG(GateTimeManager);
 
 GateTimeManager::GateTimeManager() 
-	: ManagerModule(eGatewayMgr_Time)
+	: ManagerModule(eGateMgr_Time)
 {
 }
 

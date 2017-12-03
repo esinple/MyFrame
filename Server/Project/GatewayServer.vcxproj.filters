@@ -88,9 +88,6 @@
     <ClInclude Include="..\src\gatewayserver\GatewayManagerModuleDefine.h">
       <Filter>ModuleBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\gatewayserver\GatewayManagerModuleEnum.h">
-      <Filter>ModuleBase</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\gatewayserver\GatewayNetProxy.h">
       <Filter>NetProxy</Filter>
     </ClInclude>

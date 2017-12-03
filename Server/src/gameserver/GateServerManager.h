@@ -25,7 +25,7 @@ public:
 	void SendToGateAll(uint32_t nMsgId,google::protobuf::Message& pb);
 private:
 private:
-	H_GAME_MANAGER_REG(GateServerManager);
+	H_GAME_MANAGER_REG(eGameMgr_GateServer,GateServerManager);
 
 	std::map<const uint64_t, GateServerPtr> m_mGateServers;
 

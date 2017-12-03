@@ -1,5 +1,4 @@
 #include "SuperNetProxy.h"
-#include "SuperManagerModuleEnum.h"
 #include "SuperManagerModuleDefine.h"
 #include "CommDef.h"
 #include "GateServerManager.h"
@@ -8,7 +7,7 @@
 MP_SINGLETON_IMPLEMENT(SuperNetProxy);
 
 SuperNetProxy::SuperNetProxy() 
-	: NetProxy(100),m_Mgrs(eSuperMgr_End,GetSuperMgrModuleName)
+	: NetProxy(100),m_Mgrs(eSuperMgr_End)
 {
 }
 

@@ -215,7 +215,6 @@
     <ClInclude Include="..\src\superserver\GateServerManager.h" />
     <ClInclude Include="..\src\superserver\SuperCommDef.h" />
     <ClInclude Include="..\src\superserver\SuperManagerModuleDefine.h" />
-    <ClInclude Include="..\src\superserver\SuperManagerModuleEnum.h" />
     <ClInclude Include="..\src\superserver\SuperNetProxy.h" />
     <ClInclude Include="..\src\superserver\SuperTimeManager.h" />
     <ClInclude Include="..\src\superserver\tester.h" />
