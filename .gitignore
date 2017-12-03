@@ -37,3 +37,9 @@
 /Server/lib/linux/Debug/libboost_iostreams.a
 /Server/lib/linux/Debug/libboost_filesystem.a
 /Server/lib/linux/Debug/libboost_chrono.a
+
+Server/Project/x64/Debug/GameServer*/
+Server/Project/x64/Debug/GatewayServer*/
+Server/Project/x64/Debug/MePlay*/
+Server/Project/x64/Debug/StatsServer*/
+Server/Project/x64/Debug/SuperServer*/
