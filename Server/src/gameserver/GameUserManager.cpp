@@ -34,10 +34,10 @@ bool GameUserManager::AfterAwake()
 bool GameUserManager::Execute()
 {
 //	if (Tick(GAME_CUR_TIME, std::chrono::minutes(1)))
-	if(_1_SEC_TICK_)
+	/*if(_1_SEC_TICK_)
 	{
 		MP_DEBUG("Cur GameUser : %d", m_mGameUsers.size());
-	}
+	}*/
 
 	//测试提交更改  afad 
 	return true;
