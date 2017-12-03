@@ -33,6 +33,7 @@ bool UserModuleManager::Awake()
 			MP_ERROR("Module Create [%d : %s] Failed!", i, m_pFunc(i));
 		}
 	}
+	//info test;
 
 	if (m_vOrder.empty())
 	{
