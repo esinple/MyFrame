@@ -45,6 +45,8 @@ public:
 	void GameUserLogout(const MPGUID uid);
 
 	void KickAllByGateSock(const uint64_t nGateSock);
+
+	void Test();
 private:
 	void addGameUser(GameUserPtr pGameUser);
 	void delGameUser(const MPGUID uid);

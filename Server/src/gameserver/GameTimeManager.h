@@ -27,6 +27,7 @@ private:
 };
 
 #define GAME_CUR_TIME g_pGameNetProxy->GetModule<GameTimeManager>(eGameMgr_Time)->CurrentTime()
+#define REGISTER_TIME_EVENT g_pGameNetProxy->GetModule<GameTimeManager>(eGameMgr_Time)->GetTimeRegister().AddTimeEvent
 
 #define _MSEC_TICK_(x) this->ModuleTimeTick::Tick(GAME_CUR_TIME,std::chrono::milliseconds(x))
 

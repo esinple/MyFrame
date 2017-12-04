@@ -31,9 +31,6 @@
     <Filter Include="Logic\ManagerLogic">
       <UniqueIdentifier>{ffc456bb-065b-46fe-84f6-43e07b555d87}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Logic\ManagerLogic\ModuleBase">
-      <UniqueIdentifier>{85c55e5a-3eb4-4dac-8881-8c7a52fafa61}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Logic\ManagerLogic\GateServerManager">
       <UniqueIdentifier>{3b32615a-2e48-45d5-b6d2-17fbaf8e92a9}</UniqueIdentifier>
     </Filter>
@@ -197,9 +194,6 @@
     <ClInclude Include="..\src\base\NetProxy.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\gameserver\GameManagerModuleDefine.h">
-      <Filter>Logic\ManagerLogic\ModuleBase</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\gameserver\GameNetProxy.h">
       <Filter>NetProxy</Filter>
     </ClInclude>
@@ -297,6 +291,9 @@
     </ClInclude>
     <ClInclude Include="..\src\gameserver\RefreshManager.h">
       <Filter>Logic\ManagerLogic\RefreshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\GameManagerModuleDefine.h">
+      <Filter>Logic\ManagerLogic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -29,6 +29,13 @@ bool GameUserManager::Awake()
 }
 bool GameUserManager::AfterAwake()
 {
+	REGISTER_TIME_EVENT
+	(eTET_SEC_INTERVAL, 1, GAME_CUR_TIME, []() 
+	{
+		std::cout << "test register" << std::endl;
+	});
+
+	REGISTER_TIME_EVENT(eTET_SEC_INTERVAL, 1, GAME_CUR_TIME, this, &GameUserManager::Test);
 	return true;
 }
 bool GameUserManager::Execute()
@@ -67,12 +74,11 @@ void GameUserManager::delGameUser(const MPGUID uid)
 
 GameUserPtr GameUserManager::GetGameUser(const MPGUID uid)
 {
-	auto it = m_mGameUsers.find(uid);
-	if (it == m_mGameUsers.end())
+	if (auto it = m_mGameUsers.find(uid); it != m_mGameUsers.end())
 	{
-		return nullptr;
+		return it->second;
 	}
-	return it->second;
+	return nullptr;
 }
 
 GameUserPtr GameUserManager::checkGetGameUser(const MPGUID uid, uint64_t nUserSock,const uint64_t nGateSock)
@@ -276,4 +282,9 @@ void GameUserManager::KickAllByGateSock(const uint64_t nGateSock)
 	{
 		GameUserLogout(uid);
 	}
+}
+
+void GameUserManager::Test()
+{
+	std::cout << "TestFunc!" << std::endl;
 }

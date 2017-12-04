@@ -72,25 +72,14 @@ bool TimeManager::checkTime(TimeEventPtr pEvent)const
 		return true;
 	}
 	break;
-	case eTET_DAY:
+	case eTET_SEC_INTERVAL:
 	{
 		if (m_CurrentTime <= pEvent->time)
 		{
 			pEvent->Call();
 		}
-		auto nDay = (m_CurrentTime.CurrentSec() - pEvent->time.CurrentSec()) / 86400;
-		pEvent->time += 86400 * (nDay + 1);
-		return true;
-	}
-	break;
-	case eTET_HOUR:
-	{
-		if (m_CurrentTime <= pEvent->time)
-		{
-			pEvent->Call();
-		}
-		auto nHour = (m_CurrentTime.CurrentSec() - pEvent->time.CurrentSec()) / 3600;
-		pEvent->time += 3600 * (nHour+ 1);
+		auto nGap = (m_CurrentTime.CurrentSec() - pEvent->time.CurrentSec()) / pEvent->nInterval;
+		pEvent->time += pEvent->nInterval * (nGap + 1);
 		return true;
 	}
 	break;
@@ -128,16 +117,10 @@ void TimeManager::processEvent(uint64_t lEventId)
 	{
 	}
 	break;
-	case eTET_DAY:
+	case eTET_SEC_INTERVAL:
 	{
-		auto nDay = (m_CurrentTime.CurrentSec() - pEvent->time.CurrentSec()) / 86400;
-		pEvent->time += 86400 * (nDay + 1);
-	}
-	break;
-	case eTET_HOUR:
-	{
-		auto nHour = (m_CurrentTime.CurrentSec() - pEvent->time.CurrentSec()) / 3600;
-		pEvent->time += 3600 * (nHour + 1);
+		auto nGap = (m_CurrentTime.CurrentSec() - pEvent->time.CurrentSec()) / pEvent->nInterval;
+		pEvent->time += pEvent->nInterval * (nGap + 1);
 	}
 	break;
 	default:
