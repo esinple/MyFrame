@@ -2,7 +2,7 @@
 #ifdef WIN_SYSTEM
 
 #include <time.h>
-#include <Windows.h>
+//#include <windows.h>
 #include <DbgHelp.h>
 #include <string>
 

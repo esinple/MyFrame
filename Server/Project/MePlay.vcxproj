@@ -91,14 +91,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;WIN_SYSTEM;_WINSOCKAPI_;WIN32_LEAN_AND_MEAN;BSONCXX_POLY_USE_BOOST;MONGOCXX_STATIC;BSONCXX_STATIC;ELPP_NO_DEFAULT_LOG_FILE;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;WIN_SYSTEM;WIN32_LEAN_AND_MEAN;BSONCXX_POLY_USE_BOOST;MONGOCXX_STATIC;BSONCXX_STATIC;ELPP_NO_DEFAULT_LOG_FILE;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS /D _WINSOCK_DEPRECATED_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnableModules>false</EnableModules>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
@@ -110,6 +110,7 @@
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>..\lib\static;..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>

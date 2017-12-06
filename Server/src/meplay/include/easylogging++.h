@@ -332,13 +332,13 @@
 #      if defined(ELPP_WINSOCK2)
 #         include <winsock2.h>
 #	   else
-#         include <winsock.h>
 #		  include <WinSock2.h>
+#         include <winsock.h>
 #      endif // defined(ELPP_WINSOCK2)
 #   endif // defined(WIN32_LEAN_AND_MEAN)
 #   include <direct.h>
 #	include <WinSock2.h>
-#   include <windows.h>
+//#   include <windows.h>
 #endif  // ELPP_OS_UNIX
 #ifdef WIN_SYSTEM
 #else

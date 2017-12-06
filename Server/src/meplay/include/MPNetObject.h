@@ -3,7 +3,6 @@
 #include <string>
 #ifdef WIN_SYSTEM
 #include <WinSock2.h>
-#include <windows.h>
 #else
 #include <netinet/in.h>
 #endif

@@ -3,7 +3,7 @@
 #include <cassert>
 #ifdef WIN_SYSTEM
 #include <WinSock2.h>
-#include <windows.h>
+//#include <windows.h>
 #else
 //#include <libkern/OSByteOrder.h>
 #include <netinet/in.h>

@@ -26,6 +26,7 @@ private:
 	TimeManager m_TimeMgr;
 };
 
+//Time
 #define GAME_CUR_TIME g_pGameNetProxy->GetModule<GameTimeManager>(eGameMgr_Time)->CurrentTime()
 #define REGISTER_TIME_EVENT g_pGameNetProxy->GetModule<GameTimeManager>(eGameMgr_Time)->GetTimeRegister().AddTimeEvent
 

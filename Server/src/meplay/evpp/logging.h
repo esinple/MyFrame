@@ -6,7 +6,7 @@
 
 #ifdef __cplusplus
 #define GOOGLE_GMPLOG_DLL_DECL           // 使用静态glog库时，必须定义这个
-#define GMPLOG_NO_ABBREVIATED_SEVERITIES // 没这个编译会出错,传说因为和Windows.h冲突
+//#define GMPLOG_NO_ABBREVIATED_SEVERITIES // 没这个编译会出错,传说因为和Windows.h冲突
 
 
 #define LOG_FLAG false 

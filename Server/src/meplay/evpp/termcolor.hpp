@@ -35,7 +35,7 @@
 #elif defined(TERMCOLOR_OS_WINDOWS)
 #   include <io.h>
 #	include <WinSock2.h>
-#   include <windows.h>
+//#   include <windows.h>
 #endif
 
 

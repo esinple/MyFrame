@@ -177,6 +177,9 @@
     <ClCompile Include="..\src\gameserver\RefreshManager.cpp">
       <Filter>Logic\ManagerLogic\RefreshManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\gameserver\MailManager.cpp">
+      <Filter>Logic\ManagerLogic\MailManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base\XmlManager.h">
@@ -289,11 +292,17 @@
     <ClInclude Include="..\src\base\ModuleRefresh.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\gameserver\RefreshManager.h">
-      <Filter>Logic\ManagerLogic\RefreshManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\gameserver\GameManagerModuleDefine.h">
       <Filter>Logic\ManagerLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\MailManager.h">
+      <Filter>Logic\ManagerLogic\MailManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\Mail.h">
+      <Filter>Logic\ManagerLogic\MailManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameserver\RefreshManager.h">
+      <Filter>Logic\ManagerLogic\RefreshManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

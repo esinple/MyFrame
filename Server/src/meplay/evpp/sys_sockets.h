@@ -8,10 +8,10 @@
 
 #include <string> // avoid compiling failed because of 'errno' redefined as 'WSAGetLastError()'
 #define errno WSAGetLastError()
-#include <windows.h>
 
 #include <ws2tcpip.h>
 #include <WinSock2.h>
+//#include <windows.h>
 #include <io.h>
 #include <ws2ipdef.h>
 

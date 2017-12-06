@@ -5,8 +5,8 @@
 
 #ifdef WIN32
 #define _WINSOCKAPI_
-#include <windows.h>
 #include <WinSock2.h>
+//#include <windows.h>
 #else
 #include <sys/time.h>
 #endif

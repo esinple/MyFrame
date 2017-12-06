@@ -111,7 +111,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_WIN32_WINDOWS;WIN_SYSTEM;MONGOCXX_STATIC;BSONCXX_STATIC;NOMINMAX;SSJ_DEBUG;BOOST_AUTO_LINK_TAGGED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_WIN32_WINDOWS;WIN_SYSTEM;MONGOCXX_STATIC;BSONCXX_STATIC;NOMINMAX;SSJ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -119,14 +119,16 @@
       <MinimalRebuild>false</MinimalRebuild>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnableModules>false</EnableModules>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4099</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>ws2_32.lib;Secur32.lib;Crypt32.lib;Bcrypt.lib;libevent_core.lib;libevent.lib;libprotobufd.lib;bson-static-1.0.lib;libbsoncxx.lib;mongoc-static-1.0.lib;libmongocxx.lib;MePlay.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX64</TargetMachine>
       <AdditionalLibraryDirectories>C:\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -185,6 +187,7 @@
     <ClCompile Include="..\src\gameserver\GameUserManager.cpp" />
     <ClCompile Include="..\src\gameserver\GateServer.cpp" />
     <ClCompile Include="..\src\gameserver\GateServerManager.cpp" />
+    <ClCompile Include="..\src\gameserver\MailManager.cpp" />
     <ClCompile Include="..\src\gameserver\main.cpp" />
     <ClCompile Include="..\src\gameserver\GameNetProxy.cpp" />
     <ClCompile Include="..\src\gameserver\GameTimeManager.cpp" />
@@ -230,6 +233,8 @@
     <ClInclude Include="..\src\gameserver\GameUserManager.h" />
     <ClInclude Include="..\src\gameserver\GateServer.h" />
     <ClInclude Include="..\src\gameserver\GateServerManager.h" />
+    <ClInclude Include="..\src\gameserver\Mail.h" />
+    <ClInclude Include="..\src\gameserver\MailManager.h" />
     <ClInclude Include="..\src\gameserver\RefreshManager.h" />
     <ClInclude Include="..\src\gameserver\StatsServer.h" />
     <ClInclude Include="..\src\gameserver\StatsServerManager.h" />
