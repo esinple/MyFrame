@@ -1,7 +1,5 @@
 #include "UserBase.h"
 
-CPP_USER_MODULE_REG(UserBase);
-
 UserBase::UserBase() : UserModule(eGameUser_Base)
 {
 }

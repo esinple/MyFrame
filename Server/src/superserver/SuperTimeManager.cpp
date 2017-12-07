@@ -1,7 +1,5 @@
 #include "SuperTimeManager.h"
 
-CPP_SUPER_MANAGER_REG(SuperTimeManager);
-
 SuperTimeManager::SuperTimeManager()
 	: ManagerModule(eSuperMgr_Time)
 {

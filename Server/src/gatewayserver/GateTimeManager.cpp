@@ -1,7 +1,5 @@
 #include "GateTimeManager.h"
 
-CPP_GATE_MANAGER_REG(GateTimeManager);
-
 GateTimeManager::GateTimeManager() 
 	: ManagerModule(eGateMgr_Time)
 {

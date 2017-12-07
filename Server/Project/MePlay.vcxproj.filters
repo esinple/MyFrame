@@ -217,6 +217,9 @@
     <ClInclude Include="..\src\meplay\include\MPRandom.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPModuleFactory.h">
+      <Filter>Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\meplay\src\DBClient.cpp">
@@ -353,6 +356,9 @@
     </ClCompile>
     <ClCompile Include="..\src\meplay\src\MPRandom.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPModuleFactory.cpp">
+      <Filter>Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

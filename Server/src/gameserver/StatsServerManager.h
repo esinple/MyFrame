@@ -19,10 +19,10 @@ public:
 	void DelStatsServer(uint64_t nSockIndex);
 private:
 private:
-	H_GAME_MANAGER_REG(eGameMgr_StatsServer,StatsServerManager);
-
 	MPMemoryPool<StatsServer> m_StatsServerPool;
 
 	std::map<const uint64_t, StatsServerPtr> m_mStatsServers;
 	std::map<const uint64_t, StatsServerPtr> m_mTempStatsServers;
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_StatsServer, StatsServerManager);

@@ -1,7 +1,5 @@
 #include "DBManager.h"
 
-CPP_GAME_MANAGER_REG(DBManager)
-
 DBManager::DBManager()
 	: ManagerModule(eGameMgr_DBServer)
 {

@@ -13,5 +13,6 @@ public:
 	virtual bool UserBeforeShutDown()override;
 	virtual bool UserShutDown()override;
 private:
-	H_USER_MODULE_REG(eGameUser_Base,UserBase);
 };
+
+GAME_USER_MODULE_REG(eGameUser_Base, UserBase);

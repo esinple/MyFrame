@@ -4,8 +4,6 @@
 #include "Gate2Super.pb.h"
 #include "MPLogger.h"
 
-CPP_SUPER_MANAGER_REG(GateServerManager);
-
 GateServerManager::GateServerManager()
 	: ManagerModule(eSuperMgr_GateServer)
 {

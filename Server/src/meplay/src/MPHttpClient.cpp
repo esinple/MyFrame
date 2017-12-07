@@ -15,7 +15,7 @@ void http_request_done(struct evhttp_request *req, void *arg)
 	auto pHC = (MPHttpClient*)arg;
 	struct evbuffer *evbuf;
 	evbuf = evhttp_request_get_input_buffer(req);
-	int len = evbuffer_get_length(evbuf);
+	int len = (int)evbuffer_get_length(evbuf);
 	auto buff = evbuffer_pullup(evbuf, len);
 	pHC->m_cb((char*)buff, len);
 	evbuffer_drain(evbuf, len);
@@ -39,7 +39,7 @@ MPHttpClient::MPHttpClient(const char * url)
 		MP_ERROR("WSAStartup failed with error: %d\n", err);
 	}
 #endif
-	const char *scheme, *host, *path, *query;
+	const char /**scheme,*/ *host, *path, *query;
 	char uri[256];
 	int port;
 

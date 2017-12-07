@@ -1,11 +1,14 @@
 #include "UserModuleManager.h"
 #include "MPLogger.h"
 #include "MPTimeTester.h"
+#include "GameCommDef.h"
 
 std::vector<int> UserModuleManager::m_vOrder;
 
-UserModuleManager::UserModuleManager(uint32_t nModuleNum, GetUserModuleFuncPtr pFunc)
-	: m_vModules(), m_nModuleNum(nModuleNum), m_pFunc(pFunc)
+#define USER_MODULE_NAME(i) MPModuleFactory::GetInstance()->GetName(eGameUserModule,i)
+
+UserModuleManager::UserModuleManager(uint32_t nModuleNum)
+	: m_vModules(), m_nModuleNum(nModuleNum)
 {
 
 }
@@ -27,10 +30,10 @@ bool UserModuleManager::Awake()
 	m_vModules.resize(m_nModuleNum);
 	for (uint32_t i = 0; i < m_nModuleNum; ++i)
 	{
-		m_vModules[i] = (UserModule*)UserModule::Create(i);
+		m_vModules[i] = (UserModule*)MPModuleFactory::GetInstance()->Create(eGameUserModule,i);
 		if (m_vModules[i] == nullptr)
 		{
-			MP_ERROR("Module Create [%d : %s] Failed!", i, m_pFunc(i));
+			MP_ERROR("Module Create [%d : %s] Failed!", i, USER_MODULE_NAME(i));
 		}
 	}
 	//info test;
@@ -50,10 +53,10 @@ bool UserModuleManager::Awake()
 		auto pModule = m_vModules[index];
 		if (!pModule->UserAwake())
 		{
-			MP_ERROR("Module [%d : %s] Awake Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] Awake Failed!", index, USER_MODULE_NAME(index));
 			return false;
 		}
-		MP_DEBUG("Module [%d : %s] Awake Success!", index, pModule->GetModuleName());
+		MP_DEBUG("Module [%d : %s] Awake Success!", index, USER_MODULE_NAME(index));
 	}
 	for (uint32_t order = 0; order < m_nModuleNum; ++order)
 	{
@@ -61,10 +64,10 @@ bool UserModuleManager::Awake()
 		auto pModule = m_vModules[index];
 		if (!pModule->UserAfterAwake())
 		{
-			MP_ERROR("Module [%d : %s] AfterAwake Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] AfterAwake Failed!", index, USER_MODULE_NAME(index));
 			return false;
 		}
-		MP_DEBUG("Module [%d : %s] AfterAwake Success!", index, pModule->GetModuleName());
+		MP_DEBUG("Module [%d : %s] AfterAwake Success!", index, USER_MODULE_NAME(index));
 	}
 	return true;
 }
@@ -75,11 +78,11 @@ bool UserModuleManager::Execute()
 	{
 		auto pModule = m_vModules[index];
 #ifdef _DEBUG
-		meplay::MPTimeTester tester(pModule->GetModuleName(), 100);
+		meplay::MPTimeTester tester(USER_MODULE_NAME(index), 100);
 #endif
 		if (!m_vModules[index]->UserExecute())
 		{
-			MP_DEBUG("Module [%d : %s] Execute Failed!", index, pModule->GetModuleName());
+			MP_DEBUG("Module [%d : %s] Execute Failed!", index, USER_MODULE_NAME(index));
 			continue;
 		}
 	}
@@ -93,10 +96,10 @@ bool UserModuleManager::ShutDown()
 		auto pModule = m_vModules[index];
 		if (!pModule->UserBeforeShutDown())
 		{
-			MP_ERROR("Module [%d : %s] BeforeShutDown Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] BeforeShutDown Failed!", index, USER_MODULE_NAME(index));
 			return false;
 		}
-		MP_DEBUG("Module [%d : %s] BeforeShutDown Success!", index, pModule->GetModuleName());
+		MP_DEBUG("Module [%d : %s] BeforeShutDown Success!", index, USER_MODULE_NAME(index));
 	}
 	for (uint32_t order = m_nModuleNum; order != 0; --order)
 	{
@@ -104,10 +107,10 @@ bool UserModuleManager::ShutDown()
 		auto pModule = m_vModules[index];
 		if (!pModule->UserShutDown())
 		{
-			MP_ERROR("Module [%d : %s] ShutDown Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] ShutDown Failed!", index, USER_MODULE_NAME(index));
 			return false;
 		}
-		MP_DEBUG("Module [%d : %s] ShutDown Success!", index, pModule->GetModuleName());
+		MP_DEBUG("Module [%d : %s] ShutDown Success!", index, USER_MODULE_NAME(index));
 	}
 	return true;
 }

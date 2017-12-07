@@ -1,8 +1,6 @@
 #include "RocketMQManager.h"
 #include "MPLogger.h"
 
-CPP_STATS_MANAGER_REG(RocketMQManager);
-
 RocketMQManager::RocketMQManager()
 	: ManagerModule(eStatsMgr_Time)
 #ifdef WIN_SYSTEM

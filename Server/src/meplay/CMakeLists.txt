@@ -15,7 +15,7 @@ INCLUDE_DIRECTORIES(
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     ADD_DEFINITIONS(
-        -std=c++17
+        -std=c++1z
         -fsanitize=address
         -fsanitize=leak
         -g
@@ -33,7 +33,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
     SET(LIBRARY_OUTPUT_PATH ../../lib/linux/Debug)
 else()
     ADD_DEFINITIONS(
-        -std=c++17
+        -std=c++1z
         -g
         -rdynamic
         -O3

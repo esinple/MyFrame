@@ -1,7 +1,5 @@
 #include "GameServerManager.h"
 
-CPP_SUPER_MANAGER_REG(GameServerManager);
-
 GameServerManager::GameServerManager()
 	: ManagerModule(eSuperMgr_GameServer)
 {

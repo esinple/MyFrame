@@ -5,6 +5,7 @@ PROJECT(GAMESERVER)
 AUX_SOURCE_DIRECTORY(./ SRC_LIST)
 AUX_SOURCE_DIRECTORY(../base SRC_LIST)
 AUX_SOURCE_DIRECTORY(../netproto SRC_LIST)
+AUX_SOURCE_DIRECTORY(../dbproto SRC_LIST)
 
 SET(EXECUTABLE_OUTPUT_PATH ../../bin)
 
@@ -14,11 +15,12 @@ INCLUDE_DIRECTORIES(
     ../third_party/libevent/
     ../meplay/include/
     ../netproto/
+	../dbproto/
     )
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     ADD_DEFINITIONS(
-        -std=c++17
+        -std=c++1z
         -fsanitize=address
         -fsanitize=leak
         -g
@@ -60,7 +62,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
     ADD_EXECUTABLE(GameServer_Debug ${SRC_LIST})
 else()
     ADD_DEFINITIONS(
-        -std=c++17
+        -std=c++1z
         -g
         -rdynamic
         -O3

@@ -1,8 +1,6 @@
 #include "TimeStampManager.h"
 #include "DBManager.h"
 
-CPP_GAME_MANAGER_REG(TimeStampManager);
-
 TimeStampManager::TimeStampManager() : ManagerModule(eGameMgr_TimeStamp)
 {
 	AddParent(eGameMgr_DBServer);

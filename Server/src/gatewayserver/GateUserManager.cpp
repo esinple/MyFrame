@@ -6,8 +6,6 @@
 #include "UserBase.pb.h"
 #include "MPTCPServer.h"
 
-CPP_GATE_MANAGER_REG(GateUserManager);
-
 GateUserManager::GateUserManager() 
 	: ManagerModule(eGateMgr_GateUser)
 {

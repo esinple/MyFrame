@@ -1,8 +1,6 @@
 #include "SuperServerManager.h"
 #include "MPDefine.pb.h"
 
-CPP_GAME_MANAGER_REG(SuperServerManager)
-
 SuperServerManager::SuperServerManager()
 	: ManagerModule(eGameMgr_SuperServer)
 {

@@ -23,10 +23,11 @@ public:
 private:
 	void checkVerifySuperServer()const;
 private:
-	H_GAME_MANAGER_REG(eGameMgr_SuperServer,SuperServerManager);
 
 	MPMemoryPool<SuperServer> m_SuperServerPool;
 
 	std::map<const uint64_t, SuperServerPtr> m_mSuperServers;
 	std::map<const uint64_t, SuperServerPtr> m_mTempSuperServers;
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_SuperServer, SuperServerManager);

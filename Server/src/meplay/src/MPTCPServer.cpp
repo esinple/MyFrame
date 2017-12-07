@@ -78,7 +78,7 @@ void MPTCPServer::messageCB(const std::shared_ptr<evpp::TCPConn>& pConn, evpp::B
 	{
 		return;
 	}
-	m_MsgCB(GetServerType(), pNetObj->GetRealFD(), pBuffer->data(), pBuffer->length());
+	m_MsgCB(GetServerType(), pNetObj->GetRealFD(), pBuffer->data(), (uint32_t)pBuffer->length());
 	pBuffer->Reset();
 }
 

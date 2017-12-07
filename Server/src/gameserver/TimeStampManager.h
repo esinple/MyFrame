@@ -30,8 +30,8 @@ private:
 	void saveTimeStamp(MPGUID lUserId, uint32_t nMainType, uint32_t nSubType, time_t tTimeStamp);
 	void loadTimeStamp();
 private:
-	H_GAME_MANAGER_REG(eGameMgr_TimeStamp, TimeStampManager);
-
 	typedef std::unordered_map<uint64_t, time_t> TIME_STAMP_MAP;
 	std::unordered_map<uint64_t, TIME_STAMP_MAP> m_mTimeStamps;
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_TimeStamp, TimeStampManager);

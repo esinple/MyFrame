@@ -224,7 +224,7 @@ int DBClient::execQuery(
 			vResult.emplace_back(bsoncxx::to_json(doc.value()));
 		}
 	}
-	return vResult.size();
+	return (int)vResult.size();
 }
 
 void DBClient::CreateIndex(const std::string& col, const std::vector<std::string>& keys, bool unique)
@@ -267,7 +267,7 @@ bool DBClient::loadPB(const std::string& json, google::protobuf::Message& msg)
 			continue;
 		auto& value = itName->value;
 		rapidjson::Value real_name(rapidjson::kStringType);
-		real_name.SetString(name.c_str(), name.size(),real_doc.GetAllocator());
+		real_name.SetString(name.c_str(), (int)name.size(),real_doc.GetAllocator());
 
 		if (value.IsInt())
 		{

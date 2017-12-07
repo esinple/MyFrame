@@ -9,7 +9,7 @@ typedef const char*(*GetUserModuleFuncPtr)(uint32_t);
 class UserModuleManager final
 {
 public:
-	UserModuleManager(uint32_t nModuleNum,GetUserModuleFuncPtr pFunc);
+	UserModuleManager(uint32_t nModuleNum);
 	~UserModuleManager();
 public:
 	bool Awake();

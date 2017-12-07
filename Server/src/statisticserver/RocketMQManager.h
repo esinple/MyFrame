@@ -23,9 +23,10 @@ public:
 	virtual bool ShutDown()override;
 public:
 private:
-	H_STATS_MANAGER_REG(eStatsMgr_RocketMQ,RocketMQManager);
 #ifdef WIN_SYSTEM
 #else
     DefaultMQProducer m_producer;
 #endif
 };
+
+STATS_MANAGER_MODULE_REG(eStatsMgr_RocketMQ, RocketMQManager);

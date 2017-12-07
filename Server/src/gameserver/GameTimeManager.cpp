@@ -1,6 +1,6 @@
 #include "GameTimeManager.h"
 
-CPP_GAME_MANAGER_REG(GameTimeManager);
+//CPP_GAME_MANAGER_REG(GameTimeManager);
 
 GameTimeManager::GameTimeManager()
 	: ManagerModule(eGameMgr_Time)

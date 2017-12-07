@@ -1,8 +1,6 @@
 #include "StatsServerManager.h"
 #include "MPDefine.pb.h"
 
-CPP_GAME_MANAGER_REG(StatsServerManager)
-
 StatsServerManager::StatsServerManager()
 	: ManagerModule(eGameMgr_StatsServer)
 {

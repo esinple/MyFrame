@@ -16,3 +16,5 @@ public:
 private:
 	
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_Mail, MailManager);

@@ -83,10 +83,10 @@ void MPNet::SetServerType(uint8_t nType)
 bool MPNet::SendMsgWithOutHead(const int16_t nMsgID, const char* msg, const uint32_t nLen, const std::list<MPSOCK>& fdList)
 {
 	std::string strOutData;
-    int nAllLen = EnCode(nMsgID, msg, nLen, strOutData);
+    uint32_t nAllLen = EnCode(nMsgID, msg, nLen, strOutData);
     if (nAllLen == nLen + MPMsgHead::MP_Head::MP_HEAD_LENGTH)
     {
-        return SendMsg(strOutData.c_str(), strOutData.length(), fdList);
+        return SendMsg(strOutData.c_str(), (uint32_t)strOutData.length(), fdList);
     }
 
 	return true;
@@ -95,10 +95,10 @@ bool MPNet::SendMsgWithOutHead(const int16_t nMsgID, const char* msg, const uint
 bool MPNet::SendMsgWithOutHead(const int16_t nMsgID, const char* msg, const uint32_t nLen, const MPSOCK nSockIndex)
 {
 	std::string strOutData;
-	int nAllLen = EnCode(nMsgID, msg, nLen, strOutData);
+	uint32_t nAllLen = EnCode(nMsgID, msg, nLen, strOutData);
 	if (nAllLen == nLen + MPMsgHead::MP_Head::MP_HEAD_LENGTH)
 	{
-		return SendMsg(strOutData.c_str(), strOutData.length(), nSockIndex);
+		return SendMsg(strOutData.c_str(), (uint32_t)strOutData.length(), nSockIndex);
 	}
 
 	return true;
@@ -107,7 +107,7 @@ bool MPNet::SendMsgWithOutHead(const int16_t nMsgID, const char* msg, const uint
 bool MPNet::SendMsgToAllWithOutHead(const int16_t nMsgID, const char* msg, const uint32_t nLen)
 {
 	std::string strOutData;
-	int nAllLen = EnCode(nMsgID, msg, nLen, strOutData);
+	uint32_t nAllLen = EnCode(nMsgID, msg, nLen, strOutData);
 	if (nAllLen == nLen + MPMsgHead::MP_Head::MP_HEAD_LENGTH)
 	{
 		SendMsgAll(strOutData.c_str(), (uint32_t)strOutData.length());

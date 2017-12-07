@@ -3,9 +3,17 @@
 #include "SuperManagerModuleDefine.h"
 #include "SuperNetProxy.h"
 #include "MPDefine.pb.h"
+#include "MPModuleFactory.h"
 
-#define H_SUPER_MANAGER_REG(INDEX,SUB) H_AUTO_REGISTER_SUB(INDEX,MPModule,SUB)
-#define CPP_SUPER_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)
+enum eSuperAutoRegisterType
+{
+	eSuperManagerModule = 1,
+	eSuperUserModule = 2,
+
+};
+
+#define SUPER_MANAGER_MODULE_REG(INDEX,SUB) AUTO_REGISTER(eSuperManagerModule,INDEX,SUB)
+#define SUPER_USER_MODULE_REG(INDEX,SUB) AUTO_REGISTER(eSuperUserModule,INDEX,SUB)
 
 #define SUPER_CUR_TIME g_pSuperNetProxy->GetModule<SuperTimeManager>(eSuperMgr_Time)->CurrentTime()
 

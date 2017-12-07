@@ -18,8 +18,8 @@ public:
 	void AddGateServer(uint64_t nSockIndex, const char* ip, int nPort);
 	void DelGateServer(uint64_t nSockIndex);
 private:
-	H_SUPER_MANAGER_REG(eSuperMgr_GateServer,GateServerManager);
-
 	std::map<const uint64_t, GateServerPtr> m_mGateServers;
 
 };
+
+SUPER_MANAGER_MODULE_REG(eSuperMgr_GateServer, GateServerManager);

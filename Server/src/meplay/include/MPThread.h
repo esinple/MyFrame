@@ -32,13 +32,13 @@ namespace meplay {
 	private:
 		const std::string m_sName;
 
+		bool m_bStart;
+
 		bool m_bFinal;
 
 	protected:
 		std::mutex mtx;
 		std::condition_variable cv;
 		std::thread m_thread;
-	private:
-		bool m_bStart;
 	};
 }

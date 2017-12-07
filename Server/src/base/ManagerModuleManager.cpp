@@ -1,9 +1,12 @@
 #include "ManagerModuleManager.h"
 #include "MPLogger.h"
 #include "MPTimeTester.h"
+#include "MPModuleFactory.h"
 
-ManagerModuleManager::ManagerModuleManager(uint32_t nModuleNum)
-	: m_vModules(), m_nModuleNum(nModuleNum)
+#define GET_MODULE_NAME(i) MPModuleFactory::GetInstance()->GetName(m_nFactoryType,i).data()
+
+ManagerModuleManager::ManagerModuleManager(uint32_t nFactoryType, uint32_t nModuleNum)
+	: m_vModules(),m_nFactoryType(nFactoryType), m_nModuleNum(nModuleNum)
 {
 	
 }
@@ -25,10 +28,12 @@ bool ManagerModuleManager::Awake()
 	m_vModules.resize(m_nModuleNum);
 	for (uint32_t i = 0; i < m_nModuleNum; ++i)
 	{
-		m_vModules[i] = (ManagerModule*)ManagerModule::Create(i);
+		//m_vModules[i] = (ManagerModule*)ManagerModule::Create(i);
+		m_vModules[i] = (ManagerModule*)MPModuleFactory::GetInstance()->Create(m_nFactoryType, i);
 		if (m_vModules[i] == nullptr)
 		{
-			MP_ERROR("Module Create [%d : %s] Failed!", i);
+			MP_ERROR("Module Create [%d] Failed!", i);
+			return false;
 		}
 	}
 
@@ -43,10 +48,10 @@ bool ManagerModuleManager::Awake()
 		auto pModule = m_vModules[index];
 		if (!pModule->Awake())
 		{
-			MP_ERROR("Module [%d : %s] Awake Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] Awake Failed!", index, GET_MODULE_NAME(index));
 			return false;
 		}
-		MP_INFO("Module [%d : %s] Awake Success!", index, pModule->GetModuleName());
+		MP_INFO("Module [%d : %s] Awake Success!", index, GET_MODULE_NAME(index));
 	}
 	MP_SYSTEM("AllModule [%d] Awake Success!",m_nModuleNum);
 	for (uint32_t order = 0; order < m_nModuleNum; ++order)
@@ -55,10 +60,10 @@ bool ManagerModuleManager::Awake()
 		auto pModule = m_vModules[index];
 		if (!pModule->AfterAwake())
 		{
-			MP_ERROR("Module [%d : %s] AfterAwake Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] AfterAwake Failed!", index, GET_MODULE_NAME(index));
 			return false;
 		}
-		MP_INFO("Module [%d : %s] AfterAwake Success!", index, pModule->GetModuleName());
+		MP_INFO("Module [%d : %s] AfterAwake Success!", index, GET_MODULE_NAME(index));
 	}
 	MP_SYSTEM("AllModule [%d] AfterAwake Success!", m_nModuleNum);
 	return true;
@@ -70,11 +75,11 @@ bool ManagerModuleManager::Execute()
 	{
 		auto pModule = m_vModules[index];
 #ifdef _DEBUG
-		meplay::MPTimeTester tester(pModule->GetModuleName(),100);
+		meplay::MPTimeTester tester(GET_MODULE_NAME(index),100);
 #endif
 		if (!pModule->Execute())
 		{
-			MP_DEBUG("Module [%d : %s] Execute Failed!", index, pModule->GetModuleName());
+			MP_DEBUG("Module [%d : %s] Execute Failed!", index, GET_MODULE_NAME(index));
 			continue;
 		}
 	}
@@ -93,10 +98,10 @@ bool ManagerModuleManager::ShutDown()
 		auto pModule = m_vModules[index];
 		if (!pModule->BeforeShutDown())
 		{
-			MP_ERROR("Module [%d : %s] BeforeShutDown Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] BeforeShutDown Failed!", index, GET_MODULE_NAME(index));
 			continue;
 		}
-		MP_INFO("Module [%d : %s] BeforeShutDown Success!", index, pModule->GetModuleName());
+		MP_INFO("Module [%d : %s] BeforeShutDown Success!", index, GET_MODULE_NAME(index));
 	}
 	MP_SYSTEM("AllModule [%d] BeforeShutDown Success!", m_nModuleNum);
 	for (uint32_t order = m_nModuleNum ; order != 0; --order)
@@ -105,10 +110,10 @@ bool ManagerModuleManager::ShutDown()
 		auto pModule = m_vModules[index];
 		if (!m_vModules[index]->ShutDown())
 		{
-			MP_ERROR("Module [%d : %s] ShutDown Failed!", index, pModule->GetModuleName());
+			MP_ERROR("Module [%d : %s] ShutDown Failed!", index, GET_MODULE_NAME(index));
 			continue;
 		}
-		MP_INFO("Module [%d : %s] ShutDown Success!", index, pModule->GetModuleName());
+		MP_INFO("Module [%d : %s] ShutDown Success!", index, GET_MODULE_NAME(index));
 	}
 	MP_SYSTEM("AllModule [%d] ShutDown Success!", m_nModuleNum);
 	return true;

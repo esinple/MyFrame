@@ -79,7 +79,7 @@ std::string Client::DoRequest(const std::string& data, uint32_t timeout_ms) {
     size_t buf_size = 1472; // The UDP max payload size
     MessagePtr msg(new Message(sockfd_, buf_size));
     socklen_t addrLen = sizeof(struct sockaddr);
-    int readn = ::recvfrom(sockfd_, msg->WriteBegin(), buf_size, 0, msg->mutable_remote_addr(), &addrLen);
+    int readn = ::recvfrom(sockfd_, msg->WriteBegin(), (int)buf_size, 0, msg->mutable_remote_addr(), &addrLen);
     int err = errno;
     if (readn >= 0) {
         msg->WriteBytes(readn);
@@ -102,14 +102,14 @@ std::string Client::DoRequest(const std::string& remote_ip, int port, const std:
 
 bool Client::Send(const char* msg, size_t len) {
     if (connected_) {
-        int sentn = ::send(sockfd(), msg, len, 0);
-        return sentn == len;
+        int sentn = ::send(sockfd(), msg, (int)len, 0);
+        return sentn == (int)len;
     }
 
     struct sockaddr* addr = reinterpret_cast<struct sockaddr*>(&remote_addr_);
     socklen_t addrlen = sizeof(*addr);
     int sentn = ::sendto(sockfd(),
-                         msg, len, 0,
+                         msg, (int)len, 0,
                          addr,
                          addrlen);
     return sentn > 0;

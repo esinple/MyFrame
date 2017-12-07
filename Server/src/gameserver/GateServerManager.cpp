@@ -5,8 +5,6 @@
 #include "MPLogger.h"
 #include "GameUserManager.h"
 
-CPP_GAME_MANAGER_REG(GateServerManager);
-
 GateServerManager::GateServerManager()
 	: ManagerModule(eGameMgr_GateServer)
 {

@@ -14,5 +14,6 @@ public:
 	virtual bool ShutDown()override;
 public:
 private:
-	H_SUPER_MANAGER_REG(eSuperMgr_CenterServer,CenterServerManager);
 };
+
+SUPER_MANAGER_MODULE_REG(eSuperMgr_CenterServer, CenterServerManager);

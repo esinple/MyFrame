@@ -5,7 +5,7 @@
 class ManagerModuleManager final
 {
 public:
-	ManagerModuleManager(uint32_t nModuleNum);
+	ManagerModuleManager(uint32_t nFactoryType,uint32_t nModuleNum);
 	~ManagerModuleManager();
 public:
 	bool Awake();
@@ -31,6 +31,7 @@ public:
 private:
 private:
 	std::vector<ManagerModule*> m_vModules;
+	uint32_t					m_nFactoryType;
 	uint32_t					m_nModuleNum;
 	std::vector<int>			m_vOrder;
 };

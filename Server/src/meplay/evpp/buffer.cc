@@ -25,7 +25,7 @@ ssize_t Buffer::ReadFromFD(evpp_socket_t fd, int* savedErrno) {
     struct iovec vec[2];
     const size_t writable = WritableBytes();
     vec[0].iov_base = begin() + write_index_;
-    vec[0].iov_len = writable;
+	vec[0].iov_len = (unsigned long)writable;
     vec[1].iov_base = extrabuf;
     vec[1].iov_len = sizeof extrabuf;
     // when there is enough space in this buffer, don't read into extrabuf.

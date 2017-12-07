@@ -8,8 +8,6 @@
 #include "UserBase.h"
 #include "GameTimeManager.h"
 
-CPP_GAME_MANAGER_REG(GameUserManager)
-
 GameUserManager::GameUserManager()
 	: ManagerModule(eGameMgr_GameUser),ModuleTimeTick()
 {

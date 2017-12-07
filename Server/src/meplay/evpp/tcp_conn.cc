@@ -130,7 +130,7 @@ void TCPConn::SendInLoop(const void* data, size_t len) {
 
     // if no data in output queue, writing directly
     if (!chan_->IsWritable() && output_buffer_.length() == 0) {
-        nwritten = ::send(chan_->fd(), static_cast<const char*>(data), len, MSG_NOSIGNAL);
+        nwritten = ::send(chan_->fd(), static_cast<const char*>(data), static_cast<int>(len), MSG_NOSIGNAL);
         if (nwritten >= 0) {
             remaining = len - nwritten;
             if (remaining == 0 && write_complete_fn_) {
@@ -213,7 +213,7 @@ void TCPConn::HandleWrite() {
     assert(loop_->IsInLoopThread());
     assert(!chan_->attached() || chan_->IsWritable());
 
-    ssize_t n = ::send(fd_, output_buffer_.data(), output_buffer_.length(), MSG_NOSIGNAL);
+    ssize_t n = ::send(fd_, output_buffer_.data(), static_cast<int>(output_buffer_.length()), MSG_NOSIGNAL);
     if (n > 0) {
         output_buffer_.Next(n);
 

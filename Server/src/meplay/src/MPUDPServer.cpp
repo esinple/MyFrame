@@ -10,7 +10,7 @@ using namespace meplay;
 using namespace evpp;
 
 MPUDPServer::MPUDPServer(const std::string& sServerName, uint8_t nServerType, int nPort, uint8_t nThreadCount)
-	: m_nPort(nPort),MPThread(sServerName + "_UdpService")
+	: MPThread(sServerName + "_UdpService"), m_nPort(nPort)
 {
 	//m_pUdpServer = std::make_shared<evpp::udp::Server>();
 

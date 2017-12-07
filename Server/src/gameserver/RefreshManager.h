@@ -13,5 +13,6 @@ public:
 	virtual bool BeforeShutDown()override;
 	virtual bool ShutDown()override;
 private:
-	H_GAME_MANAGER_REG(eGameMgr_Refresh,RefreshManager);
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_Refresh, RefreshManager);

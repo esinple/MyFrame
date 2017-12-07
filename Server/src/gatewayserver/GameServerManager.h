@@ -20,10 +20,10 @@ public:
 	void DelGameServer(uint64_t nSockIndex);
 
 private:
-	H_GATE_MANAGER_REG(eGateMgr_GameServer,GameServerManager);
-
 	MPMemoryPool<GameServer> m_GameServerPool;
 
 	std::map<const uint64_t, GameServerPtr> m_mGameServers;
 	std::map<const uint64_t, GameServerPtr> m_mTempGameServers;
 };
+
+GATE_MANAGER_MODULE_REG(eGateMgr_GameServer, GameServerManager);

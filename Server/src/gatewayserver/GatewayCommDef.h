@@ -3,9 +3,18 @@
 #include "GatewayManagerModuleDefine.h"
 #include "GatewayNetProxy.h"
 #include "MPDefine.pb.h"
+#include "MPModuleFactory.h"
 
-#define H_GATE_MANAGER_REG(INDEX,SUB) H_AUTO_REGISTER_SUB(INDEX,MPModule,SUB)
-#define CPP_GATE_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)
+
+enum eGateAutoRegisterType
+{
+	eGateManagerModule = 1,
+	eGateUserModule = 2,
+
+};
+
+#define GATE_MANAGER_MODULE_REG(INDEX,SUB) AUTO_REGISTER(eGateManagerModule,INDEX,SUB)
+#define GATE_USER_MODULE_REG(INDEX,SUB) AUTO_REGISTER(eGateUserModule,INDEX,SUB)
 
 #define GATE_CUR_TIME g_pGatewayNetProxy->GetModule<GateTimeManager>(eGateMgr_Time)->CurrentTime()
 

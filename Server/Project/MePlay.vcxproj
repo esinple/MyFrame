@@ -217,6 +217,7 @@
     <ClInclude Include="..\src\meplay\include\MPDump.h" />
     <ClInclude Include="..\src\meplay\include\MPGUID.h" />
     <ClInclude Include="..\src\meplay\include\MPHttpClient.h" />
+    <ClInclude Include="..\src\meplay\include\MPModuleFactory.h" />
     <ClInclude Include="..\src\meplay\include\MPNet.h" />
     <ClInclude Include="..\src\meplay\include\MPLogger.h" />
     <ClInclude Include="..\src\meplay\include\MPMemoryPool.h" />
@@ -273,6 +274,7 @@
     <ClCompile Include="..\src\meplay\src\MPLogger.cpp" />
     <ClCompile Include="..\src\meplay\src\MPLogo.cpp" />
     <ClCompile Include="..\src\meplay\src\MPModule.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPModuleFactory.cpp" />
     <ClCompile Include="..\src\meplay\src\MPNet.cpp" />
     <ClCompile Include="..\src\meplay\src\MPNetObject.cpp" />
     <ClCompile Include="..\src\meplay\src\MPRandom.cpp" />

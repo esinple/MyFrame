@@ -4,7 +4,7 @@
 #include "Gate2Game.pb.h"
 
 GameUser::GameUser(const MPGUID uid, uint64_t nUserSock, uint64_t nGateSock)
-	: m_UserModules(eGameUser_End, GetUserModuleNameFunc)
+	: m_UserModules(eGameUser_End)
 {
 	ReuseInit(uid, nUserSock, nGateSock);
 }
@@ -48,7 +48,7 @@ void GameUser::Send(uint32_t nMsgId,google::protobuf::Message& msg)
 	auto sBaseData = base.SerializeAsString();
 
 	std::string strOutData;
-	MPNet::EnCode(nMsgId, sBaseData.c_str(), sBaseData.size(), strOutData);
+	MPNet::EnCode(nMsgId, sBaseData.c_str(), (uint32_t)sBaseData.size(), strOutData);
 
 	MPMsg::GateUserWrapper_Game2Gate outMsg;
 	outMsg.set_user_id(GetUID());

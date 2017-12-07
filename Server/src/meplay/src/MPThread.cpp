@@ -15,7 +15,7 @@ void MPThread::MyFunc(MPThread* pMe)
 	MP_SYSTEM("New Thread [%s] Run Over!", pMe->m_sName.c_str());
 }
 MPThread::MPThread(const std::string& name)
-	:m_bStart(false), m_sName(name), m_bFinal(false), m_thread(MyFunc, this)
+	:m_sName(name), m_bStart(false), m_bFinal(false), m_thread(MyFunc, this)
 {
 	MP_SYSTEM("New Thread [%s] Create!",m_sName.c_str());
 }
@@ -25,7 +25,7 @@ MPThread::~MPThread()
 }
 
 MPThread::MPThread(MPThread&& t)
-	: m_bStart(t.m_bStart), m_sName(t.m_sName), m_bFinal(std::move(t.m_bFinal)), m_thread(std::move(t.m_thread))
+	: m_sName(t.m_sName), m_bStart(t.m_bStart), m_bFinal(std::move(t.m_bFinal)), m_thread(std::move(t.m_thread))
 {
 }
 

@@ -79,7 +79,7 @@ int EventDel(struct event* ev) {
 
 int GetActiveEventCount() {
 #ifdef H_DEBUG_MODE
-    return evmap.size();
+    return (int)evmap.size();
 #else
     return 0;
 #endif

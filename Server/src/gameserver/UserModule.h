@@ -1,4 +1,5 @@
 #pragma once
+#include "GameCommDef.h"
 #include "UserModuleDefine.h"
 #include "MPModule.h"
 #include "ModuleRely.h"

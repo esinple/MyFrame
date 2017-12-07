@@ -1,7 +1,5 @@
 #include "GameServerManager.h"
 
-CPP_GATE_MANAGER_REG(GameServerManager);
-
 GameServerManager::GameServerManager()
 	: ManagerModule(eGateMgr_GameServer)
 {

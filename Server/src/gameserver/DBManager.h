@@ -26,8 +26,9 @@ public:
 private:
 	void registerDBKeys();
 private:
-	H_GAME_MANAGER_REG(eGameMgr_DBServer, DBManager);
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_DBServer, DBManager);
 
 #define g_pDBMgr DBClientMgr::GetInstance()->GetConn(eGameDB_Normal)
 #define SAVE2DB(filter,msg) g_pGameNetProxy->GetModule<DBManager>(eGameMgr_DBServer)->SaveToDB(filter,msg);

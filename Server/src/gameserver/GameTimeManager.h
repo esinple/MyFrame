@@ -19,12 +19,14 @@ public:
 	inline const meplay::MPTime& CurrentTime()const { return m_CurTime; };
 	inline TimeManager& GetTimeRegister() { return m_TimeMgr; };
 private:
-	H_GAME_MANAGER_REG(eGameMgr_Time, GameTimeManager);
 
 	meplay::MPTime m_CurTime;
 
 	TimeManager m_TimeMgr;
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_Time, GameTimeManager);
+//DECLEAR_AUTO_REGISTER_SUB1();
 
 //Time
 #define GAME_CUR_TIME g_pGameNetProxy->GetModule<GameTimeManager>(eGameMgr_Time)->CurrentTime()

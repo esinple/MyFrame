@@ -1,7 +1,5 @@
 #include "CenterServerManager.h"
 
-CPP_SUPER_MANAGER_REG(CenterServerManager);
-
 CenterServerManager::CenterServerManager()
 	: ManagerModule(eSuperMgr_CenterServer)
 {

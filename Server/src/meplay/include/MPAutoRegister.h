@@ -57,6 +57,27 @@ public: \
 	} \
 	static struct ClassSub##Register m_t##ClassSub##Register;
 
+// 声明子类
+#define DECLEAR_AUTO_REGISTER_SUB1(Index,BaseClass,ClassSub) \
+	struct ClassSub##Register /* 用于启动注册的结构体 */ \
+	{ \
+		ClassSub##Register() /*构造函数中注册子类*/ \
+		{ \
+			static bool bRegistered = false;  \
+			if(!bRegistered) \
+			{ \
+				meplay::MPModule::Register(Index, #ClassSub,ClassSub::Create); \
+				bRegistered = true; \
+			} \
+		} \
+	} ; \
+	static MPModule* Create() \
+	{ \
+		return (BaseClass*)(new ClassSub()); \
+	} \
+	static struct ClassSub##Register m_t##ClassSub##Register;
+
+
 // 实现子类
 #define IMPLEMENT_AUTO_REGISTER_SUB(ClassSub) \
 	static ClassSub::ClassSub##Register m_t##ClassSub##Register;

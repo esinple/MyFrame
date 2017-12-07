@@ -3,9 +3,17 @@
 #include "GameManagerModuleDefine.h"
 #include "GameNetProxy.h"
 #include "UserErrCode.pb.h"
+#include "MPModuleFactory.h"
 
-#define H_GAME_MANAGER_REG(INDEX,SUB) H_AUTO_REGISTER_SUB(INDEX,MPModule,SUB)
-#define CPP_GAME_MANAGER_REG(SUB) CPP_AUTO_REGISTER_SUB(SUB)
+enum eGameAutoRegisterType
+{
+	eGameManagerModule	= 1,
+	eGameUserModule		= 2,
+
+};
+
+#define GAME_MANAGER_MODULE_REG(INDEX,SUB) AUTO_REGISTER(eGameManagerModule,INDEX,SUB)
+#define GAME_USER_MODULE_REG(INDEX,SUB) AUTO_REGISTER(eGameUserModule,INDEX,SUB)
 
 #define REGISTER_GATE(CLASS,MSG,CALLBACK) g_pGameNetProxy->AddReceiveCallBack(MP_ST_GATE,CLASS,MSG,&CALLBACK);
 #define REGISTER_SUPER(CLASS,MSG,CALLBACK) g_pGameNetProxy->AddReceiveCallBack(MP_ST_SUPER,CLASS,MSG,&CALLBACK);

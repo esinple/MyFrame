@@ -1,8 +1,6 @@
 #include "SuperServerManager.h"
 #include "MPDefine.pb.h"
 
-CPP_GATE_MANAGER_REG(SuperServerManager)
-
 SuperServerManager::SuperServerManager()
 	: ManagerModule(eGateMgr_SuperServer)
 {

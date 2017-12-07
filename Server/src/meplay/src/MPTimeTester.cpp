@@ -17,7 +17,7 @@ MPTimeTester::~MPTimeTester()
 void MPTimeTester::Show(uint64_t nMinDelay)const
 {
 	std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
-	auto nDelay = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - m_timepoint).count();
+	uint64_t nDelay = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - m_timepoint).count();
 	if (nDelay > nMinDelay)
 	{
 		MP_WARN("[%s] used %d milliseconds!", m_sName.data(), nDelay);

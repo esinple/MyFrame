@@ -11,7 +11,7 @@ MP_SINGLETON_IMPLEMENT(GatewayNetProxy);
 
 
 GatewayNetProxy::GatewayNetProxy() 
-	: NetProxy(100),m_Mgrs(eGateMgr_End)
+	: NetProxy(100),m_Mgrs(eGateManagerModule,eGateMgr_End)
 {
 }
 

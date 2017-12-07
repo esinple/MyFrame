@@ -71,7 +71,6 @@ private:
 	int loadGameUser(GameUserPtr pGameUser);
 	void saveGameUserLogon(GameUserPtr pGameUser);
 private:
-	H_GAME_MANAGER_REG(eGameMgr_GameUser,GameUserManager);
 
 	std::map<uint32_t, USER_CB_FUNCTOR_PTR> m_mUserCBs;
 
@@ -80,3 +79,5 @@ private:
 	std::unordered_map<MPGUID, GameUserPtr> m_mGameUsers;
 
 };
+
+GAME_MANAGER_MODULE_REG(eGameMgr_GameUser, GameUserManager);

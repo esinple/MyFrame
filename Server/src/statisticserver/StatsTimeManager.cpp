@@ -1,7 +1,5 @@
 #include "StatsTimeManager.h"
 
-CPP_STATS_MANAGER_REG(StatsTimeManager);
-
 StatsTimeManager::StatsTimeManager()
 	: ManagerModule(eStatsMgr_Time)
 {

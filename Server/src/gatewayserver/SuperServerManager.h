@@ -23,8 +23,6 @@ public:
 private:
 	void checkVerifySuperServer();
 private:
-	H_GATE_MANAGER_REG(eGateMgr_SuperServer,SuperServerManager);
-
 	MPMemoryPool<SuperServer> m_SuperServerPool;
 
 	std::map<const uint64_t, SuperServerPtr> m_mSuperServers;
@@ -32,3 +30,5 @@ private:
 
 	std::mutex mtx;
 };
+
+GATE_MANAGER_MODULE_REG(eGateMgr_SuperServer, SuperServerManager)
