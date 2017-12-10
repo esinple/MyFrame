@@ -34,8 +34,5 @@ namespace meplay {
 		std::shared_ptr<evpp::udp::Server> m_pUdpServer;
 		std::shared_ptr<evpp::EventLoop> m_pEventLoop;
 		std::shared_ptr<evpp::EventLoopThreadPool> m_pEventLoopPool;
-		NET_TYPE_RECEIVE_FUNCTOR m_RecvCB;
-		NET_TYPE_EVENT_FUNCTOR m_EventCB;
-
 	};
 }

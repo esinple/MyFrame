@@ -41,28 +41,12 @@
 #pragma pack(push, 1)
 
 namespace meplay {
-	typedef std::function<void(const uint8_t nType, const MPSOCK nSockIndex, const int nMsgID, const char* msg, const uint32_t nLen)> NET_TYPE_RECEIVE_FUNCTOR;
-	typedef std::shared_ptr<NET_TYPE_RECEIVE_FUNCTOR> NET_TYPE_RECEIVE_FUNCTOR_PTR;
-
-	typedef std::function<void(const uint8_t nType, const MPSOCK nSockIndex, const MP_NET_EVENT nEvent, MPNet* pNet)> NET_TYPE_EVENT_FUNCTOR;
-	typedef std::shared_ptr<NET_TYPE_EVENT_FUNCTOR> NET_TYPE_EVENT_FUNCTOR_PTR;
-
 	typedef std::function<void(const uint8_t nType, const MPSOCK nSockIndex)> NET_CONNECT_FUNCTOR;
 	typedef std::shared_ptr<NET_CONNECT_FUNCTOR> NET_CONNECT_FUNCTOR_PTR;
 	typedef std::function<void(const uint8_t nType, const MPSOCK nSockIndex)> NET_DISCONNECT_FUNCTOR;
 	typedef std::shared_ptr<NET_DISCONNECT_FUNCTOR> NET_DISCONNECT_FUNCTOR_PTR;
 	typedef std::function<void(const uint8_t nType, const MPSOCK nSockIndex, const char* msg, const uint32_t nLen)> NET_TYPE_DATA_FUNCTOR;
 	typedef std::shared_ptr<NET_TYPE_DATA_FUNCTOR> NET_TYPE_DATA_FUNCTOR_PTR;
-
-	class MPNetBase;
-	/*typedef std::function<void(const MPSOCK nSockIndex, const int nMsgID, const char* msg, const uint32_t nLen)> NET_RECEIVE_FUNCTOR;
-	typedef std::shared_ptr<NET_RECEIVE_FUNCTOR> NET_RECEIVE_FUNCTOR_PTR;
-
-	typedef std::function<void(const MPSOCK nSockIndex, const MP_NET_EVENT nEvent, MPNetBase* pNet)> NET_EVENT_FUNCTOR;
-	typedef std::shared_ptr<NET_EVENT_FUNCTOR> NET_EVENT_FUNCTOR_PTR;
-
-	typedef std::function<void(int severity, const char* msg)> NET_EVENT_LOG_FUNCTOR;
-	typedef std::shared_ptr<NET_EVENT_LOG_FUNCTOR> NET_EVENT_LOG_FUNCTOR_PTR;*/
 
 	class MPNetBase
 	{

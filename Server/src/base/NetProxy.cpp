@@ -103,7 +103,6 @@ bool NetProxy::AddTCPServerModule(uint8_t nType, const uint32_t nMaxClient, cons
 	{
 
 		pNet = std::shared_ptr<MPTCPServer>(new MPTCPServer("NetProxy", nType, this, &NetProxy::OnClientConnected, &NetProxy::OnClientDisconnect, &NetProxy::OnMsgCB));
-		//pNet = std::make_shared<MPNetServer>(nType,this,&NetProxy::OnRecieveMessage,&NetProxy::OnSocketClientEvent);
 		if (pNet->InitializationAsServer(ip, nMaxClient, nPort, nThreadCount) < 0)
 		{
 			MP_ERROR("Init ServerNetModule Error![%d][MaxClient : %d][Port : %d]", nType, nMaxClient, nPort);
@@ -147,7 +146,6 @@ bool NetProxy::AddUDPServerModule(uint8_t nType, const uint16_t nPort, const uin
 	{
 
 		pNet = std::shared_ptr<MPTCPServer>(new MPTCPServer("NetProxy", nType, this, &NetProxy::OnClientConnected, &NetProxy::OnClientDisconnect, &NetProxy::OnMsgCB));
-		//pNet = std::make_shared<MPNetServer>(nType,this,&NetProxy::OnRecieveMessage,&NetProxy::OnSocketClientEvent);
 		if (pNet->InitializationAsServer(0/*nMaxClient*/, nPort, nThreadCount) < 0)
 		{
 			MP_ERROR("Init ServerNetModule Error![%d][MaxClient : %d][Port : %d]", nType, 0/*nMaxClient*/, nPort);
@@ -200,30 +198,6 @@ void NetProxy::OnRecieveMessage(const uint8_t nType,const MPSOCK nSockIndex, con
 
 	}
 	
-}
-
-void NetProxy::OnSocketClientEvent(const uint8_t nType,const MPSOCK nSockIndex, const MP_NET_EVENT eEvent, MPNet* pNet)
-{
-	if (eEvent & MP_NET_EVENT_EOF)
-	{
-		MP_DEBUG("fd [%d][%lld] MP_NET_EVENT_EOF!Connection closed", nType,nSockIndex);
-		OnClientDisconnect(nType,nSockIndex);
-	}
-	else if (eEvent & MP_NET_EVENT_ERROR)
-	{
-		MP_DEBUG("fd [%d][%lld] MP_NET_EVENT_ERROR!Got an error on the connection", nType,nSockIndex);
-		OnClientDisconnect(nType,nSockIndex);
-	}
-	else if (eEvent & MP_NET_EVENT_TIMEOUT)
-	{
-		MP_DEBUG("fd [%d][%lld] MP_NET_EVENT_TIMEOUT!Got an error on the connection", nType,nSockIndex);
-		OnClientDisconnect(nType,nSockIndex);
-	}
-	else  if (eEvent == MP_NET_EVENT_CONNECTED)
-	{
-		MP_DEBUG("fd [%d][%lld] MP_NET_EVENT_CONNECTED! connectioned success!", nType,nSockIndex);
-		OnClientConnected(nType, nSockIndex);
-	}
 }
 
 void NetProxy::OnMsgCB(const uint8_t nType, const MPSOCK nSockIndex, const char * msg, const uint32_t nLen)

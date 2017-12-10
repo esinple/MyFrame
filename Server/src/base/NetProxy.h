@@ -61,7 +61,6 @@ public:
 
 	void OnRecieveMessage(const uint8_t nType,const MPSOCK nSockIndex, const int nMsgID, const char * msg, const uint32_t nLen);
 	void InvalidMessage(const uint8_t nType,const MPSOCK nSockIndex, const int nMsgID, const char * msg, const uint32_t nLen);
-	void OnSocketClientEvent(const uint8_t nType,const MPSOCK nSockIndex, const MP_NET_EVENT eEvent, MPNet* pNet);
 
 	void OnMsgCB(const uint8_t nType,const MPSOCK nSockIndex, const char * msg, const uint32_t nLen);
 
