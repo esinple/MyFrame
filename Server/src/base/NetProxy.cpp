@@ -166,7 +166,6 @@ bool NetProxy::AddUDPServerModule(uint8_t nType, const uint16_t nPort, const uin
 
 void NetProxy::InvalidMessage(const uint8_t nType, const MPSOCK nSockIndex, const int nMsgID, const char * msg, const uint32_t nLen)
 {
-	//printf("NFNet || unMsgID=%d\n", nMsgID);
 	MP_ERROR("Unknown Message !Type : %d , Sock : %lld ,MessageID: %d , Len : %d", nType, nSockIndex, nMsgID, nLen);
 }
 void NetProxy::OnRecieveMessage(const uint8_t nType,const MPSOCK nSockIndex, const int nMsgID, const char * msg, const uint32_t nLen)

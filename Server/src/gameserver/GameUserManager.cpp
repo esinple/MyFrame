@@ -27,13 +27,13 @@ bool GameUserManager::Awake()
 }
 bool GameUserManager::AfterAwake()
 {
-	REGISTER_TIME_EVENT
-	(eTET_SEC_INTERVAL, 1, GAME_CUR_TIME, []() 
-	{
-		std::cout << "test register" << std::endl;
-	});
+	//REGISTER_TIME_EVENT
+	//(eTET_SEC_INTERVAL, 1, GAME_CUR_TIME, []() 
+	//{
+	//	//std::cout << "test register" << std::endl;
+	//});
 
-	REGISTER_TIME_EVENT(eTET_SEC_INTERVAL, 1, GAME_CUR_TIME, this, &GameUserManager::Test);
+	//REGISTER_TIME_EVENT(eTET_SEC_INTERVAL, 1, GAME_CUR_TIME, this, &GameUserManager::Test);
 	return true;
 }
 bool GameUserManager::Execute()
@@ -280,9 +280,4 @@ void GameUserManager::KickAllByGateSock(const uint64_t nGateSock)
 	{
 		GameUserLogout(uid);
 	}
-}
-
-void GameUserManager::Test()
-{
-	std::cout << "TestFunc!" << std::endl;
 }

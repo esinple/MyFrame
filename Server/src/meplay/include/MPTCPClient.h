@@ -53,10 +53,7 @@ namespace meplay {
 		int m_nThreadCount;
 		const std::string m_sServiceName;
 		std::shared_ptr<evpp::EventLoop> m_pEventLoop;
-		//evpp::EventLoop* m_pEventLoop;
 		std::list<std::shared_ptr<evpp::TCPClient>> m_vWaitClients;
-		//std::list<evpp::TCPClient*> m_vWaitClients;
-		//std::unordered_map<MPSOCK,std::shared_ptr<evpp::TCPClient>> m_pTcpClients;
 
 		NET_CONNECT_FUNCTOR m_ConnectCB;
 		NET_DISCONNECT_FUNCTOR m_DisConnectCB;

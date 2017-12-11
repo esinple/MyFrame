@@ -11,6 +11,7 @@ DBManager::~DBManager()
 
 bool DBManager::Awake()
 {
+	registerDBKeys();
 	//config maybe?
 	if (!DBClientMgr::GetInstance()->Connect(eGameDB_Normal, "172.24.3.89", 27017, "ajiang_test"))
 	{

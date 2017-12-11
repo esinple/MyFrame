@@ -46,7 +46,6 @@ public:
 
 	void KickAllByGateSock(const uint64_t nGateSock);
 
-	void Test();
 private:
 	void addGameUser(GameUserPtr pGameUser);
 	void delGameUser(const MPGUID uid);
@@ -70,6 +69,7 @@ private:
 
 	int loadGameUser(GameUserPtr pGameUser);
 	void saveGameUserLogon(GameUserPtr pGameUser);
+
 private:
 
 	std::map<uint32_t, USER_CB_FUNCTOR_PTR> m_mUserCBs;

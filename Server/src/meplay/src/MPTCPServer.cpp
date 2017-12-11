@@ -40,10 +40,13 @@ bool MPTCPServer::Execute()
 
 void MPTCPServer::Run()
 {
+	MP_DEBUG("MPTCPClient Start Run!");
 	m_pEventLoop->Run();
-	while(!IsThreadFinal())
+	MP_DEBUG("MPTCPClient End Run!");
+	while (!IsThreadFinal())
 	{
 	}
+	MP_DEBUG("MPTCPClient Run Over!");
 }
 
 int MPTCPServer::InitializationAsClient(const char* strIP, const unsigned short nPort, bool bAutoReconnect, const uint32_t milliseconds)

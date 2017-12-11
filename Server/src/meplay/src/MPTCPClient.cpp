@@ -16,16 +16,23 @@ MPTCPClient::~MPTCPClient()
 bool MPTCPClient::Execute()
 {
 	MPThread::ThreadStart();
+	if (0)
+	{
+		Final();
+	}
 	
 	return true;
 }
 
 void MPTCPClient::Run()
 {
+	MP_DEBUG("MPTCPClient Start Run!");
 	m_pEventLoop->Run();
+	MP_DEBUG("MPTCPClient End Run!");
 	while (!IsThreadFinal())
 	{
 	}
+	MP_DEBUG("MPTCPClient Run Over!");
 }
 
 void MPTCPClient::connectCB(const std::shared_ptr<evpp::TCPConn>& pConn)
@@ -92,6 +99,9 @@ int MPTCPClient::InitializationAsClient(const char* strIP, const unsigned short 
 	pClient->SetMessageCallback(std::bind(&MPTCPClient::messageCB, this, std::placeholders::_1, std::placeholders::_2));
 
 	pClient->Connect();
+	pClient->set_auto_reconnect(bAutoReconnect);
+	pClient->set_reconnect_interval(Duration(milliseconds/1000.0f));
+
 	m_vWaitClients.emplace_back(pClient);
 
 	//auto pNetObject = std::make_shared<MPNetObject>(pClient);
@@ -120,6 +130,7 @@ bool MPTCPClient::Final()
 	//auto vWaitClients = m_vWaitClients;
 	for (auto& pWaitObj : m_vWaitClients)
 	{
+		pWaitObj->set_auto_reconnect(false);
 		pWaitObj->Disconnect();
 		/*std::unique_lock<std::mutex> lck(mtx);
 		cv.wait(lck);*/
