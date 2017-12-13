@@ -25,10 +25,10 @@ namespace meplay
 		bool operator==(const MPTime&)const;
 		bool operator!=(const MPTime&)const;
 
-		MPTime operator+(time_t sec)const;
-		MPTime& operator+=(time_t sec);
-		MPTime operator-(time_t sec)const;
-		MPTime& operator-=(time_t sec);
+		MPTime operator+(const time_t sec)const;
+		MPTime& operator+=(const time_t sec);
+		MPTime operator-(const time_t sec)const;
+		MPTime& operator-=(const time_t sec);
 
 		MPTime& operator=(const MPTime&);
 

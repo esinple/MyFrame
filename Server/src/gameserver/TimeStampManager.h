@@ -4,6 +4,7 @@
 
 enum eTS_MainType : uint32_t
 {
+	eTS_UserModuleRefresh	= 100001,
 };
 
 enum eTS_SubType : uint32_t

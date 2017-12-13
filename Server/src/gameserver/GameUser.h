@@ -25,31 +25,31 @@ public:
 
 	inline void SetLogoutTime(const meplay::MPTime& now) { m_LogoutTime = now; }
 	inline const meplay::MPTime& GetLogoutTime()const { return m_LogoutTime; }
+
+	inline void SetUID(const MPGUID uid) { m_uid = uid; }
+	inline MPGUID GetUID()const { return m_uid; }
 public:
 	void ReuseInit(const MPGUID uid, uint64_t nUserSock, uint64_t nGateSock);
 	void Clear();
 
-	MPGUID GetUID()const;
 	uint64_t GetUserSock()const;
 	uint64_t GetGateSock()const;
 
 	void Send(uint32_t nMsgId, google::protobuf::Message& msg);
 
 	template<typename T>
-	T* GetModule(uint32_t nType)
-	{
-		return m_UserModules.GetModule<T>(nType);
-	}
+	T* GetModule(uint32_t nType) { return m_UserModules.GetModule<T>(nType); }
 
 	template<typename T>
-	const T* GetModule(uint32_t nType)const
-	{
-		return m_UserModules.GetModule<T>(nType);
-	}
+	const T* GetModule(uint32_t nType)const { return m_UserModules.GetModule<T>(nType); }
 
-	UserModuleManager& GetAllModules(){ return m_UserModules;}
+	UserModuleManager& GetUserModuleMgr();
+
+	std::vector<UserModule*>& GetAllModules();
 
 	void LoadFromDB();
+
+	void RefreshModule(uint32_t nModuleIndex);
 private:
 	MPGUID m_uid;
 	uint64_t m_nUserSock;

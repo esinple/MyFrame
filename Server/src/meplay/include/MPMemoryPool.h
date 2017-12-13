@@ -4,6 +4,7 @@
 #include <memory>
 #include <functional>
 #include <stdint.h>
+#include <mutex>
 
 template<typename T>
 class MPMemoryPool final
@@ -32,6 +33,7 @@ public:
 
 	void DelMe(T* pb)
 	{
+		std::lock_guard<std::mutex> lck(mtx);
 		m_objMemoryPool.emplace_back(pb);
 	}
 private:
@@ -46,13 +48,15 @@ private:
 		}
 		else
 		{
+			std::lock_guard<std::mutex> lck(mtx);
 			pRet = m_objMemoryPool.back();
 			m_objMemoryPool.pop_back();
+			((T*)pRet)->Clear();
 			pRet->ReuseInit(static_cast<Args&>(args)...);
 		}
-		((T*)pRet)->Clear();
 		return pRet;
 	}
 private:
 	std::list<T*> m_objMemoryPool;
+	std::mutex mtx;
 };

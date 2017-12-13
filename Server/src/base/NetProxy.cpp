@@ -45,16 +45,61 @@ void NetProxy::Start()
 
 void NetProxy::NetRun()
 {
+	//Real Recv
+	auto pRecvMsg = m_Buffers.GetRecvMsg();
+	while (pRecvMsg != nullptr)
+	{
+		for (auto& nSockIndex : pRecvMsg->m_vSockIndex)
+		{
+			OnRecieveMessage(
+				pRecvMsg->m_nNetType,
+				nSockIndex,
+				pRecvMsg->m_nMsgId,
+				(const char *)(&pRecvMsg->m_vData[0]),
+				(uint32_t)pRecvMsg->m_vData.size()
+			);
+		}
+		pRecvMsg = m_Buffers.GetRecvMsg();
+	}
+
+	//Real Send
+	auto pSendMsg = m_Buffers.GetSendMsg();
+	while (pSendMsg != nullptr)
+	{
+		auto pNet = GetNetModule(pSendMsg->m_nNetType);
+		if (pNet == nullptr)
+		{
+			MP_ERROR("SendMsgAll Error!NetModule [%d] Not Found!", pSendMsg->m_nNetType);
+			pSendMsg = m_Buffers.GetSendMsg();
+			continue;
+		}
+
+		if (pSendMsg->m_vSockIndex.empty())
+		{
+			//broadcast
+			pNet->SendMsgToAllWithOutHead(
+				pSendMsg->m_nMsgId,
+				(const char *)(&pSendMsg->m_vData[0]),
+				(uint32_t)pSendMsg->m_vData.size()
+			);
+		}
+		else
+		{
+			pNet->SendMsgWithOutHead(
+				pSendMsg->m_nMsgId,
+				(const char *)(&pSendMsg->m_vData[0]),
+				(uint32_t)pSendMsg->m_vData.size(),
+				pSendMsg->m_vSockIndex
+			);
+		}
+		pSendMsg = m_Buffers.GetSendMsg();
+	}
+
 	for (auto& clients : m_mNetModules)
 	{
 		auto pNetModule = clients.second;
 		pNetModule->Execute();
 	}
-	/*static int i = 0;
-	if (i++ == 50)
-	{
-		NetFinal();
-	}*/
 }
 
 void NetProxy::NetFinal()
@@ -221,7 +266,14 @@ void NetProxy::OnMsgCB(const uint8_t nType, const MPSOCK nSockIndex, const char 
 		int nMsgBodyLength = pNet->DeCode(pOffset, nLen, xHead);
 		if (nMsgBodyLength > 0 && xHead.GetMsgID() > 0)
 		{
-			OnRecieveMessage(nType,pNetObject->GetRealFD(), xHead.GetMsgID(), pOffset + MPMsgHead::MP_Head::MP_HEAD_LENGTH, nMsgBodyLength);
+			//OnRecieveMessage(nType,pNetObject->GetRealFD(), xHead.GetMsgID(), pOffset + MPMsgHead::MP_Head::MP_HEAD_LENGTH, nMsgBodyLength);
+			m_Buffers.AddRecvMsg(
+				nType, 
+				pNetObject->GetRealFD(), 
+				xHead.GetMsgID(), 
+				pOffset + MPMsgHead::MP_Head::MP_HEAD_LENGTH, 
+				nMsgBodyLength
+			);
 
 			nOffLen -= nMsgBodyLength + MPMsgHead::MP_Head::MP_HEAD_LENGTH;
 			pOffset += nMsgBodyLength + MPMsgHead::MP_Head::MP_HEAD_LENGTH;
@@ -236,33 +288,6 @@ void NetProxy::OnMsgCB(const uint8_t nType, const MPSOCK nSockIndex, const char 
 #endif
 		}
 	}
-
-	/*MPMsg::MsgBase xMsg;
-	if (!xMsg.ParseFromArray(msg, nLen))
-	{
-		MP_ERROR("Parse Message Failed from Packet to MsgBase,Type : %d , Sock : %lld ,MessageID: %d , Len : %d", nType, nSockIndex, nMsgID, nLen);
-		return;
-	}
-
-	auto uid = GetGUIDBySock(nType, nSockIndex);
-	if (uid == 0)
-	{
-		if (!processSOCKCB(nType, nSockIndex, nMsgID, xMsg))
-		{
-			if (!processSOCKCBEX(nType, nSockIndex, xMsg))
-			{
-				MP_ERROR("Sock MsgId [%d] SOCK [%lld]not found !", nMsgID, nSockIndex);
-			}
-		}
-	}
-	else
-	{
-		if (!processUIDCB(nType, uid, nMsgID, xMsg))
-		{
-			MP_ERROR("UID MsgId [%d] SOCK [%lld]not found !", nMsgID, nSockIndex);
-		}
-
-	}*/
 }
 
 std::shared_ptr<MPNet> NetProxy::GetNetModule(uint32_t nType)
@@ -275,15 +300,15 @@ std::shared_ptr<MPNet> NetProxy::GetNetModule(uint32_t nType)
 	return nullptr;
 }
 
-bool NetProxy::SendMsg(const MPMsg::MsgType nMsgType,const uint8_t from,const uint8_t to, const MPSOCK nSockIndex, const uint16_t nMsgId,const google::protobuf::Message& msg)
+bool NetProxy::SendMsg(
+	const MPMsg::MsgType nMsgType,
+	const uint8_t from,
+	const uint8_t to, 
+	const MPSOCK nSockIndex, 
+	const uint16_t nMsgId,
+	const google::protobuf::Message& msg
+)
 {
-	auto pNet = GetNetModule(to);
-	if (pNet == nullptr)
-	{
-		MP_ERROR("SendMsg Error!NetModule [%d] Not Found!", to);
-		return false;
-	}
-
 	MPMsg::MsgBase msg_base;
 	msg_base.set_msg_type(nMsgType);
 	msg_base.set_msg_id(nMsgId);
@@ -292,27 +317,61 @@ bool NetProxy::SendMsg(const MPMsg::MsgType nMsgType,const uint8_t from,const ui
 #ifdef SSJ_DEBUG
 	MP_DEBUG("[%s] Send Msg [%d] Success! BodyLength is %d", ServerTypeNames[to], nMsgId, s.size());
 #endif
-	return pNet->SendMsgWithOutHead(nMsgId, s.c_str(), s.size(), nSockIndex);
+	m_Buffers.AddSendMsg(
+		to,
+		std::list<MPSOCK>{nSockIndex},
+		nMsgId,
+		s.c_str(),
+		(uint32_t)s.size()
+	);
+	return true;
 }
 
-bool NetProxy::SendMsgAll(const MPMsg::MsgType nMsgType, const uint8_t from, const uint8_t to, const uint16_t nMsgId, const google::protobuf::Message& msg)
+bool NetProxy::SendMsg(
+	const MPMsg::MsgType nMsgType,
+	const uint8_t from,
+	const uint8_t to,
+	std::list<MPSOCK> vSockIndex,
+	const uint16_t nMsgId,
+	const google::protobuf::Message& msg
+)
 {
-	auto pNet = GetNetModule(to);
-	if (pNet == nullptr)
-	{
-		MP_ERROR("SendMsgAll Error!NetModule [%d] Not Found!", to);
-		return false;
-	}
-	
 	MPMsg::MsgBase msg_base;
 	msg_base.set_msg_type(nMsgType);
 	msg_base.set_msg_id(nMsgId);
 	msg_base.set_msg_data(msg.SerializeAsString());
 	auto s = msg_base.SerializeAsString();
-	return pNet->SendMsgToAllWithOutHead(nMsgId, s.c_str(), s.size());
+#ifdef SSJ_DEBUG
+	MP_DEBUG("[%s] Send Msg [%d] Success! BodyLength is %d", ServerTypeNames[to], nMsgId, s.size());
+#endif
+	m_Buffers.AddSendMsg(
+		to,
+		std::move(vSockIndex),
+		nMsgId,
+		s.c_str(),
+		(uint32_t)s.size()
+	);
+	return true;
 }
 
-bool NetProxy::SendMsg(const uint8_t to, MPSOCK nSockIndex, const std::string& sData)
+bool NetProxy::SendMsgAll(const MPMsg::MsgType nMsgType, const uint8_t from, const uint8_t to, const uint16_t nMsgId, const google::protobuf::Message& msg)
+{
+	MPMsg::MsgBase msg_base;
+	msg_base.set_msg_type(nMsgType);
+	msg_base.set_msg_id(nMsgId);
+	msg_base.set_msg_data(msg.SerializeAsString());
+	auto s = msg_base.SerializeAsString();
+	m_Buffers.AddSendMsg(
+		to,
+		std::list<MPSOCK>(),
+		nMsgId,
+		s.c_str(),
+		(uint32_t)s.size()
+	);
+	return true;
+}
+
+bool NetProxy::SendMsgWithHead(const uint8_t to, MPSOCK nSockIndex, const std::string& sData)
 {
 	auto pNet = GetNetModule(to);
 	if (pNet == nullptr)
@@ -323,7 +382,7 @@ bool NetProxy::SendMsg(const uint8_t to, MPSOCK nSockIndex, const std::string& s
 	return pNet->SendMsg(sData.c_str(), (uint32_t)sData.size(), nSockIndex);
 }
 
-bool NetProxy::SendMsgAll(const uint8_t to, const std::string& sData)
+bool NetProxy::SendMsgAllWithHead(const uint8_t to, const std::string& sData)
 {
 	auto pNet = GetNetModule(to);
 	if (pNet == nullptr)
@@ -331,7 +390,7 @@ bool NetProxy::SendMsgAll(const uint8_t to, const std::string& sData)
 		MP_ERROR("SendMsgAll Error!NetModule [%d] Not Found!", to);
 		return false;
 	}
-	pNet->SendMsgAll(sData.c_str(),(uint32_t)sData.size());
+	pNet->SendMsgAll(sData.c_str(), (uint32_t)sData.size());
 	return true;
 }
 

@@ -21,7 +21,7 @@ GameNetProxy::~GameNetProxy()
 bool GameNetProxy::InitServerCfg(const std::string& filename)
 {
 	AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16123);
-	//AddTCPServerModule(MP_ST_GATE, 3000, "127.0.0.1", 16125,1);
+	AddTCPServerModule(MP_ST_GATE, 3000, "127.0.0.1", 16125,1);
 
 	//AddReceiveCallBack();
 	//AddTCPServerModule(MP_ST_CENTER, 3000, 16125);

@@ -24,11 +24,6 @@ void GameUser::Clear()
 {
 }
 
-MPGUID GameUser::GetUID()const
-{
-	return m_uid;
-}
-
 uint64_t GameUser::GetUserSock()const
 {
 	return m_nUserSock;
@@ -59,4 +54,19 @@ void GameUser::Send(uint32_t nMsgId,google::protobuf::Message& msg)
 
 void GameUser::LoadFromDB()
 {
+}
+
+UserModuleManager& GameUser::GetUserModuleMgr()
+{
+	return m_UserModules;
+}
+
+std::vector<UserModule*>& GameUser::GetAllModules()
+{
+	return GetUserModuleMgr().GetAllModules();
+}
+
+void GameUser::RefreshModule(uint32_t nModuleIndex)
+{
+	auto pModule = GetUserModuleMgr().GetModule(nModuleIndex);
 }

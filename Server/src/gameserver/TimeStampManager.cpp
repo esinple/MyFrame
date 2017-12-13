@@ -4,6 +4,7 @@
 TimeStampManager::TimeStampManager() : ManagerModule(eGameMgr_TimeStamp)
 {
 	AddParent(eGameMgr_DBServer);
+	AddParent(eGameMgr_Time);
 }
 
 TimeStampManager::~TimeStampManager()

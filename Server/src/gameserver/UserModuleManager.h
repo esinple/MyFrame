@@ -16,8 +16,9 @@ public:
 	bool Execute();
 	bool ShutDown();
 
+
 	//modules
-	template<typename T>
+	template<typename T = UserModule>
 	T* GetModule(uint32_t nType)
 	{
 		if (nType >= m_nModuleNum)
@@ -25,13 +26,15 @@ public:
 		return (T*)m_vModules[nType];
 	}
 
-	template<typename T>
+	template<typename T = UserModule>
 	const T* GetModule(uint32_t nType)const
 	{
 		if (nType >= m_nModuleNum)
 			return nullptr;
 		return (T*)m_vModules[nType];
 	}
+
+	std::vector<UserModule*>& GetAllModules();
 private:
 	std::vector<UserModule*>	m_vModules;
 	uint32_t					m_nModuleNum;

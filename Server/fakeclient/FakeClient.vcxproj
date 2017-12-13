@@ -24,6 +24,7 @@
     <ClCompile Include="..\src\base\ModuleRely.cpp" />
     <ClCompile Include="..\src\base\ModuleTimeTick.cpp" />
     <ClCompile Include="..\src\base\NetProxy.cpp" />
+    <ClCompile Include="..\src\base\NetProxyBuffer.cpp" />
     <ClCompile Include="..\src\base\TimeManager.cpp" />
     <ClCompile Include="..\src\base\XmlManager.cpp" />
     <ClCompile Include="..\src\netproto\Gate2Game.pb.cc" />
@@ -45,6 +46,7 @@
     <ClInclude Include="..\src\base\ModuleRely.h" />
     <ClInclude Include="..\src\base\ModuleTimeTick.h" />
     <ClInclude Include="..\src\base\NetProxy.h" />
+    <ClInclude Include="..\src\base\NetProxyBuffer.h" />
     <ClInclude Include="..\src\base\TimeManager.h" />
     <ClInclude Include="..\src\base\TimeT.h" />
     <ClInclude Include="..\src\base\XmlManager.h" />
@@ -134,11 +136,11 @@
     <LibraryPath>..\lib;..\lib\static;$(LibraryPath)</LibraryPath>
     <ExecutablePath>..\bin;$(ExecutablePath)</ExecutablePath>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>..\bin</OutDir>
+    <OutDir>..\bin\</OutDir>
     <ReferencePath>.\</ReferencePath>
     <LibraryWPath>C:\Boost\lib;$(LibraryWPath)</LibraryWPath>
     <SourcePath>.\</SourcePath>
-    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\FakeClient</IntDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\FakeClient\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

@@ -66,7 +66,7 @@ bool TimeManager::checkTime(TimeEventPtr pEvent)const
 	{
 		if (m_CurrentTime <= pEvent->time)
 		{
-			pEvent->Call();
+			//pEvent->Call();
 			return false;
 		}
 		return true;
@@ -74,10 +74,10 @@ bool TimeManager::checkTime(TimeEventPtr pEvent)const
 	break;
 	case eTET_SEC_INTERVAL:
 	{
-		if (m_CurrentTime <= pEvent->time)
+		/*if (m_CurrentTime <= pEvent->time)
 		{
 			pEvent->Call();
-		}
+		}*/
 		auto nGap = (m_CurrentTime.CurrentSec() - pEvent->time.CurrentSec()) / pEvent->nInterval;
 		pEvent->time += pEvent->nInterval * (nGap + 1);
 		return true;

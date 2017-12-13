@@ -47,8 +47,6 @@ private:
 	std::unordered_map<uint64_t, GateUserPtr> m_mTempGateUsers;
 	std::unordered_map<MPGUID, GateUserPtr> m_mGateUsers;
 	std::unordered_map<uint64_t, MPGUID> m_mSock2GUID;
-
-	std::mutex mtx;
 };
 
 GATE_MANAGER_MODULE_REG(eGateMgr_GateUser, GateUserManager);

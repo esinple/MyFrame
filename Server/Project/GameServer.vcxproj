@@ -177,6 +177,7 @@
     <ClCompile Include="..\src\base\ModuleRely.cpp" />
     <ClCompile Include="..\src\base\ModuleTimeTick.cpp" />
     <ClCompile Include="..\src\base\NetProxy.cpp" />
+    <ClCompile Include="..\src\base\NetProxyBuffer.cpp" />
     <ClCompile Include="..\src\base\TimeManager.cpp" />
     <ClCompile Include="..\src\base\XmlManager.cpp" />
     <ClCompile Include="..\src\dbproto\DBGameServer.pb.cc" />
@@ -218,6 +219,7 @@
     <ClInclude Include="..\src\base\ModuleRely.h" />
     <ClInclude Include="..\src\base\ModuleTimeTick.h" />
     <ClInclude Include="..\src\base\NetProxy.h" />
+    <ClInclude Include="..\src\base\NetProxyBuffer.h" />
     <ClInclude Include="..\src\base\TimeManager.h" />
     <ClInclude Include="..\src\base\TimeT.h" />
     <ClInclude Include="..\src\base\XmlManager.h" />
@@ -236,6 +238,7 @@
     <ClInclude Include="..\src\gameserver\Mail.h" />
     <ClInclude Include="..\src\gameserver\MailManager.h" />
     <ClInclude Include="..\src\gameserver\RefreshManager.h" />
+    <ClInclude Include="..\src\gameserver\RefreshT.h" />
     <ClInclude Include="..\src\gameserver\StatsServer.h" />
     <ClInclude Include="..\src\gameserver\StatsServerManager.h" />
     <ClInclude Include="..\src\gameserver\SuperServer.h" />

@@ -5,7 +5,7 @@
 
 std::vector<int> UserModuleManager::m_vOrder;
 
-#define USER_MODULE_NAME(i) MPModuleFactory::GetInstance()->GetName(eGameUserModule,i)
+#define USER_MODULE_NAME(i) MPModuleFactory::GetInstance()->GetName(eGameUserModule,i).data()
 
 UserModuleManager::UserModuleManager(uint32_t nModuleNum)
 	: m_vModules(), m_nModuleNum(nModuleNum)
@@ -113,4 +113,9 @@ bool UserModuleManager::ShutDown()
 		MP_DEBUG("Module [%d : %s] ShutDown Success!", index, USER_MODULE_NAME(index));
 	}
 	return true;
+}
+
+std::vector<UserModule*>& UserModuleManager::GetAllModules()
+{
+	return m_vModules;
 }

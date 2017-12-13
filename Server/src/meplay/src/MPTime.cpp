@@ -79,23 +79,23 @@ bool MPTime::operator!=(const MPTime& rhs)const
 	return m_timepoint != rhs.m_timepoint;
 }
 
-MPTime MPTime::operator+(time_t sec)const
+MPTime MPTime::operator+(const time_t sec)const
 {
 	return m_timepoint + seconds(sec);
 }
 
-MPTime& MPTime::operator+=(time_t sec)
+MPTime& MPTime::operator+=(const time_t sec)
 {
 	m_timepoint += seconds(sec);
 	return *this;
 }
 
-MPTime MPTime::operator-(time_t sec)const
+MPTime MPTime::operator-(const time_t sec)const
 {
 	return m_timepoint - seconds(sec);
 }
 
-MPTime& MPTime::operator-=(time_t sec)
+MPTime& MPTime::operator-=(const time_t sec)
 {
 	m_timepoint -= seconds(sec);
 	return *this;

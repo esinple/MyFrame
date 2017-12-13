@@ -180,6 +180,9 @@
     <ClCompile Include="..\src\gameserver\MailManager.cpp">
       <Filter>Logic\ManagerLogic\MailManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\base\NetProxyBuffer.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base\XmlManager.h">
@@ -304,11 +307,14 @@
     <ClInclude Include="..\src\gameserver\RefreshManager.h">
       <Filter>Logic\ManagerLogic\RefreshManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\gameserver\RefreshT.h">
+      <Filter>Logic\ManagerLogic\RefreshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\base\NetProxyBuffer.h">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\common\command\MPDefine.proto">
-      <Filter>proto</Filter>
-    </None>
     <None Include="..\common\command\MPMsgBase.proto">
       <Filter>proto</Filter>
     </None>
@@ -332,6 +338,9 @@
     </None>
     <None Include="..\common\dbstruct\DBGameServer.proto">
       <Filter>proto\DBProto</Filter>
+    </None>
+    <None Include="..\common\command\MPDefine.proto">
+      <Filter>proto\ServerProto</Filter>
     </None>
   </ItemGroup>
 </Project>

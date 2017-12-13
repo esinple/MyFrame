@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <memory>
 #include <string>
 #ifdef WIN_SYSTEM
@@ -35,19 +35,4 @@ namespace meplay {
 		std::shared_ptr<evpp::TCPConn> m_pConn;
 	};
 	typedef std::shared_ptr<MPNetObject> MPNetObjectPtr;
-
-	class MPTCPClientObj : public MPNetObject
-	{
-	public:
-		//MPTCPClientObj(const std::shared_ptr<evpp::TCPClient>& pClient);
-		MPTCPClientObj(evpp::TCPClient* pClient);
-		virtual ~MPTCPClientObj();
-	public:
-		//std::shared_ptr<evpp::TCPClient>& GetClient();
-		evpp::TCPClient* GetClient();
-		void OnConnectCB();
-	private:
-		//std::shared_ptr<evpp::TCPClient> m_pClient;
-		evpp::TCPClient* m_pClient;
-	};
 }

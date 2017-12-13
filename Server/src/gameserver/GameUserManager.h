@@ -46,6 +46,7 @@ public:
 
 	void KickAllByGateSock(const uint64_t nGateSock);
 
+	void GameUserModuleRefresh(uint32_t nModuleIndex);
 private:
 	void addGameUser(GameUserPtr pGameUser);
 	void delGameUser(const MPGUID uid);
@@ -78,6 +79,7 @@ private:
 
 	std::unordered_map<MPGUID, GameUserPtr> m_mGameUsers;
 
+	std::mutex mtx;
 };
 
 GAME_MANAGER_MODULE_REG(eGameMgr_GameUser, GameUserManager);

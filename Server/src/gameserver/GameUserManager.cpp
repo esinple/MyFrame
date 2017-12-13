@@ -7,6 +7,8 @@
 #include "DBManager.h"
 #include "UserBase.h"
 #include "GameTimeManager.h"
+#include "TimeStampManager.h"
+#include "RefreshManager.h"
 
 GameUserManager::GameUserManager()
 	: ManagerModule(eGameMgr_GameUser),ModuleTimeTick()
@@ -58,20 +60,21 @@ bool GameUserManager::ShutDown()
 
 void GameUserManager::addGameUser(GameUserPtr pGameUser)
 {
+	std::lock_guard<std::mutex> lck(mtx);
 	MP_DEBUG("Add GameUser [%llu]",pGameUser->GetUID());
-
 	m_mGameUsers.emplace(pGameUser->GetUID(), pGameUser);
 }
 
 void GameUserManager::delGameUser(const MPGUID uid)
 {
+	std::lock_guard<std::mutex> lck(mtx);
 	MP_DEBUG("Del GameUser [%llu]", uid);
-
 	m_mGameUsers.erase(uid);
 }
 
 GameUserPtr GameUserManager::GetGameUser(const MPGUID uid)
 {
+	std::lock_guard<std::mutex> lck(mtx);
 	if (auto it = m_mGameUsers.find(uid); it != m_mGameUsers.end())
 	{
 		return it->second;
@@ -129,10 +132,13 @@ void GameUserManager::UserMsgDispatch(
 void GameUserManager::GameUserLogon(GameUserPtr pGameUser)
 {
 	MP_INFO("GameUser Logon! uid : [%llu]",pGameUser->GetUID());
-	if (!pGameUser->GetAllModules().Awake())
+	if (!pGameUser->GetUserModuleMgr().Awake())
 	{
 		//error
 	}
+
+	auto pRefreshMgr = g_pGameNetProxy->GetModule<RefreshManager>(eGameMgr_Refresh);
+	pRefreshMgr->GameUserLoginRefresh(pGameUser);
 }
 
 void GameUserManager::GameUserLogout(const MPGUID uid)
@@ -145,7 +151,7 @@ void GameUserManager::GameUserLogout(const MPGUID uid)
 		return;
 	}
 
-	pGameUser->GetAllModules().ShutDown();
+	pGameUser->GetUserModuleMgr().ShutDown();
 
 	//delete
 	delGameUser(uid);
@@ -217,8 +223,8 @@ GameUserPtr GameUserManager::createGameUser(
 	const std::string& sPassword
 )
 {
-	auto uid = GenerateNewGUID(1);
-	auto pGameUser = m_GameUserPool.Get(uid, nUserSock, nGateSock);
+	//auto uid = GenerateNewGUID(1);
+	auto pGameUser = m_GameUserPool.Get(0, nUserSock, nGateSock);
 	pGameUser->SetAccount(sAccount);
 	pGameUser->SetPassword(sPassword);
 	return pGameUser;
@@ -232,6 +238,7 @@ int GameUserManager::loadGameUser(GameUserPtr pGameUser)
 	DBGameServer::GameUserLogon db_result;
 	if (g_pDBMgr->ExecSelectOne(db_gameuserbase, db_result) == 0)
 	{
+		pGameUser->SetUID(GenerateNewGUID(1));
 		return UEC_Success;
 	}
 
@@ -240,6 +247,7 @@ int GameUserManager::loadGameUser(GameUserPtr pGameUser)
 		return UEC_Failed;
 	}
 
+	pGameUser->SetUID(db_result.uid());
 	pGameUser->SetIP("");
 	pGameUser->SetLoginTime(GAME_CUR_TIME);
 	meplay::MPTime LogoutTime(db_result.logout_time());
@@ -267,6 +275,7 @@ void GameUserManager::saveGameUserLogon(GameUserPtr pGameUser)
 
 void GameUserManager::KickAllByGateSock(const uint64_t nGateSock)
 {
+	std::lock_guard<std::mutex> lck(mtx);
 	std::vector<MPGUID> vKickUIDs;
 	for (auto&&[uid, pGameUser] : m_mGameUsers)
 	{
@@ -279,5 +288,19 @@ void GameUserManager::KickAllByGateSock(const uint64_t nGateSock)
 	for (auto uid : vKickUIDs)
 	{
 		GameUserLogout(uid);
+	}
+}
+
+void GameUserManager::GameUserModuleRefresh(uint32_t nModuleIndex)
+{
+	MP_DEBUG("RefreshUserModule [%llu]", nModuleIndex);
+	auto pTimeStampMgr = g_pGameNetProxy->GetModule<TimeStampManager>(eGameMgr_TimeStamp);
+	auto& now = GAME_CUR_TIME;
+	std::lock_guard<std::mutex> lck(mtx);
+	for (auto&&[uid, pGameUser] : m_mGameUsers)
+	{
+		(void)uid;
+		pGameUser->RefreshModule(nModuleIndex);
+		pTimeStampMgr->UpdateTimeStamp(pGameUser->GetUID(), eTS_UserModuleRefresh, nModuleIndex, now.CurrentSec());
 	}
 }

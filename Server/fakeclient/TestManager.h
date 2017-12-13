@@ -1,5 +1,7 @@
 #pragma once
 #include "ManagerModule.h"
+#include "MPModuleFactory.h"
+#include "FCManagerModuleEnum.h"
 
 enum ClientStatus
 {
@@ -26,8 +28,9 @@ public:
 
 	void UserLogonCB(const std::string&, const uint64_t nSockIndex);
 private:
-	H_AUTO_REGISTER_SUB(MPModule,TestManager);
 
 	int m_nStatus = eCS_Unknown;
 	uint64_t m_fd;
 };
+
+AUTO_REGISTER(0,eFCMgr_Test, TestManager);

@@ -173,6 +173,7 @@
     <ClCompile Include="..\src\base\ModuleRely.cpp" />
     <ClCompile Include="..\src\base\ModuleTimeTick.cpp" />
     <ClCompile Include="..\src\base\NetProxy.cpp" />
+    <ClCompile Include="..\src\base\NetProxyBuffer.cpp" />
     <ClCompile Include="..\src\base\XmlManager.cpp" />
     <ClCompile Include="..\src\gatewayserver\GameServer.cpp" />
     <ClCompile Include="..\src\gatewayserver\GameServerManager.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="..\src\base\ModuleRely.h" />
     <ClInclude Include="..\src\base\ModuleTimeTick.h" />
     <ClInclude Include="..\src\base\NetProxy.h" />
+    <ClInclude Include="..\src\base\NetProxyBuffer.h" />
     <ClInclude Include="..\src\base\XmlManager.h" />
     <ClInclude Include="..\src\gatewayserver\GameServer.h" />
     <ClInclude Include="..\src\gatewayserver\GameServerManager.h" />

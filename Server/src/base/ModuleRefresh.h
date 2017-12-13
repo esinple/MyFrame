@@ -1,18 +1,12 @@
 #pragma once
 #include <stdint.h>
-#include <functional>
-#include "MPTime.h"
+#include <any>
 
-class TimeManager;
 class ModuleRefresh
 {
 public:
-	explicit ModuleRefresh(TimeManager* pTimeMgr);
-	~ModuleRefresh();
+	ModuleRefresh();
+	virtual ~ModuleRefresh();
 public:
-	virtual void InitRefresh() = 0;
-public:
-	void RegisterCallBack(uint8_t nHour,uint8_t nMin,uint32_t nIntervalSec,std::function<void()> f);
-private:
-	meplay::MPTime m_LastRefreshTime;
+	virtual void OnModuleRefresh(uint32_t nMainType,uint32_t nSubType,std::any param) = 0;
 };

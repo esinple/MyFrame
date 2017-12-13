@@ -18,7 +18,7 @@ const char * GetFCMgrModuleName(uint32_t type)
 };
 
 FCNetProxy::FCNetProxy() 
-	: NetProxy(100), m_Mgrs(eFCMgr_End, GetFCMgrModuleName)
+	: NetProxy(100), m_Mgrs(0,eFCMgr_End)
 {
 }
 

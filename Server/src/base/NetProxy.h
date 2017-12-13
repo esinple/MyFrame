@@ -14,6 +14,7 @@
 #include "MPMsg.h"
 #include "MPMsgBase.pb.h"
 #include "MPNet.h"
+#include "NetProxyBuffer.h"
 
 typedef std::function<void(const MPGUID,const std::string&)> PB_RECEIVE_FUNCTOR;
 typedef std::shared_ptr<PB_RECEIVE_FUNCTOR> PB_RECEIVE_FUNCTOR_PTR;
@@ -64,7 +65,36 @@ public:
 
 	void OnMsgCB(const uint8_t nType,const MPSOCK nSockIndex, const char * msg, const uint32_t nLen);
 
-	std::shared_ptr<MPNet> GetNetModule(uint32_t nType);
+	bool SendMsg(
+		const MPMsg::MsgType nMsgType, 
+		const uint8_t from, 
+		const uint8_t to, 
+		const MPSOCK nSockIndex, 
+		const uint16_t nMsgId, 
+		const google::protobuf::Message& msg
+	);
+
+	bool SendMsg(
+		const MPMsg::MsgType nMsgType, 
+		const uint8_t from, 
+		const uint8_t to, 
+		std::list<MPSOCK> vSockIndex, 
+		const uint16_t nMsgId, 
+		const google::protobuf::Message& msg
+	);
+
+	bool SendMsgAll(
+		const MPMsg::MsgType nMsgType, 
+		const uint8_t from, 
+		const uint8_t to, 
+		const uint16_t nMsgId, 
+		const google::protobuf::Message& msg
+	);
+
+
+	bool SendMsgWithHead(const uint8_t to, MPSOCK nSockIndex, const std::string& sData);
+
+	bool SendMsgAllWithHead(const uint8_t to, const std::string& sData);
 
 	template<typename BaseType>
 	bool AddReceiveCallBack(const uint32_t nType, BaseType* pBase, const uint16_t nMsgId, void(BaseType::*handleRecieve)(const MPGUID uid, const std::string&))
@@ -100,11 +130,7 @@ public:
 		return true;
 	}
 
-	bool SendMsg(const MPMsg::MsgType nMsgType,const uint8_t from,const uint8_t to,MPSOCK nSockIndex,const uint16_t nMsgId,const google::protobuf::Message& msg);
-	bool SendMsgAll(const MPMsg::MsgType nMsgType,const uint8_t from,const uint8_t to, const uint16_t nMsgId,const google::protobuf::Message& msg);
-
-	bool SendMsg(const uint8_t to, MPSOCK nSockIndex, const std::string& sData);
-	bool SendMsgAll(const uint8_t to, const std::string& sData);
+	std::shared_ptr<MPNet> GetNetModule(uint32_t nType);
 
 	void TryDump();
 
@@ -129,6 +155,8 @@ private:
 	meplay::MPTime m_tLastTime;
 
 	const time_t m_nGapMilliSeconds;
+
+	NetProxyBuffer m_Buffers;
 protected:
 	std::condition_variable cv;
 	std::mutex mtx;

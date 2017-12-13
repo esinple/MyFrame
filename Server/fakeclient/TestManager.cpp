@@ -6,8 +6,6 @@
 #include "UserMsgDefine.pb.h"
 #include "UserErrCode.pb.h"
 
-CPP_AUTO_REGISTER_SUB(TestManager)
-
 #define SEND2GATE(FD,MSGID,MSG) g_pFCNetProxy->SendMsg(MPMsg::eMsgType_Client, MP_CLIENT, MP_ST_GATE, FD, MSGID, MSG);
 #define REGISTER_GATE(CLASS,MSG,CALLBACK) g_pFCNetProxy->AddReceiveCallBack(MP_ST_GATE,CLASS,MSG,&CALLBACK);
 

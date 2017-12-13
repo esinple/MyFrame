@@ -75,24 +75,18 @@ void GateUserManager::addTempGateUser(uint64_t nSockIndex, const std::string& sI
 	}
 	pGateUser->SetLoginTime(GATE_CUR_TIME);
 
-	mtx.lock();
 	if (!m_mTempGateUsers.emplace(nSockIndex, pGateUser).second)
 	{
-		mtx.unlock();
 		MP_ERROR("Same Sock Index!");
 		return;
 	}
-	mtx.unlock();
-
 	MP_DEBUG("New Temp GateUser Connected! ip [%lld][%s]",nSockIndex,sIP.c_str());
 }
 
 void GateUserManager::delTempGateUser(uint64_t nSockIndex)
 {
-	mtx.lock();
-	m_mTempGateUsers.erase(nSockIndex);
-	mtx.unlock();
 	MP_DEBUG("Del Temp GateUser ! fd [%lld]", nSockIndex);
+	m_mTempGateUsers.erase(nSockIndex);
 }
 
 GateUserPtr GateUserManager::GetTempGateUser(uint64_t nSockIndex)
@@ -149,11 +143,11 @@ void GateUserManager::delGateUser(MPGUID uid)
 
 void GateUserManager::checkTempGateUsers()
 {
-	mtx.lock();
+	std::vector<uint64_t> vKickIds;
 	auto it = m_mTempGateUsers.begin();
 	while (it != m_mTempGateUsers.end())
 	{
-		if (it->second->GetLoginTime() + 60 > GATE_CUR_TIME)
+		if (it->second->GetLoginTime() + 5 > GATE_CUR_TIME)
 		{
 			++it;
 			continue;
@@ -162,10 +156,13 @@ void GateUserManager::checkTempGateUsers()
 		auto nSockIndex = it->second->GetFD();
 		MP_WARN("Kick Unknown Temp GateUser![%lld]", nSockIndex);
 		it = m_mTempGateUsers.erase(it);
-
-		g_pGatewayNetProxy->Kick(MP_CLIENT, nSockIndex,"Temp GateUser TimeOut!");
+		vKickIds.emplace_back(nSockIndex);
 	}
-	mtx.unlock();
+
+	for (auto& nSockIndex : vKickIds)
+	{
+		g_pGatewayNetProxy->Kick(MP_CLIENT, nSockIndex, "Temp GateUser TimeOut!");
+	}
 }
 
 bool GateUserManager::OnUser2GameMsgWrapperSock(MPMsg::MsgBase& msg_base, const uint64_t nSockIndex)
