@@ -1,4 +1,5 @@
 #include "NetProxyBuffer.h"
+#include <string.h>
 
 NetMsgBuffer::NetMsgBuffer(uint8_t nType, std::list<MPSOCK> vSockIndex, uint32_t nMsgId, const char * pData, uint32_t nLen)
 {

@@ -18,8 +18,7 @@ bool MPRUDPServer::Execute()
 			(pNetObject.get())->Close();
 		}
 	}
-	static bool flag = true;
-	if (flag)
+	if (0)
 	{
 		std::string s("abdsfafadsfa");
 		SendMsgToAllWithOutHead(123, s.c_str(), s.size());

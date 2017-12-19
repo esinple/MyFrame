@@ -44,6 +44,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
         libevent_core.a
         libmongocxx.a
         libprotobuf.a
+		libenet.a
         pthread
         rt
         )
@@ -73,6 +74,7 @@ else()
         libevent_core.a
         libmongocxx.a
         libprotobuf.a
+		libenet.a
         pthread
         rt
         )

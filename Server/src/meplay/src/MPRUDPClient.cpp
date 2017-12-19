@@ -13,8 +13,7 @@ bool MPRUDPClient::Execute()
 	{
 		Final();
 	}
-	static bool flag = true;
-	if (flag)
+	if (0)
 	{
 		std::string s("abdsfafadsfa");
 		SendMsgToAllWithOutHead(123, s.c_str(), (uint32_t)s.size());

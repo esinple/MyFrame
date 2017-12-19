@@ -52,6 +52,7 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
         libmongoc-1.0.a
         libbson-1.0.a
         libprotobuf.a
+		libenet.a
         pthread
         rt
 		sasl2
@@ -88,6 +89,7 @@ else()
         libmongoc-1.0.a
         libbson-1.0.a
         libprotobuf.a
+		libenet.a
         pthread
         rt
 		sasl2

@@ -75,9 +75,9 @@ std::shared_ptr<evpp::TCPConn>& MPTCPObject::GetConn()
 MPRUDPObject::MPRUDPObject(ENetPeer* pPeer)
 {
 	m_nFD = createRUDPFD();
-	in_addr addr;
-	addr.S_un.S_addr = pPeer->address.host;
-	m_sIP = inet_ntoa(addr);
+	//in_addr addr;
+	//addr.S_un.S_addr = pPeer->address.host;
+	m_sIP = inet_ntoa(*(struct in_addr *)&pPeer->address.host);
 	m_nPort = pPeer->address.port;
 	m_pPeer = pPeer;
 }
