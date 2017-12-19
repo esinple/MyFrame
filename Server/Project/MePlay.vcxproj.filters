@@ -220,6 +220,12 @@
     <ClInclude Include="..\src\meplay\include\MPUDPServer.h">
       <Filter>NetWork</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPRUDPServer.h">
+      <Filter>NetWork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\meplay\include\MPRUDPClient.h">
+      <Filter>NetWork</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\meplay\src\DBClient.cpp">
@@ -358,6 +364,12 @@
       <Filter>NetWork</Filter>
     </ClCompile>
     <ClCompile Include="..\src\meplay\src\MPUDPServer.cpp">
+      <Filter>NetWork</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPRUDPServer.cpp">
+      <Filter>NetWork</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\meplay\src\MPRUDPClient.cpp">
       <Filter>NetWork</Filter>
     </ClCompile>
   </ItemGroup>

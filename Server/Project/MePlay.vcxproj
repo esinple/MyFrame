@@ -96,7 +96,7 @@
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <EnableModules>false</EnableModules>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -106,7 +106,7 @@
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>libprotobufd.lib;mongoc-static-1.0.lib;bson-static-1.0.lib;bsoncxx-static.lib;mongocxx-static.lib</AdditionalDependencies>
+      <AdditionalDependencies>libprotobufd.lib;mongoc-static-1.0.lib;bson-static-1.0.lib;bsoncxx-static.lib;mongocxx-static.lib;enet.lib;winmm.lib</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>..\lib\static;..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -227,6 +227,8 @@
     <ClInclude Include="..\src\meplay\include\MPNetDefine.h" />
     <ClInclude Include="..\src\meplay\include\MPNetObject.h" />
     <ClInclude Include="..\src\meplay\include\MPRandom.h" />
+    <ClInclude Include="..\src\meplay\include\MPRUDPClient.h" />
+    <ClInclude Include="..\src\meplay\include\MPRUDPServer.h" />
     <ClInclude Include="..\src\meplay\include\MPTCPClient.h" />
     <ClInclude Include="..\src\meplay\include\MPTCPServer.h" />
     <ClInclude Include="..\src\meplay\include\MPSingleton.h" />
@@ -278,6 +280,8 @@
     <ClCompile Include="..\src\meplay\src\MPNet.cpp" />
     <ClCompile Include="..\src\meplay\src\MPNetObject.cpp" />
     <ClCompile Include="..\src\meplay\src\MPRandom.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPRUDPClient.cpp" />
+    <ClCompile Include="..\src\meplay\src\MPRUDPServer.cpp" />
     <ClCompile Include="..\src\meplay\src\MPTCPClient.cpp" />
     <ClCompile Include="..\src\meplay\src\MPTCPServer.cpp" />
     <ClCompile Include="..\src\meplay\src\MPThread.cpp" />

@@ -48,6 +48,16 @@ public:
 	void AddTCPClientModule(uint8_t nType, const char* ip, const uint16_t nPort,bool bAutoConnect = true);
 	bool AddUDPServerModule(uint8_t nType, const uint16_t nPort,const uint8_t nThreadCount = 4);
 
+	bool AddRUDPServerModule(
+		uint8_t nType, 
+		const uint32_t nMaxClient, 
+		const char* ip, 
+		const uint16_t nPort, 
+		const uint8_t nThreadCount = 4
+	);
+
+	void AddRUDPClientModule(uint8_t nType, const char* ip, const uint16_t nPort, bool bAutoConnect = true);
+
 	void Start();
 	void Final(const char* reason);
 	void ImmediatelyFinal(const char* reason);
@@ -64,6 +74,9 @@ public:
 	void InvalidMessage(const uint8_t nType,const MPSOCK nSockIndex, const int nMsgID, const char * msg, const uint32_t nLen);
 
 	void OnMsgCB(const uint8_t nType,const MPSOCK nSockIndex, const char * msg, const uint32_t nLen);
+
+	void OnConnCB(const uint8_t nType, const MPSOCK nSockIndex);
+	void OnDisConnCB(const uint8_t nType, const MPSOCK nSockIndex);
 
 	bool SendMsg(
 		const MPMsg::MsgType nMsgType, 
@@ -142,6 +155,12 @@ private:
 	bool processSOCKCB(const uint8_t nType, const MPSOCK nSockIndex, const int nMsgID, MPMsg::MsgBase& msg);
 	bool processUIDCBEX(const uint8_t nType, const MPGUID uid, MPMsg::MsgBase& msg);
 	bool processSOCKCBEX(const uint8_t nType, const MPSOCK nSockIndex, MPMsg::MsgBase& msg);
+
+	void asyncRead();
+	void asyncWrite();
+	void asyncConn();
+	void asyncDisconn();
+	void tickNetModule();
 private:
 	std::map<uint8_t, std::shared_ptr<MPNet>> m_mNetModules;
 
@@ -157,6 +176,9 @@ private:
 	const time_t m_nGapMilliSeconds;
 
 	NetProxyBuffer m_Buffers;
+
+	std::list<std::tuple<uint8_t, MPSOCK>> m_vConnectList;
+	std::list<std::tuple<uint8_t, MPSOCK>> m_vDisConnectList;
 protected:
 	std::condition_variable cv;
 	std::mutex mtx;

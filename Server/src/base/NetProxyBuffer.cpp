@@ -71,7 +71,7 @@ NetMsgBufferPtr NetProxyBuffer::GetSendMsg()
 	{
 		return nullptr;
 	}
-	std::unique_lock<std::mutex> lck(rmtx);
+	std::unique_lock<std::mutex> lck(wmtx);
 	auto pBuffer = m_vSendBuffer.front();
 	m_vSendBuffer.pop();
 	lck.unlock();

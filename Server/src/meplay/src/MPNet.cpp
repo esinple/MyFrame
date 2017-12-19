@@ -42,7 +42,7 @@ MPNetObjectPtr MPNet::GetNetObject(const MPSOCK nSockIndex)
 
 bool MPNet::AddNetObject(const MPSOCK nSockIndex, MPNetObjectPtr pObject)
 {
-	return m_mNetObjects.insert(std::map<MPSOCK, MPNetObjectPtr>::value_type(nSockIndex, pObject)).second;
+	return m_mNetObjects.insert(std::make_pair(nSockIndex, pObject)).second;
 }
 
 bool MPNet::DelNetObject(const MPSOCK nSockIndex)
@@ -53,7 +53,7 @@ bool MPNet::DelNetObject(const MPSOCK nSockIndex)
 		return false;
 	}
 	auto pNetObject = it->second;
-	pNetObject->GetConn()->Close();
+	pNetObject->Close();
 	m_mNetObjects.erase(nSockIndex);
 
 	return true;

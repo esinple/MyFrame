@@ -161,7 +161,7 @@ void GateUserManager::checkTempGateUsers()
 
 	for (auto& nSockIndex : vKickIds)
 	{
-		g_pGatewayNetProxy->Kick(MP_CLIENT, nSockIndex, "Temp GateUser TimeOut!");
+		g_pGatewayNetProxy->Kick(MP_TCP_CLIENT, nSockIndex, "Temp GateUser TimeOut!");
 	}
 }
 
@@ -260,14 +260,14 @@ void GateUserManager::KickAll()
 	auto mGateUsers = m_mGateUsers;
 	for (auto&&[uid, pGateUser] : mGateUsers)
 	{
-		g_pGatewayNetProxy->Kick(MP_CLIENT, pGateUser->GetFD(),"GameServer Offline");
+		g_pGatewayNetProxy->Kick(MP_TCP_CLIENT, pGateUser->GetFD(),"GameServer Offline");
 	}
 	m_mGateUsers.clear();
 
 	auto mTempGateUsers = m_mTempGateUsers;
 	for (auto&&[nSockIndex, pGateUser] : mTempGateUsers)
 	{
-		g_pGatewayNetProxy->Kick(MP_CLIENT, nSockIndex,"GameServer Offline");
+		g_pGatewayNetProxy->Kick(MP_TCP_CLIENT, nSockIndex,"GameServer Offline");
 	}
 	m_mTempGateUsers.clear();
 

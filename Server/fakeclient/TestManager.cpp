@@ -6,7 +6,7 @@
 #include "UserMsgDefine.pb.h"
 #include "UserErrCode.pb.h"
 
-#define SEND2GATE(FD,MSGID,MSG) g_pFCNetProxy->SendMsg(MPMsg::eMsgType_Client, MP_CLIENT, MP_ST_GATE, FD, MSGID, MSG);
+#define SEND2GATE(FD,MSGID,MSG) g_pFCNetProxy->SendMsg(MPMsg::eMsgType_Client, MP_TCP_CLIENT, MP_ST_GATE, FD, MSGID, MSG);
 #define REGISTER_GATE(CLASS,MSG,CALLBACK) g_pFCNetProxy->AddReceiveCallBack(MP_ST_GATE,CLASS,MSG,&CALLBACK);
 
 
@@ -29,7 +29,7 @@ bool TestManager::AfterAwake()
 }
 bool TestManager::Execute()
 {
-	switch (m_nStatus)
+	/*switch (m_nStatus)
 	{
 	case eCS_Connected:
 	{
@@ -40,7 +40,7 @@ bool TestManager::Execute()
 	{
 	}
 	break;
-	}
+	}*/
 	return true;
 }
 bool TestManager::BeforeShutDown()

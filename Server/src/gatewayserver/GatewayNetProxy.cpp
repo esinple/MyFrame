@@ -28,7 +28,7 @@ bool GatewayNetProxy::InitServerCfg(const std::string& filename)
 	AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
 	//AddTCPClientModule(MP_ST_SUPER, "127.0.0.1", 16124, true);
 
-	AddTCPServerModule(MP_CLIENT, 2048, "0.0.0.0",17000);
+	AddTCPServerModule(MP_TCP_CLIENT, 2048, "0.0.0.0",17000);
 
 	//AddReceiveCallBack();
 	//AddTCPServerModule(MP_ST_CENTER, 3000, 16125);
@@ -61,7 +61,7 @@ void GatewayNetProxy::OnClientDisconnect(const uint8_t nType, const MPSOCK nSock
 	pNetModule->DelNetObject(nSockIndex);
 	switch (nType)
 	{
-	case MP_CLIENT:
+	case MP_TCP_CLIENT:
 	{
 		auto pGateUserMgr = GetModule<GateUserManager>(eGateMgr_GateUser);
 		pGateUserMgr->GateUserDisConnect(nSockIndex);
@@ -101,7 +101,7 @@ void GatewayNetProxy::OnClientConnected(const uint8_t nType, const MPSOCK nSockI
 	}
 	switch (nType)
 	{
-	case MP_CLIENT:
+	case MP_TCP_CLIENT:
 	{
 		auto sIP = pNetObject->GetIP();
 		auto pGateUserMgr = GetModule<GateUserManager>(eGateMgr_GateUser);
@@ -127,7 +127,7 @@ const MPGUID GatewayNetProxy::GetGUIDBySock(const uint8_t nType,const MPSOCK nSo
 {
 	switch (nType)
 	{
-	case MP_CLIENT:
+	case MP_TCP_CLIENT:
 	{
 		auto pGateUserMgr = GetModule<GateUserManager>(eGateMgr_GateUser);
 		return pGateUserMgr->GetGUID(nSockIndex);

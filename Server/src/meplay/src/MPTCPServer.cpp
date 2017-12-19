@@ -59,7 +59,7 @@ void MPTCPServer::connectCB(const std::shared_ptr<evpp::TCPConn>& pConn)
 	if (pConn->IsConnected())
 	{
 		//new connect
-		auto pNetObj = std::make_shared<MPNetObject>(pConn);
+		auto pNetObj = std::make_shared<MPTCPObject>(pConn);
 		AddNetObject(pConn->fd(), pNetObj);
 		m_ConnectCB(GetServerType(), pConn->fd());
 	}
@@ -129,7 +129,7 @@ bool MPTCPServer::Final()
 	auto mNetObjs = GetAllNetObject();
 	for (auto& ni : mNetObjs)
 	{
-		ni.second->GetConn()->Close();
+		ni.second->Close();
 		std::unique_lock<std::mutex> lck(mtx);
 		cv.wait(lck);
 	}

@@ -29,7 +29,9 @@ FCNetProxy::~FCNetProxy()
 bool FCNetProxy::InitServerCfg(const std::string& filename)
 {
 	//AddClientNetModule(MP_ST_GATE, "127.0.0.1", 17000);
-	AddTCPClientModule(MP_ST_GATE, "127.0.0.1", 17000);
+	//AddTCPClientModule(MP_ST_GATE, "127.0.0.1", 17000);
+
+	AddRUDPClientModule(MP_ST_BATTLE, "127.0.0.1", 17002);
 
 	return true;
 }

@@ -4,7 +4,12 @@
 #include "MPMsgBase.pb.h"
 #include "MPTCPServer.h"
 #include "MPTCPClient.h"
+#include "MPRUDPServer.h"
+#include "MPRUDPClient.h"
 #include "CommDef.h"
+#ifdef SSJ_DEBUG
+#include "MPTimeTester.h"
+#endif
 
 NetProxy::NetProxy(const time_t nGapMilliSeconds)
 	: m_mNetModules(), m_bFinal(false), m_nGapMilliSeconds(nGapMilliSeconds)
@@ -45,61 +50,29 @@ void NetProxy::Start()
 
 void NetProxy::NetRun()
 {
-	//Real Recv
-	auto pRecvMsg = m_Buffers.GetRecvMsg();
-	while (pRecvMsg != nullptr)
-	{
-		for (auto& nSockIndex : pRecvMsg->m_vSockIndex)
-		{
-			OnRecieveMessage(
-				pRecvMsg->m_nNetType,
-				nSockIndex,
-				pRecvMsg->m_nMsgId,
-				(const char *)(&pRecvMsg->m_vData[0]),
-				(uint32_t)pRecvMsg->m_vData.size()
-			);
-		}
-		pRecvMsg = m_Buffers.GetRecvMsg();
-	}
-
-	//Real Send
-	auto pSendMsg = m_Buffers.GetSendMsg();
-	while (pSendMsg != nullptr)
-	{
-		auto pNet = GetNetModule(pSendMsg->m_nNetType);
-		if (pNet == nullptr)
-		{
-			MP_ERROR("SendMsgAll Error!NetModule [%d] Not Found!", pSendMsg->m_nNetType);
-			pSendMsg = m_Buffers.GetSendMsg();
-			continue;
-		}
-
-		if (pSendMsg->m_vSockIndex.empty())
-		{
-			//broadcast
-			pNet->SendMsgToAllWithOutHead(
-				pSendMsg->m_nMsgId,
-				(const char *)(&pSendMsg->m_vData[0]),
-				(uint32_t)pSendMsg->m_vData.size()
-			);
-		}
-		else
-		{
-			pNet->SendMsgWithOutHead(
-				pSendMsg->m_nMsgId,
-				(const char *)(&pSendMsg->m_vData[0]),
-				(uint32_t)pSendMsg->m_vData.size(),
-				pSendMsg->m_vSockIndex
-			);
-		}
-		pSendMsg = m_Buffers.GetSendMsg();
-	}
-
-	for (auto& clients : m_mNetModules)
-	{
-		auto pNetModule = clients.second;
-		pNetModule->Execute();
-	}
+#ifdef SSJ_DEBUG
+	meplay::MPTimeTester tester("NetLoopTester", 200);
+#endif
+	asyncRead();
+#ifdef SSJ_DEBUG
+	tester.Show(200);
+#endif
+	asyncWrite();
+#ifdef SSJ_DEBUG
+	tester.Show(200);
+#endif
+	asyncConn();
+#ifdef SSJ_DEBUG
+	tester.Show(200);
+#endif
+	asyncDisconn();
+#ifdef SSJ_DEBUG
+	tester.Show(200);
+#endif
+	tickNetModule();
+#ifdef SSJ_DEBUG
+	tester.Show(200);
+#endif
 }
 
 void NetProxy::NetFinal()
@@ -146,8 +119,15 @@ bool NetProxy::AddTCPServerModule(uint8_t nType, const uint32_t nMaxClient, cons
 	auto pNet = GetNetModule(nType);
 	if (pNet == nullptr)
 	{
+		pNet = std::shared_ptr<MPTCPServer>(new MPTCPServer(
+			"NetProxy", 
+			nType, 
+			this,
+			&NetProxy::OnConnCB, 
+			&NetProxy::OnDisConnCB,
+			&NetProxy::OnMsgCB
+		));
 
-		pNet = std::shared_ptr<MPTCPServer>(new MPTCPServer("NetProxy", nType, this, &NetProxy::OnClientConnected, &NetProxy::OnClientDisconnect, &NetProxy::OnMsgCB));
 		if (pNet->InitializationAsServer(ip, nMaxClient, nPort, nThreadCount) < 0)
 		{
 			MP_ERROR("Init ServerNetModule Error![%d][MaxClient : %d][Port : %d]", nType, nMaxClient, nPort);
@@ -171,7 +151,14 @@ void NetProxy::AddTCPClientModule(uint8_t nType, const char* ip, const uint16_t 
 	auto pNet = GetNetModule(nType);
 	if (pNet == nullptr)
 	{
-		pNet = std::shared_ptr<MPTCPClient>(new MPTCPClient("NetProxy", nType, this, &NetProxy::OnClientConnected, &NetProxy::OnClientDisconnect, &NetProxy::OnMsgCB));
+		pNet = std::shared_ptr<MPTCPClient>(new MPTCPClient(
+			"NetProxy", 
+			nType, 
+			this, 
+			&NetProxy::OnConnCB,
+			&NetProxy::OnDisConnCB, 
+			&NetProxy::OnMsgCB
+		));
 		m_mNetModules.emplace(nType, pNet);
 	}
 
@@ -186,12 +173,57 @@ void NetProxy::AddTCPClientModule(uint8_t nType, const char* ip, const uint16_t 
 
 bool NetProxy::AddUDPServerModule(uint8_t nType, const uint16_t nPort, const uint8_t nThreadCount)
 {
+	//auto pNet = GetNetModule(nType);
+	//if (pNet == nullptr)
+	//{
+
+	//	pNet = std::shared_ptr<MPUDPServer>(new MPUDPServer(
+	//		"NetProxy", 
+	//		nType, 
+	//		this, 
+	//		&NetProxy::OnConnCB, 
+	//		&NetProxy::OnDisConnCB, 
+	//		&NetProxy::OnMsgCB
+	//	));
+	//	if (pNet->InitializationAsServer(0/*nMaxClient*/, nPort, nThreadCount) < 0)
+	//	{
+	//		MP_ERROR("Init ServerNetModule Error![%d][MaxClient : %d][Port : %d]", nType, 0/*nMaxClient*/, nPort);
+	//		ImmediatelyFinal("Init Server Net Faild!");
+	//		return false;
+	//	}
+	//	MP_SYSTEM("Init ServerNetModule Success![%d][MaxClient : %d][Port : %d]", nType, 0/*nMaxClient*/, nPort);
+	//	m_mNetModules.emplace(nType, pNet);
+	//}
+	//else
+	//{
+	//	MP_ERROR("Already Has ServerNetModule ![%d][MaxClient : %d][Port : %d]", nType, 0/*nMaxClient*/, nPort);
+	//	ImmediatelyFinal("Init Server Net Faild!");
+	//	return false;
+	//}
+	return true;
+}
+
+bool NetProxy::AddRUDPServerModule(
+	uint8_t nType,
+	const uint32_t nMaxClient,
+	const char* ip,
+	const uint16_t nPort,
+	const uint8_t nThreadCount
+)
+{
 	auto pNet = GetNetModule(nType);
 	if (pNet == nullptr)
 	{
 
-		pNet = std::shared_ptr<MPTCPServer>(new MPTCPServer("NetProxy", nType, this, &NetProxy::OnClientConnected, &NetProxy::OnClientDisconnect, &NetProxy::OnMsgCB));
-		if (pNet->InitializationAsServer(0/*nMaxClient*/, nPort, nThreadCount) < 0)
+		pNet = std::shared_ptr<MPRUDPServer>(new MPRUDPServer(
+			"NetProxy",
+			nType,
+			this,
+			&NetProxy::OnConnCB,
+			&NetProxy::OnDisConnCB,
+			&NetProxy::OnMsgCB
+		));
+		if (pNet->InitializationAsServer(ip, nMaxClient, nPort, nThreadCount) < 0)
 		{
 			MP_ERROR("Init ServerNetModule Error![%d][MaxClient : %d][Port : %d]", nType, 0/*nMaxClient*/, nPort);
 			ImmediatelyFinal("Init Server Net Faild!");
@@ -207,6 +239,31 @@ bool NetProxy::AddUDPServerModule(uint8_t nType, const uint16_t nPort, const uin
 		return false;
 	}
 	return true;
+}
+
+void NetProxy::AddRUDPClientModule(uint8_t nType, const char* ip, const uint16_t nPort, bool bAutoConnect)
+{
+	auto pNet = GetNetModule(nType);
+	if (pNet == nullptr)
+	{
+		pNet = std::shared_ptr<MPRUDPClient>(new MPRUDPClient(
+			"NetProxy",
+			nType,
+			this,
+			&NetProxy::OnConnCB,
+			&NetProxy::OnDisConnCB,
+			&NetProxy::OnMsgCB
+		));
+		m_mNetModules.emplace(nType, pNet);
+	}
+
+	if (pNet->InitializationAsClient(ip, nPort, bAutoConnect, 3000) < 0)
+	{
+		MP_ERROR("Init ClientNetModule Error![%d][IP : %s][Port : %d]", nType, ip, nPort);
+		return;
+	}
+
+	MP_SYSTEM("Init ClientNetModule Success![%d][IP: %s][Port : %d]", nType, ip, nPort);
 }
 
 void NetProxy::InvalidMessage(const uint8_t nType, const MPSOCK nSockIndex, const int nMsgID, const char * msg, const uint32_t nLen)
@@ -258,13 +315,13 @@ void NetProxy::OnMsgCB(const uint8_t nType, const MPSOCK nSockIndex, const char 
 	}
 
 	const char* pOffset(msg);
-	uint32_t nOffLen(nLen);
+	int64_t nOffLen(nLen);
 
 	while (nOffLen > MPMsgHead::MP_Head::MP_HEAD_LENGTH)
 	{
 		MPMsgHead xHead;
 		int nMsgBodyLength = pNet->DeCode(pOffset, nLen, xHead);
-		if (nMsgBodyLength > 0 && xHead.GetMsgID() > 0)
+		if (nMsgBodyLength > 0 && nMsgBodyLength < nOffLen && xHead.GetMsgID() > 0)
 		{
 			//OnRecieveMessage(nType,pNetObject->GetRealFD(), xHead.GetMsgID(), pOffset + MPMsgHead::MP_Head::MP_HEAD_LENGTH, nMsgBodyLength);
 			m_Buffers.AddRecvMsg(
@@ -278,16 +335,27 @@ void NetProxy::OnMsgCB(const uint8_t nType, const MPSOCK nSockIndex, const char 
 			nOffLen -= nMsgBodyLength + MPMsgHead::MP_Head::MP_HEAD_LENGTH;
 			pOffset += nMsgBodyLength + MPMsgHead::MP_Head::MP_HEAD_LENGTH;
 #ifdef SSJ_DEBUG
-			MP_DEBUG("[%s] Recieve Msg [%d] Success! BodyLength is %d", ServerTypeNames[nType], xHead.GetMsgID(), nMsgBodyLength);
+			MP_DEBUG("[%s] Recieve Msg [%d] Success! BodyLength is %d",
+				GetServerTypeNames(nType), xHead.GetMsgID(), nMsgBodyLength);
 #endif
 		}
 		else
 		{
 #ifdef SSJ_DEBUG
-			MP_DEBUG("[%s] Recieve Msg Failed! BodyLength is %d", ServerTypeNames[nType], nMsgBodyLength);
+			MP_DEBUG("[%s] Recieve Msg Failed! BodyLength is %d", GetServerTypeNames(nType), nMsgBodyLength);
 #endif
 		}
 	}
+}
+
+void NetProxy::OnConnCB(const uint8_t nType, const MPSOCK nSockIndex)
+{
+	m_vConnectList.emplace_back(std::make_tuple(nType, nSockIndex));
+}
+
+void NetProxy::OnDisConnCB(const uint8_t nType, const MPSOCK nSockIndex)
+{
+	m_vDisConnectList.emplace_back(std::make_tuple(nType, nSockIndex));
 }
 
 std::shared_ptr<MPNet> NetProxy::GetNetModule(uint32_t nType)
@@ -315,7 +383,7 @@ bool NetProxy::SendMsg(
 	msg_base.set_msg_data(msg.SerializeAsString());
 	auto s = msg_base.SerializeAsString();
 #ifdef SSJ_DEBUG
-	MP_DEBUG("[%s] Send Msg [%d] Success! BodyLength is %d", ServerTypeNames[to], nMsgId, s.size());
+	MP_DEBUG("[%s] Send Msg [%d] Success! BodyLength is %d", GetServerTypeNames(to), nMsgId, s.size());
 #endif
 	m_Buffers.AddSendMsg(
 		to,
@@ -342,7 +410,7 @@ bool NetProxy::SendMsg(
 	msg_base.set_msg_data(msg.SerializeAsString());
 	auto s = msg_base.SerializeAsString();
 #ifdef SSJ_DEBUG
-	MP_DEBUG("[%s] Send Msg [%d] Success! BodyLength is %d", ServerTypeNames[to], nMsgId, s.size());
+	MP_DEBUG("[%s] Send Msg [%d] Success! BodyLength is %d", GetServerTypeNames(to), nMsgId, s.size());
 #endif
 	m_Buffers.AddSendMsg(
 		to,
@@ -509,4 +577,96 @@ void NetProxy::Kick(const uint8_t nType, const MPSOCK nSockIndex,const char * re
 	OnClientDisconnect(nType, nSockIndex);
 
 	MP_INFO("Kick NetObject [%d][%llu] For Reason [%s]", nType, nSockIndex, reason);
+}
+
+void NetProxy::asyncRead()
+{
+	//Real Recv
+	auto pRecvMsg = m_Buffers.GetRecvMsg();
+	while (pRecvMsg != nullptr)
+	{
+		for (auto& nSockIndex : pRecvMsg->m_vSockIndex)
+		{
+			OnRecieveMessage(
+				pRecvMsg->m_nNetType,
+				nSockIndex,
+				pRecvMsg->m_nMsgId,
+				(const char *)(&pRecvMsg->m_vData[0]),
+				(uint32_t)pRecvMsg->m_vData.size()
+			);
+		}
+		pRecvMsg = m_Buffers.GetRecvMsg();
+	}
+
+}
+
+void NetProxy::asyncWrite()
+{
+	//Real Send
+	auto pSendMsg = m_Buffers.GetSendMsg();
+	while (pSendMsg != nullptr)
+	{
+		auto pNet = GetNetModule(pSendMsg->m_nNetType);
+		if (pNet == nullptr)
+		{
+			MP_ERROR("SendMsgAll Error!NetModule [%d] Not Found!", pSendMsg->m_nNetType);
+			pSendMsg = m_Buffers.GetSendMsg();
+			continue;
+		}
+
+		if (pSendMsg->m_vSockIndex.empty())
+		{
+			//broadcast
+			pNet->SendMsgToAllWithOutHead(
+				pSendMsg->m_nMsgId,
+				(const char *)(&pSendMsg->m_vData[0]),
+				(uint32_t)pSendMsg->m_vData.size()
+			);
+		}
+		else
+		{
+			pNet->SendMsgWithOutHead(
+				pSendMsg->m_nMsgId,
+				(const char *)(&pSendMsg->m_vData[0]),
+				(uint32_t)pSendMsg->m_vData.size(),
+				pSendMsg->m_vSockIndex
+			);
+		}
+		pSendMsg = m_Buffers.GetSendMsg();
+	}
+}
+
+void NetProxy::asyncConn()
+{
+	std::unique_lock<std::mutex> lck(mtx);
+	auto vConnList = m_vConnectList;
+	m_vConnectList.clear();
+	lck.unlock();
+
+	for (auto&&[nType, nSockIndex] : vConnList)
+	{
+		OnClientConnected(nType, nSockIndex);
+	}
+}
+
+void NetProxy::asyncDisconn()
+{
+	std::unique_lock<std::mutex> lck(mtx);
+	auto vDisConnList = m_vDisConnectList;
+	m_vDisConnectList.clear();
+	lck.unlock();
+
+	for (auto&&[nType, nSockIndex] : vDisConnList)
+	{
+		OnClientDisconnect(nType, nSockIndex);
+	}
+}
+
+void NetProxy::tickNetModule()
+{
+	for (auto& clients : m_mNetModules)
+	{
+		auto pNetModule = clients.second;
+		pNetModule->Execute();
+	}
 }

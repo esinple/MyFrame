@@ -27,4 +27,9 @@ struct UserRefreshCfg
 	uint32_t nIntervalSec;
 };
 
+struct ManagerRefreshCfg
+{
+
+};
+
 
