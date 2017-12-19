@@ -65,6 +65,7 @@ bool MPRUDPClient::Final()
 	auto mNetObj = GetAllNetObject();
 	for (auto&&[nSockIndex, pNetObject] : mNetObj)
 	{
+		(void)nSockIndex;
 		(pNetObject.get())->Close();
 	}
 

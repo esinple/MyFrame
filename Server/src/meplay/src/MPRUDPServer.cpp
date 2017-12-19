@@ -15,6 +15,7 @@ bool MPRUDPServer::Execute()
 		auto mNetObj = GetAllNetObject();
 		for (auto&&[nSockIndex, pNetObject] : mNetObj)
 		{
+			(void)nSockIndex;
 			(pNetObject.get())->Close();
 		}
 	}
@@ -69,6 +70,7 @@ bool MPRUDPServer::Final()
 	auto mNetObj = GetAllNetObject();
 	for (auto&&[nSockIndex, pNetObject] : mNetObj)
 	{
+		(void)nSockIndex;
 		(pNetObject.get())->Close();
 	}
 
